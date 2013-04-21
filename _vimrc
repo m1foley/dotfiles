@@ -1,0 +1,115 @@
+set nocompatible
+set directory=/tmp "swap files
+set backupdir=/tmp,. "tilde files
+
+" vundle start
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-eunuch'
+Bundle 'tpope/vim-repeat'
+Bundle 'kana/vim-textobj-user'
+Bundle 'nelstrom/vim-textobj-rubyblock'
+Bundle 'tsaleh/vim-matchit'
+Bundle 'vim-scripts/LargeFile'
+Bundle 'vim-scripts/tComment'
+Bundle 'vim-scripts/greplace.vim'
+Bundle 'airblade/vim-gitgutter'
+" required for snipmate
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'tomtom/tlib_vim'
+Bundle 'honza/vim-snippets'
+Bundle 'garbas/vim-snipmate'
+filetype plugin indent on
+" vundle end
+
+set clipboard=unnamed "y saves to clipboard
+set iskeyword+=- "add dash to keywords (for e, b, *)
+set scrolloff=1
+set nrformats= "number increments
+set nonumber
+set ignorecase
+set smartcase
+set magic
+set wildmenu
+set ruler
+set rulerformat=%30(%=%<%3r%2l,%c\ \ \ %P%)
+set undolevels=1000
+set formatoptions=cqlj
+let g:LargeFile = 1.5 "MB
+let g:rubycomplete_rails = 1
+let g:rubycomplete_buffer_loading = 1
+let g:rubycomplete_classes_in_global = 1
+
+set backspace=indent,eol,start
+set nosmartindent
+set expandtab
+set softtabstop=2
+set tabstop=2
+set shiftwidth=2
+
+set foldtext=MyFoldFunction()
+function! MyFoldFunction()
+  let line = getline(v:foldstart)
+  let lastline = getline(v:foldend)
+  let numfolded = v:foldend - v:foldstart + 1
+  return '+---' . line . '  ' . numfolded . ' '
+endfunction
+set nofoldenable
+
+syntax on
+set guifont=Monaco:h16
+set background=dark
+colorscheme koehler
+set mousehide
+set visualbell
+set guioptions=agmrL "disable gui dialogs
+set pastetoggle=<F9>
+
+" highlight Error ctermbg=darkgray guibg=#292929
+"make non-ascii stand out
+highlight link NonAscii Error
+syn match NonAscii /[^ -~]/
+
+" Display extra whitespace
+set list listchars=tab:»·,trail:·
+
+" syntax highlighting files
+au BufRead,BufNewFile Gemfile set filetype=ruby
+au BufRead,BufNewFile *.json set filetype=javascript
+au BufRead,BufNewFile *.md set filetype=markdown
+
+cabbrev q1 q!
+cabbrev qa1 qa!
+map Y y$
+map K ""
+map ZA :qa!<CR>
+
+:let mapleader = ","
+",r generates comments in routes.rb
+map <Leader>r :update<CR>gg/^#== Route Map<CR>jdGo Generated <ESC>:read !date +\%Y-\%m-\%d<CR>kJmr:read !bundle exec rake routes \| sed 's/^/\#/g'<CR>`rjdd
+" map <Leader>r :update<CR>:!annotate -r<CR>
+map <Leader>m ]m
+map <Leader>n [m
+map <Leader><Bar> 80<Bar>
+map <Leader>j Jx
+map <leader>h <Esc>:call EasyMode()<CR>
+map <leader>H <Esc>:call HardMode()<CR>
+
+" typos
+iabbrev contat contact
+iabbrev Contat Contact
+iabbrev cutomer customer
+iabbrev Cutomer Customer
+iabbrev cutomer_id customer_id
+iabbrev assocaite associate
+iabbrev Associate Associate
+iabbrev assoviate associate
+iabbrev Assoviate Associate
+iabbrev reatiler retailer
+iabbrev Reatiler Retailer
