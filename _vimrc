@@ -92,14 +92,12 @@ map ZA :qa!<CR>
 
 :let mapleader = ","
 ",r generates comments in routes.rb
-map <Leader>r :update<CR>gg/^#== Route Map<CR>jdGo Generated <ESC>:read !date +\%Y-\%m-\%d<CR>kJmr:read !bundle exec rake routes \| sed 's/^/\#/g'<CR>`rjdd
 " map <Leader>r :update<CR>:!annotate -r<CR>
+map <Leader>r :update<CR>gg/^#== Route Map<CR>jdGo Generated <ESC>:read !date +\%Y-\%m-\%d<CR>kJmr:read !bundle exec rake routes \| sed 's/^/\#/g'<CR>`rjdd
 map <Leader>m ]m
 map <Leader>n [m
 map <Leader><Bar> 80<Bar>
 map <Leader>j Jx
-map <leader>h <Esc>:call EasyMode()<CR>
-map <leader>H <Esc>:call HardMode()<CR>
 
 " typos
 iabbrev contat contact
