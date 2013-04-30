@@ -1,0 +1,57 @@
+#/bin/bash
+p="--app signature-app"
+d="--app signature-app-develop"
+s="/Users/mike/sig/signature-rails"
+alias hc="heroku run NEWRELIC_ENABLE=false rails console"
+alias hdd="rake sig:deploy:develop"
+alias hdp="rake sig:deploy:production"
+alias s="cd $s"
+alias gimp="/Applications/Gimp.app/Contents/MacOS/Gimp"
+alias top="top -o cpu"
+alias cp="cp -iv"
+alias mv="mv -iv"
+alias rm="rm -iv"
+#alias ls="ls -Fh --color=auto"
+alias ls="ls -GFh"
+alias ll="ls -l"
+alias llrs="ls -lrt"
+alias sl="ls"
+alias du="du -h"
+#alias pps="ps axfo pid,nice,user,etime,args"
+#alias ppsm="ps axfo pid,pcpu,pmem,nice,user,etime,args"
+#alias grep="grep --exclude-dir=.svn"
+
+alias grpe="grep"
+alias heda="head"
+alias eit="exit"
+alias exi="exit"
+alias xit="exit"
+alias eixt="exit"
+alias qexit="exit"
+alias guit="git"
+alias iv="vi"
+alias cate="cat"
+alias rkae="rake"
+alias herkou="heroku"
+alias raek="rake"
+alias tit="git"
+alias :q=
+alias :qa=
+
+#find() {
+#  /usr/bin/find $@ -not \( -name \*\.svn\* -prune \)
+#}
+
+vi() {
+  args=$@
+  if [[ $@ =~ ^.+\ :([0-9]+)$ ]]; then #space correction
+    args=`echo "$@" | sed 's/ :/:/g'`
+  fi
+
+  if [[ $args =~ ^.+:([0-9]+)$ ]]; then #go to line
+    args=`echo "$args" | sed 's/^\(.\{1,\}\):\([0-9]\{1,\}\)$/\1 -c :\2/g'`
+  elif [[ $args =~ ^.+:$ ]]; then #ends with colon
+    args=`echo "$args" | sed 's/:$//g'`
+  fi
+  /usr/local/bin/vi $args
+}
