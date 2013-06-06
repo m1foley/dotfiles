@@ -94,6 +94,7 @@ map ZA :qa!<CR>
 ",r generates comments in routes.rb
 " map <Leader>r :update<CR>:!annotate -r<CR>
 map <Leader>r :update<CR>gg/^#== Route Map<CR>jdGo Generated <ESC>:read !date +\%Y-\%m-\%d<CR>kJmr:read !bundle exec rake routes \| sed 's/^/\#/g'<CR>`rjdd
+map <Leader>c ct_
 map <Leader>m ]m
 map <Leader>n [m
 map <Leader><Bar> 80<Bar>
