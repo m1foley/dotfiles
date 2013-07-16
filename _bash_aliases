@@ -1,10 +1,5 @@
 #/bin/bash
-p="--app signature-app"
-d="--app signature-app-develop"
-s="/Users/mike/sig/signature-rails"
-alias hc="heroku run NEWRELIC_ENABLE=false rails console"
-alias hdd="rake sig:deploy:develop"
-alias hdp="rake sig:deploy:production"
+s="..."
 alias s="cd $s"
 alias gimp="/Applications/Gimp.app/Contents/MacOS/Gimp"
 alias top="top -o cpu"

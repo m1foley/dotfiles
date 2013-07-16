@@ -1,0 +1,28 @@
+[color]
+  branch = auto
+  status = auto
+  diff = auto
+  interactive = auto
+  decorate = auto
+  grep = auto
+  ui = true
+[user]
+  name = Mike Foley
+  email = foley3@gmail.com
+[diff]
+  external = git_diff_wrapper
+[pager]
+  diff =
+[alias]
+  st = status
+  br = branch
+  co = checkout
+  fe = fetch
+  cp = cherry-pick
+  grpe = grep
+[merge]
+  tool = vimdiff
+[push]
+  default = matching
+[init]
+  templatedir = ~/.git_template
