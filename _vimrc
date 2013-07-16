@@ -40,7 +40,7 @@ set wildmenu
 set ruler
 set rulerformat=%30(%=%<%3r%2l,%c\ \ \ %P%)
 set undolevels=1000
-set formatoptions=cqlj
+set formatoptions=cql
 let g:LargeFile = 1.5 "MB
 let g:rubycomplete_rails = 1
 let g:rubycomplete_buffer_loading = 1
