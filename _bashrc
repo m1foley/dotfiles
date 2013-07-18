@@ -1,17 +1,20 @@
 function parse_git_branch {
-  git branch --no-color 2> /dev/null | sed -e '/^[^\*]/d' -e 's/^\*\ \(.*\)/(\1) /'
+  git branch --no-color 2> /dev/null | sed -e '/^[^\*]/d' -e 's/^\*\ \(.*\)/(\1)/'
 }
 
 # PS1='\[\e]0;\u: \w\a\]\u:\w $(parse_git_branch)\$ '
 # PS1='\w\[\e[36m\]$(parse_git_branch)\[\e[0m\]\$ '
 PS1='\[\e[36m\]$(parse_git_branch)\[\e[0m\]\w\$ '
 
-PATH=./bin:/usr/local/bin:$PATH
+PATH=~/.rbenv/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
 
-if [ -f ~/.git-completion.bash ]; then
-  . ~/.git-completion.bash
+if [ -f ~/.git_completion.bash ]; then
+  . ~/.git_completion.bash
 fi
+
+# rbenv
+eval "$(rbenv init -)"
