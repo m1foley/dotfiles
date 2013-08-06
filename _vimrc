@@ -2,6 +2,12 @@ set nocompatible
 set directory=/tmp "swap files
 set backupdir=/tmp,. "tilde files
 
+" Time out on key codes but not mappings.
+" Basically this makes terminal Vim work sanely.
+set notimeout
+set ttimeout
+set ttimeoutlen=100
+
 " vundle start
 filetype off
 set rtp+=~/.vim/bundle/vundle/
@@ -20,6 +26,7 @@ Bundle 'vim-scripts/LargeFile'
 Bundle 'vim-scripts/tComment'
 Bundle 'vim-scripts/greplace.vim'
 Bundle 'airblade/vim-gitgutter'
+Bundle 'michaeljsmith/vim-indent-object'
 " required for snipmate
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
@@ -28,7 +35,7 @@ Bundle 'garbas/vim-snipmate'
 filetype plugin indent on
 " vundle end
 
-set clipboard=unnamed "y saves to clipboard
+set clipboard=unnamed "share clipboard with OS
 set iskeyword+=- "add dash to keywords (for e, b, *)
 set scrolloff=1
 set nrformats= "number increments
@@ -41,6 +48,7 @@ set ruler
 set rulerformat=%30(%=%<%3r%2l,%c\ \ \ %P%)
 set undolevels=1000
 set formatoptions=cql
+set sidescroll=10
 let g:LargeFile = 1.5 "MB
 let g:rubycomplete_rails = 1
 let g:rubycomplete_buffer_loading = 1
@@ -52,6 +60,9 @@ set expandtab
 set softtabstop=2
 set tabstop=2
 set shiftwidth=2
+set nojoinspaces
+set splitright
+set splitbelow
 
 set foldtext=MyFoldFunction()
 function! MyFoldFunction()
@@ -88,7 +99,29 @@ cabbrev q1 q!
 cabbrev qa1 qa!
 map Y y$
 map K ""
+map Q ""
 map ZA :qa!<CR>
+nmap k gk
+nmap j gj
+" ^e and ^y scroll 3 lines instead of 1
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+" don't move the cursor after pasting
+noremap p p`[
+noremap P P`[
+" navigate splits more easily
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+" reselect visual block after indent/outdent
+vnoremap < <gv
+vnoremap > >gv
+
+" expand %% to current directory in command-line mode
+" http://vimcasts.org/e/14
+cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
 :let mapleader = ","
 ",r generates comments in routes.rb
@@ -99,16 +132,6 @@ map <Leader>m ]m
 map <Leader>n [m
 map <Leader><Bar> 80<Bar>
 map <Leader>j Jx
-
-" typos
-iabbrev contat contact
-iabbrev Contat Contact
-iabbrev cutomer customer
-iabbrev Cutomer Customer
-iabbrev cutomer_id customer_id
-iabbrev assocaite associate
-iabbrev Associate Associate
-iabbrev assoviate associate
-iabbrev Assoviate Associate
-iabbrev reatiler retailer
-iabbrev Reatiler Retailer
+map <Leader>, <C-^>
+" ,<Space> strips all trailing whitespace from current file
+nnoremap <Leader><Space> :%s/\s\+$//<CR>
