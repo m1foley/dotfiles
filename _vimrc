@@ -103,9 +103,9 @@ map Q ""
 map ZA :qa!<CR>
 nmap k gk
 nmap j gj
-" ^e and ^y scroll 3 lines instead of 1
-nnoremap <C-e> 3<C-e>
-nnoremap <C-y> 3<C-y>
+" ^e and ^y scroll 2 lines instead of 1
+nnoremap <C-e> 2<C-e>
+nnoremap <C-y> 2<C-y>
 " don't move the cursor after pasting
 noremap p p`[
 noremap P P`[
