@@ -37,7 +37,6 @@ filetype plugin indent on
 
 set clipboard=unnamed "share clipboard with OS
 set iskeyword+=- "add dash to keywords (for e, b, *)
-set scrolloff=1
 set nrformats= "number increments
 set nonumber
 set ignorecase
@@ -114,10 +113,6 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-
-" reselect visual block after indent/outdent
-vnoremap < <gv
-vnoremap > >gv
 
 " expand %% to current directory in command-line mode
 " http://vimcasts.org/e/14
