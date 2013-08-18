@@ -8,6 +8,7 @@ set notimeout
 set ttimeout
 set ttimeoutlen=100
 
+runtime macros/matchit.vim
 " vundle start
 filetype off
 set rtp+=~/.vim/bundle/vundle/
@@ -21,17 +22,16 @@ Bundle 'tpope/vim-eunuch'
 Bundle 'tpope/vim-repeat'
 Bundle 'kana/vim-textobj-user'
 Bundle 'nelstrom/vim-textobj-rubyblock'
-Bundle 'tsaleh/vim-matchit'
+Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'vim-scripts/LargeFile'
 Bundle 'vim-scripts/tComment'
 Bundle 'vim-scripts/greplace.vim'
 Bundle 'airblade/vim-gitgutter'
-Bundle 'michaeljsmith/vim-indent-object'
 " required for snipmate
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
-Bundle 'honza/vim-snippets'
 Bundle 'garbas/vim-snipmate'
+Bundle 'honza/vim-snippets'
 filetype plugin indent on
 " vundle end
 
@@ -94,6 +94,8 @@ au BufRead,BufNewFile Gemfile set filetype=ruby
 au BufRead,BufNewFile *.json set filetype=javascript
 au BufRead,BufNewFile *.md set filetype=markdown
 
+inoremap jk <ESC>
+inoremap kj <ESC>
 cabbrev q1 q!
 cabbrev qa1 qa!
 map Y y$
