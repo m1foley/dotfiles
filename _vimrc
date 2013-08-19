@@ -107,9 +107,6 @@ nmap j gj
 " ^e and ^y scroll 2 lines instead of 1
 nnoremap <C-e> 2<C-e>
 nnoremap <C-y> 2<C-y>
-" don't move the cursor after pasting
-noremap p p`[
-noremap P P`[
 " navigate splits more easily
 map <C-h> <C-w>h
 map <C-j> <C-w>j
