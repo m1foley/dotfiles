@@ -15,6 +15,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-endwise'
@@ -27,6 +28,7 @@ Bundle 'vim-scripts/LargeFile'
 Bundle 'vim-scripts/tComment'
 Bundle 'vim-scripts/greplace.vim'
 Bundle 'airblade/vim-gitgutter'
+Bundle 'kchmck/vim-coffee-script'
 " required for snipmate
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
@@ -90,12 +92,10 @@ syn match NonAscii /[^ -~]/
 set list listchars=tab:»·,trail:·
 
 " syntax highlighting files
-au BufRead,BufNewFile Gemfile set filetype=ruby
 au BufRead,BufNewFile *.json set filetype=javascript
 au BufRead,BufNewFile *.md set filetype=markdown
+au BufRead,BufNewFile *.hamlc set filetype=haml
 
-inoremap jk <ESC>
-inoremap kj <ESC>
 cabbrev q1 q!
 cabbrev qa1 qa!
 map Y y$
