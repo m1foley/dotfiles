@@ -91,10 +91,9 @@ syn match NonAscii /[^ -~]/
 " Display extra whitespace
 set list listchars=tab:»·,trail:·
 
-" syntax highlighting files
-au BufRead,BufNewFile *.json set filetype=javascript
-au BufRead,BufNewFile *.md set filetype=markdown
-au BufRead,BufNewFile *.hamlc set filetype=haml
+autocmd BufRead,BufNewFile *.json set filetype=javascript
+autocmd BufRead,BufNewFile *.md set filetype=markdown
+autocmd BufRead,BufNewFile *.hamlc set filetype=haml
 
 cabbrev q1 q!
 cabbrev qa1 qa!
@@ -102,8 +101,6 @@ map Y y$
 map K ""
 map Q ""
 map ZA :qa!<CR>
-nmap k gk
-nmap j gj
 " ^e and ^y scroll 2 lines instead of 1
 nnoremap <C-e> 2<C-e>
 nnoremap <C-y> 2<C-y>
@@ -112,7 +109,6 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-
 " expand %% to current directory in command-line mode
 " http://vimcasts.org/e/14
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
@@ -126,6 +122,11 @@ map <Leader>m ]m
 map <Leader>n [m
 map <Leader><Bar> 80<Bar>
 map <Leader>j Jx
+",, opens previously edited file
 map <Leader>, <C-^>
+",s spec method
+map <leader>s :!bundle exec spec <C-R>=expand("%:p")<CR> -c -l <C-R>=line(".")<CR><CR>
+",S spec file
+map <leader>S :!bundle exec spec <C-r>=expand("%:p")<CR> -c<CR>
 " ,<Space> strips all trailing whitespace from current file
 nnoremap <Leader><Space> :%s/\s\+$//<CR>
