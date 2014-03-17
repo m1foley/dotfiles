@@ -1,3 +1,4 @@
+shopt -s histverify
 function parse_git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^\*]/d' -e 's/^\*\ \(.*\)/(\1)/'
 }
@@ -6,7 +7,7 @@ function parse_git_branch {
 # PS1='\w\[\e[36m\]$(parse_git_branch)\[\e[0m\]\$ '
 PS1='\[\e[36m\]$(parse_git_branch)\[\e[0m\]\w\$ '
 
-PATH=~/.rbenv/bin:/usr/local/bin:/usr/local/sbin:$PATH
+PATH=~/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$PATH
 
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases

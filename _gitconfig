@@ -16,14 +16,14 @@
 [alias]
   st = status
   br = branch
+  c = commit
   co = checkout
   fe = fetch
   cp = cherry-pick
   grpe = grep
 [merge]
   tool = vimdiff
-  ff = false
 [push]
-  default = matching
+  default = current
 [init]
   templatedir = ~/.git_template
