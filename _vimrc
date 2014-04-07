@@ -108,21 +108,19 @@ noremap <C-l> <C-w>l
 " http://vimcasts.org/e/14
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
-",r generates comments in routes.rb
-" map <Leader>r :update<CR>:!annotate -r<CR>
-map <Leader>r :update<CR>gg/^#== Route Map<CR>jdGo Generated <ESC>:read !date +\%Y-\%m-\%d<CR>kJmr:read !bundle exec rake routes \| sed 's/^/\#/g'<CR>`rjdd
-map <Leader>c ct_
-map <Leader>m ]m
-map <Leader>n [m
-map <Leader><Bar> 80<Bar>
-map <Leader>j Jx
+nnoremap <Leader>c ct_
+noremap <Leader>m ]m
+noremap <Leader>n [m
+noremap <Leader><Bar> 80<Bar>
+nnoremap <Leader>j Jx
 ",, opens previously edited file
-map <Leader>, <C-^>
+nnoremap <Leader>, <C-^>
 ",s spec method
-map <leader>s :!bundle exec rspec <C-R>=expand("%:p")<CR> --format nested -c -l <C-R>=line(".")<CR><CR>
+nnoremap <leader>s :!bundle exec rspec <C-R>=expand("%:p")<CR> --format nested -c -l <C-R>=line(".")<CR><CR>
 ",S spec file
-map <leader>S :!bundle exec rspec <C-r>=expand("%:p")<CR> --format nested -c<CR>
+nnoremap <leader>S :!bundle exec rspec <C-r>=expand("%:p")<CR> --format nested -c<CR>
 " ,<Space> strips all trailing whitespace from current file
 nnoremap <Leader><Space> :%s/\s\+$//<CR>
 nnoremap <Leader>d :diffthis<CR><C-w><C-w>:diffthis<CR>
 nnoremap <Leader>D :diffoff<CR><C-w><C-w>:diffoff<CR>
+nnoremap <leader>o :!git checkout %<CR><CR>
