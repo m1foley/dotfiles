@@ -1,7 +1,8 @@
 #/bin/bash
-alias s="cd /Users/mike/Documents/projects/polleverywhere/rails_app" 
-alias v="cd /Users/mike/Documents/projects/polleverywhere/visualizations" 
-alias m="cd /Users/mike/Documents/projects/polleverywhere/message_gateway_server" 
+alias s="cd /Users/mike/Documents/projects/polleverywhere/rails_app"
+alias v="cd /Users/mike/Documents/projects/polleverywhere/visualizations"
+alias m="cd /Users/mike/Documents/projects/polleverywhere/message_gateway_server"
+alias p="cd /Users/mike/Documents/projects"
 alias b="bundle"
 alias be="bundle exec"
 alias ber="bundle exec rspec"
