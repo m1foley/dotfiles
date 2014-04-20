@@ -1,12 +1,5 @@
-set nocompatible
 set directory=/tmp "swap files
 set backupdir=/tmp,. "tilde files
-
-" Time out on key codes but not mappings.
-" Basically this makes terminal Vim work sanely.
-set notimeout
-set ttimeout
-set ttimeoutlen=100
 
 " autocmd BufRead,BufNewFile *.json set filetype=javascript
 autocmd BufRead,BufNewFile *.md set filetype=markdown
@@ -48,17 +41,15 @@ filetype plugin indent on
 
 set clipboard=unnamed "share clipboard with OS
 set iskeyword+=- "add dash to keywords (for e, b, *)
-set nrformats= "number increments
 set number
 set ignorecase
 set smartcase
 set magic
-set wildmenu
-set ruler
 set rulerformat=%30(%=%<%3r%2l,%c\ \ \ %P%)
 set undolevels=1000
 set formatoptions=cql
 set sidescroll=10
+set hlsearch
 let g:LargeFile = 1.5 "MB
 
 set expandtab
@@ -85,12 +76,11 @@ set visualbell
 set guioptions=agmrL "disable gui dialogs
 set pastetoggle=<F9>
 
-" highlight Error ctermbg=darkgray guibg=#292929
-"make non-ascii stand out
-highlight link NonAscii Error
-syn match NonAscii /[^ -~]/
-" Display extra whitespace
+" display extra whitespace
 set list
+" make non-ascii chars stand out
+syntax match nonascii "[^\x00-\x7F]"
+highlight nonascii guibg=Red ctermbg=2
 
 :let mapleader = ","
 cabbrev q1 q!
@@ -107,6 +97,8 @@ noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
+" ctrl+n temporarily clears hlsearch
+nnoremap <silent> <C-n> :nohlsearch<CR>
 " expand %% to current directory in command-line mode
 " http://vimcasts.org/e/14
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
@@ -124,6 +116,8 @@ nnoremap <leader>s :!bundle exec rspec <C-R>=expand("%:p")<CR> --format nested -
 nnoremap <leader>S :!bundle exec rspec <C-r>=expand("%:p")<CR> --format nested -c<CR>
 " ,<Space> strips all trailing whitespace from current file
 nnoremap <Leader><Space> :%s/\s\+$//<CR>
+" ,d = diff all
 nnoremap <Leader>d :diffthis<CR><C-w><C-w>:diffthis<CR>
+" ,D = diff off
 nnoremap <Leader>D :diffoff<CR><C-w><C-w>:diffoff<CR>
 nnoremap <leader>o :!git checkout %<CR><CR>
