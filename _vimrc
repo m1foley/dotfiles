@@ -5,7 +5,6 @@ set backupdir=/tmp,. "tilde files
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile *.hamlc set filetype=haml
 
-runtime macros/matchit.vim
 " vundle start
 filetype off
 set rtp+=~/.vim/bundle/vundle/
