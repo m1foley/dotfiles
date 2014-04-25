@@ -38,6 +38,7 @@ alias t="tmux attach || tmux new"
 
 alias grpe="grep"
 alias heda="head"
+alias x="exit"
 alias xx="exit"
 alias eit="exit"
 alias exi="exit"
