@@ -2653,6 +2653,16 @@ _gitk ()
 
 __git_complete git __git_main
 __git_complete gitk __gitk_main
+__git_complete g __git_main
+__git_complete gco _git_checkout
+__git_complete gst _git_stash
+__git_complete gd _git_diff
+__git_complete gf _git_fetch
+__git_complete gr _git_rebase
+__git_complete gl _git_log
+__git_complete ga _git_add
+__git_complete gb _git_branch
+__git_complete gc _git_commit
 
 # The following are necessary only for Cygwin, and only are needed
 # when the user has tab-completed the executable name and consequently
