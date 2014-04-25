@@ -1,10 +1,6 @@
 set directory=/tmp "swap files
 set backupdir=/tmp,. "tilde files
 
-" autocmd BufRead,BufNewFile *.json set filetype=javascript
-autocmd BufRead,BufNewFile *.md set filetype=markdown
-autocmd BufRead,BufNewFile *.hamlc set filetype=haml
-
 " vundle start
 filetype off
 set rtp+=~/.vim/bundle/vundle/
@@ -22,7 +18,6 @@ Bundle 'scrooloose/syntastic'
 Bundle 'wincent/Command-T'
 Bundle 'rking/ag.vim'
 Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-endwise'
@@ -37,6 +32,10 @@ Bundle 'garbas/vim-snipmate'
 Bundle 'honza/vim-snippets'
 filetype plugin indent on
 " vundle end
+
+" autocmd BufRead,BufNewFile *.json set filetype=javascript
+autocmd BufRead,BufNewFile *.md set filetype=markdown
+autocmd BufRead,BufNewFile *.hamlc set filetype=haml
 
 set clipboard=unnamed "share clipboard with OS
 set iskeyword+=- "add dash to keywords (for e, b, *)
@@ -101,22 +100,27 @@ nnoremap <silent> <C-n> :nohlsearch<CR>
 " expand %% to current directory in command-line mode
 " http://vimcasts.org/e/14
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
+" imap <C-CR> <CR><C-o>d0<C-o>>><C-o>>>
+inoremap <S-Tab> <C-o><<
 
 nnoremap <Leader>c ct_
-noremap <Leader>m ]m
-noremap <Leader>n [m
-noremap <Leader><Bar> 80<Bar>
+nnoremap <Leader>m ]m
+vnoremap <Leader>m ]m
+nnoremap <Leader>n [m
+vnoremap <Leader>n [m
+nnoremap <Leader><Bar> 80<Bar>
+vnoremap <Leader><Bar> 80<Bar>
 nnoremap <Leader>j Jx
 ",, opens previously edited file
 nnoremap <Leader>, <C-^>
 ",s spec method
-nnoremap <leader>s :!bundle exec rspec <C-R>=expand("%:p")<CR> --format nested -c -l <C-R>=line(".")<CR><CR>
+nnoremap <Leader>s :!bundle exec rspec <C-R>=expand("%:p")<CR> --format nested -c -l <C-R>=line(".")<CR><CR>
 ",S spec file
-nnoremap <leader>S :!bundle exec rspec <C-r>=expand("%:p")<CR> --format nested -c<CR>
+nnoremap <Leader>S :!bundle exec rspec <C-r>=expand("%:p")<CR> --format nested -c<CR>
 " ,<Space> strips all trailing whitespace from current file
 nnoremap <Leader><Space> :%s/\s\+$//<CR>
 " ,d = diff all
 nnoremap <Leader>d :diffthis<CR><C-w><C-w>:diffthis<CR>
 " ,D = diff off
 nnoremap <Leader>D :diffoff<CR><C-w><C-w>:diffoff<CR>
-nnoremap <leader>o :!git checkout %<CR><CR>
+nnoremap <Leader>o :!git checkout %<CR><CR>
