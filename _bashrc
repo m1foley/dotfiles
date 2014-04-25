@@ -6,7 +6,7 @@ function parse_git_branch {
 
 # PS1='\[\e]0;\u: \w\a\]\u:\w $(parse_git_branch)\$ '
 # PS1='\w\[\e[36m\]$(parse_git_branch)\[\e[0m\]\$ '
-PS1='\[\e[36m\]$(parse_git_branch)\[\e[0m\]\w\$ '
+PS1='\[\e[36m\]$(parse_git_branch)\[\e[0m\]\W\$ '
 
 PATH=~/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$PATH
 
