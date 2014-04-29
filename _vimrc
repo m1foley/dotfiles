@@ -1,37 +1,39 @@
+set nocompatible
 set directory=/tmp "swap files
 set backupdir=/tmp,. "tilde files
 
-" vundle start
+"--- vundle begin ---
 filetype off
 set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-sensible'
-Bundle 'kana/vim-textobj-user'
-Bundle 'nelstrom/vim-textobj-rubyblock'
-Bundle 'michaeljsmith/vim-indent-object'
-Bundle 'vim-scripts/LargeFile'
-Bundle 'vim-scripts/greplace.vim'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'scrooloose/syntastic'
-Bundle 'wincent/Command-T'
-Bundle 'rking/ag.vim'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-eunuch'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-jdaddy'
+call vundle#begin()
+Plugin 'gmarik/vundle'
+Plugin 'tpope/vim-sensible'
+Plugin 'kana/vim-textobj-user'
+Plugin 'nelstrom/vim-textobj-rubyblock'
+Plugin 'michaeljsmith/vim-indent-object'
+Plugin 'vim-scripts/LargeFile'
+Plugin 'm1foley/greplace.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'scrooloose/syntastic'
+Plugin 'wincent/Command-T'
+Plugin 'rking/ag.vim'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-eunuch'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-jdaddy'
 " required for snipmate
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-Bundle 'garbas/vim-snipmate'
-Bundle 'honza/vim-snippets'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+call vundle#end()
 filetype plugin indent on
-" vundle end
+"--- vundle end ---
 
 " autocmd BufRead,BufNewFile *.json set filetype=javascript
 autocmd BufRead,BufNewFile *.md set filetype=markdown
@@ -49,6 +51,8 @@ set formatoptions=cql
 set sidescroll=10
 set hlsearch
 let g:LargeFile = 1.5 "MB
+set grepprg=ag
+let g:grep_cmd_opts='--line-numbers --noheading'
 
 set expandtab
 set softtabstop=2
