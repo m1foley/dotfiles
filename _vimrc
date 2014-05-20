@@ -40,8 +40,8 @@ filetype plugin indent on
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile *.hamlc set filetype=haml
 
-set clipboard=unnamed "share clipboard with OS
-set iskeyword+=- "add dash to keywords (for e, b, *)
+" set clipboard=unnamed "share clipboard with OS
+set iskeyword+=- "add chars to keywords for w/e/b/*
 set number
 set ignorecase
 set smartcase
