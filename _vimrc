@@ -26,6 +26,7 @@ Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-jdaddy'
+Plugin 'tpope/vim-dispatch'
 " required for snipmate
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
@@ -118,9 +119,11 @@ nnoremap <Leader>j Jx
 ",, opens previously edited file
 nnoremap <Leader>, <C-^>
 ",s spec method
-nnoremap <Leader>s :!bundle exec rspec <C-R>=expand("%:p")<CR> --format nested -c -l <C-R>=line(".")<CR><CR>
+" nnoremap <Leader>s :!bundle exec rspec <C-R>=expand("%:p")<CR> --format nested -c -l <C-R>=line(".")<CR><CR>
+nnoremap <Leader>s :Dispatch bundle exec rspec <C-R>=expand("%:p")<CR> --format progress --color -l <C-R>=line(".")<CR><CR>
 ",S spec file
-nnoremap <Leader>S :!bundle exec rspec <C-r>=expand("%:p")<CR> --format nested -c<CR>
+nnoremap <Leader>S :Dispatch bundle exec rspec <C-r>=expand("%:p")<CR> --format progress --color<CR>
+" nnoremap <Leader>S :!bundle exec rspec <C-r>=expand("%:p")<CR> --format nested -c<CR>
 " ,<Space> strips all trailing whitespace from current file
 nnoremap <Leader><Space> :%s/\s\+$//<CR>
 " ,d = diff all
