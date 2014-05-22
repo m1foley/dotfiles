@@ -12,12 +12,14 @@ Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'vim-scripts/LargeFile'
+" waiting for pull request
 Plugin 'm1foley/greplace.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'scrooloose/syntastic'
 Plugin 'wincent/Command-T'
 Plugin 'rking/ag.vim'
+Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
@@ -27,6 +29,8 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-jdaddy'
 Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-haml'
+Plugin 'tpope/vim-characterize'
 " required for snipmate
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
@@ -38,7 +42,6 @@ filetype plugin indent on
 
 " autocmd BufRead,BufNewFile *.json set filetype=javascript
 autocmd BufRead,BufNewFile *.md set filetype=markdown
-autocmd BufRead,BufNewFile *.hamlc set filetype=haml
 
 " set clipboard=unnamed "share clipboard with OS
 set iskeyword+=- "add chars to keywords for w/e/b/*
