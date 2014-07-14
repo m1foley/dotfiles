@@ -12,7 +12,7 @@ Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'vim-scripts/LargeFile'
-" waiting for pull request
+" waiting for: https://github.com/skwp/greplace.vim/pull/7
 Plugin 'm1foley/greplace.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'kchmck/vim-coffee-script'
@@ -57,6 +57,7 @@ set hlsearch
 let g:LargeFile = 1.5 "MB
 set grepprg=ag
 let g:grep_cmd_opts='--line-numbers --noheading'
+let g:aghighlight=1 " highlight Ag matches
 
 set expandtab
 set softtabstop=2
@@ -74,9 +75,28 @@ function! MyFoldFunction()
 endfunction
 set nofoldenable
 
+syntax enable
 set guifont=Monaco:h16
 set background=dark
-colorscheme koehler
+" colorscheme koehler
+colorscheme base16-railscasts
+highlight clear SignColumn
+highlight VertSplit    ctermbg=236
+highlight ColorColumn  ctermbg=237
+" highlight LineNr       ctermbg=236 ctermfg=240
+highlight LineNr       ctermbg=0 ctermfg=240
+" highlight CursorLineNr ctermbg=236 ctermfg=240
+highlight CursorLineNr ctermbg=0 ctermfg=240
+highlight CursorLine   ctermbg=236
+highlight StatusLineNC ctermbg=238 ctermfg=0
+highlight StatusLine   ctermbg=240 ctermfg=12
+highlight IncSearch    ctermbg=3   ctermfg=1
+highlight Search       ctermbg=1   ctermfg=3
+highlight Visual       ctermbg=3   ctermfg=0
+highlight Pmenu        ctermbg=240 ctermfg=12
+highlight PmenuSel     ctermbg=3   ctermfg=1
+highlight SpellBad     ctermbg=0   ctermfg=1
+
 set mousehide
 set visualbell
 set guioptions=agmrL "disable gui dialogs
@@ -122,11 +142,11 @@ nnoremap <Leader>j Jx
 ",, opens previously edited file
 nnoremap <Leader>, <C-^>
 ",s spec method
-" nnoremap <Leader>s :!bundle exec rspec <C-R>=expand("%:p")<CR> --format nested -c -l <C-R>=line(".")<CR><CR>
-nnoremap <Leader>s :Dispatch bundle exec rspec <C-R>=expand("%:p")<CR> --format progress --color -l <C-R>=line(".")<CR><CR>
+" nnoremap <Leader>s :!bundle exec rspec <C-R>=expand("%:p")<CR> --format doc -c -l <C-R>=line(".")<CR><CR>
+nnoremap <Leader>s :Dispatch bundle exec rspec <C-R>=expand("%:p")<CR>:<C-R>=line(".")<CR> --format doc --color<CR>
 ",S spec file
-nnoremap <Leader>S :Dispatch bundle exec rspec <C-r>=expand("%:p")<CR> --format progress --color<CR>
-" nnoremap <Leader>S :!bundle exec rspec <C-r>=expand("%:p")<CR> --format nested -c<CR>
+nnoremap <Leader>S :Dispatch bundle exec rspec <C-r>=expand("%:p")<CR>                     --format doc --color<CR>
+" nnoremap <Leader>S :!bundle exec rspec <C-r>=expand("%:p")<CR> --format doc -c<CR>
 " ,<Space> strips all trailing whitespace from current file
 nnoremap <Leader><Space> :%s/\s\+$//<CR>
 " ,d = diff all
