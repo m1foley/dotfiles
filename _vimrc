@@ -58,6 +58,7 @@ set hlsearch
 let g:LargeFile = 1.5 "MB
 set grepprg=ag
 let g:grep_cmd_opts='--line-numbers --noheading'
+let g:agprg="ag --column --smart-case --all-text"
 let g:aghighlight=1 " highlight Ag matches
 
 set expandtab
