@@ -1,6 +1,6 @@
-if Object.const_defined?('ActiveRecord')
-  ActiveRecord::Base.logger = Logger.new(STDOUT)
-end
+# if Object.const_defined?('ActiveRecord')
+#   ActiveRecord::Base.logger = Logger.new(STDOUT)
+# end
 # User.logger = Logger.new(STDOUT)
 # User.logger.level = 0
 
