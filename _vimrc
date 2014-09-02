@@ -110,6 +110,9 @@ set mousehide
 set visualbell
 set guioptions=agmrL "disable gui dialogs
 set pastetoggle=<F9>
+" p automatically indents, Ctrl+p for orig functionality
+nnoremap p ]p
+nnoremap <C-p> p
 
 " display extra whitespace
 set list
