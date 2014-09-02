@@ -33,6 +33,9 @@ Plugin 'wincent/Command-T'
 Plugin 'rking/ag.vim'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'bruno-/vim-all'
+Plugin 'ivyl/vim-bling'
+Plugin 'gavinbeatty/dragvisuals.vim'
+
 " required for snipmate
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
@@ -46,7 +49,9 @@ let g:LargeFile=1.5 "MB
 set grepprg=ag
 let g:grep_cmd_opts='--line-numbers --noheading'
 let g:agprg="ag --column --smart-case --all-text"
-let g:aghighlight=1 " highlight Ag matches
+let g:aghighlight = 1 " highlight Ag matches
+" bling search results
+let g:bling_time = 30
 
 " autocmd BufRead,BufNewFile *.json set filetype=javascript
 autocmd BufRead,BufNewFile *.md set filetype=markdown
@@ -112,7 +117,14 @@ set list
 syntax match nonascii "[^\x00-\x7F]"
 highlight nonascii guibg=Red ctermbg=2
 
-:let mapleader = ","
+" Arrow keys move visual select blocks
+vmap <expr> <LEFT> DVB_Drag('left')
+vmap <expr> <RIGHT> DVB_Drag('right')
+vmap <expr> <DOWN> DVB_Drag('down')
+vmap <expr> <UP> DVB_Drag('up')
+let g:DVB_TrimWS = 1 " trim whitespace after moving
+
+let mapleader = ","
 cabbrev q1 q!
 cabbrev qa1 qa!
 noremap Y y$
