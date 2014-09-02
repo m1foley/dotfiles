@@ -149,6 +149,10 @@ nnoremap <silent> <C-n> :nohlsearch<CR>
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 " imap <C-CR> <CR><C-o>d0<C-o>>><C-o>>>
 inoremap <S-Tab> <C-o><<
+" switch semicolon and colon
+nnoremap ; :
+vnoremap ; :
+" nnoremap : ;
 
 nnoremap <Leader>c ct_
 nnoremap <Leader>m ]m
