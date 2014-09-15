@@ -24,8 +24,8 @@ Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'vim-scripts/LargeFile'
-" waiting for: https://github.com/skwp/greplace.vim/pull/7
-Plugin 'm1foley/greplace.vim'
+" waiting for: https://github.com/yegappan/greplace/pull/2
+Plugin 'm1foley/greplace'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'scrooloose/syntastic'
@@ -35,6 +35,7 @@ Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'bruno-/vim-all'
 Plugin 'ivyl/vim-bling'
 Plugin 'gavinbeatty/dragvisuals.vim'
+Plugin 'justinmk/vim-gtfo'
 
 " required for snipmate
 Plugin 'MarcWeber/vim-addon-mw-utils'
