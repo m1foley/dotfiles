@@ -14,6 +14,10 @@ alias gb="git branch"
 alias gc="git commit"
 alias gco="git checkout"
 alias gt="git tag"
+function go {
+  bare=$(echo $1 | sed 's/origin\///')
+  git branch --track $bare $1 && git checkout $bare
+}
 
 __git_complete g __git_main
 __git_complete gst _git_stash
@@ -26,3 +30,4 @@ __git_complete gb _git_branch
 __git_complete gc _git_commit
 __git_complete gco _git_checkout
 __git_complete gc _git_tag
+__git_complete go _git_branch
