@@ -2,54 +2,47 @@ set nocompatible
 set directory=/tmp "swap files
 set backupdir=/tmp,. "tilde files
 
-"--- vundle begin ---
-filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#begin()
-Plugin 'gmarik/vundle'
-Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-bundler'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-eunuch'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-jdaddy'
-Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-haml'
-Plugin 'tpope/vim-characterize'
-Plugin 'kana/vim-textobj-user'
-Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'michaeljsmith/vim-indent-object'
-Plugin 'vim-scripts/LargeFile'
+call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-jdaddy'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-haml'
+Plug 'tpope/vim-characterize'
+Plug 'kana/vim-textobj-user'
+Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'vim-scripts/LargeFile'
 " waiting for: https://github.com/yegappan/greplace/pull/2
-Plugin 'm1foley/greplace'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'scrooloose/syntastic'
-Plugin 'wincent/Command-T'
-Plugin 'rking/ag.vim'
-Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'bruno-/vim-all'
-Plugin 'ivyl/vim-bling'
-Plugin 'gavinbeatty/dragvisuals.vim'
-Plugin 'justinmk/vim-gtfo'
-
+Plug 'm1foley/greplace'
+Plug 'airblade/vim-gitgutter'
+Plug 'kchmck/vim-coffee-script'
+Plug 'scrooloose/syntastic'
+Plug 'wincent/Command-T'
+Plug 'rking/ag.vim'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'bruno-/vim-all'
+Plug 'ivyl/vim-bling'
+Plug 'gavinbeatty/dragvisuals.vim'
+Plug 'justinmk/vim-gtfo'
 " required for snipmate
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
-call vundle#end()
-filetype plugin indent on
-"--- vundle end ---
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+Plug 'honza/vim-snippets'
+call plug#end()
 
 let g:LargeFile=1.5 "MB
 set grepprg=ag
 let g:grep_cmd_opts='--line-numbers --noheading'
-let g:agprg="ag --column --smart-case --all-text"
+let g:agprg="ag --column --all-text"
 let g:aghighlight = 1 " highlight Ag matches
 " bling search results
 let g:bling_time = 30
@@ -110,10 +103,7 @@ highlight SpellBad     ctermbg=0   ctermfg=1
 set mousehide
 set visualbell
 set guioptions=agmrL "disable gui dialogs
-set pastetoggle=<F9>
-" p automatically indents, Ctrl+p for orig functionality
-nnoremap p ]p
-nnoremap <C-p> p
+set pastetoggle=<C-p>
 
 " display extra whitespace
 set list
@@ -121,7 +111,7 @@ set list
 syntax match nonascii "[^\x00-\x7F]"
 highlight nonascii guibg=Red ctermbg=2
 
-" Arrow keys move visual select blocks
+" Arrow keys move visual select blocks (dragvisuals.vim)
 vmap <expr> <LEFT> DVB_Drag('left')
 vmap <expr> <RIGHT> DVB_Drag('right')
 vmap <expr> <DOWN> DVB_Drag('down')
