@@ -44,10 +44,8 @@ set grepprg=ag
 let g:grep_cmd_opts='--line-numbers --noheading'
 let g:agprg="ag --column --all-text"
 let g:aghighlight = 1 " highlight Ag matches
-" bling search results
-let g:bling_time = 30
+let g:bling_time = 30 " faster bling search
 
-" autocmd BufRead,BufNewFile *.json set filetype=javascript
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 
 " set clipboard=unnamed "share clipboard with OS
