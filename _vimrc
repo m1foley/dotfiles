@@ -22,7 +22,6 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'vim-scripts/LargeFile'
 " waiting for: https://github.com/yegappan/greplace/pull/2
 Plug 'm1foley/greplace'
-Plug 'airblade/vim-gitgutter'
 Plug 'kchmck/vim-coffee-script'
 Plug 'scrooloose/syntastic'
 Plug 'wincent/Command-T'
