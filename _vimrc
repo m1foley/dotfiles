@@ -16,6 +16,7 @@ Plug 'tpope/vim-jdaddy'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-haml'
 Plug 'tpope/vim-characterize'
+Plug 'tpope/vim-markdown'
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'michaeljsmith/vim-indent-object'
@@ -31,6 +32,8 @@ Plug 'bruno-/vim-all'
 Plug 'ivyl/vim-bling'
 Plug 'gavinbeatty/dragvisuals.vim'
 Plug 'justinmk/vim-gtfo'
+Plug 'vim-scripts/SyntaxRange' "for vimdeck
+Plug 'yakiang/excel.vim'
 " required for snipmate
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
@@ -44,11 +47,9 @@ let g:grep_cmd_opts='--line-numbers --noheading'
 let g:agprg="ag --column --all-text"
 let g:aghighlight = 1 " highlight Ag matches
 let g:bling_time = 30 " faster bling search
+let g:zipPlugin_ext = '*.zip,*.jar,*.xpi,*.ja,*.war,*.ear,*.celzip,*.oxt,*.kmz,*.wsz,*.xap,*.docx,*.docm,*.dotx,*.dotm,*.potx,*.potm,*.ppsx,*.ppsm,*.pptx,*.pptm,*.ppam,*.sldx,*.thmx,*.crtx,*.vdw,*.glox,*.gcsx,*.gqsx' " for excel.vim
 
-autocmd BufRead,BufNewFile *.md set filetype=markdown
-
-" set clipboard=unnamed "share clipboard with OS
-set iskeyword+=- "add chars to keywords for w/e/b/*
+set iskeyword+=- "add chars to keywords for w/b/e/* etc.
 set number
 set ignorecase
 set smartcase
@@ -78,6 +79,7 @@ set nofoldenable
 syntax enable
 set guifont=Monaco:h16
 set background=dark
+" colorscheme macvim
 " colorscheme koehler
 colorscheme base16-railscasts
 highlight clear SignColumn
