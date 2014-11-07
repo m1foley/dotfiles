@@ -29,11 +29,10 @@ Plug 'wincent/Command-T'
 Plug 'rking/ag.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bruno-/vim-all'
-Plug 'ivyl/vim-bling'
 Plug 'gavinbeatty/dragvisuals.vim'
 Plug 'justinmk/vim-gtfo'
 Plug 'vim-scripts/SyntaxRange' "for vimdeck
-Plug 'yakiang/excel.vim'
+Plug 'haya14busa/incsearch.vim'
 " required for snipmate
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
@@ -44,10 +43,8 @@ call plug#end()
 let g:LargeFile=1.5 "MB
 set grepprg=ag
 let g:grep_cmd_opts='--line-numbers --noheading'
-let g:agprg="ag --column --all-text"
+let g:agprg="ag --column --case-sensitive"
 let g:aghighlight = 1 " highlight Ag matches
-let g:bling_time = 30 " faster bling search
-let g:zipPlugin_ext = '*.zip,*.jar,*.xpi,*.ja,*.war,*.ear,*.celzip,*.oxt,*.kmz,*.wsz,*.xap,*.docx,*.docm,*.dotx,*.dotm,*.potx,*.potm,*.ppsx,*.ppsm,*.pptx,*.pptm,*.ppam,*.sldx,*.thmx,*.crtx,*.vdw,*.glox,*.gcsx,*.gqsx' " for excel.vim
 
 set iskeyword+=- "add chars to keywords for w/b/e/* etc.
 set number
@@ -102,13 +99,26 @@ highlight SpellBad     ctermbg=0   ctermfg=1
 set mousehide
 set visualbell
 set guioptions=agmrL "disable gui dialogs
-set pastetoggle=<C-p>
+set pastetoggle=<C-h>
 
 " display extra whitespace
 set list
 " make non-ascii chars stand out
 syntax match nonascii "[^\x00-\x7F]"
 highlight nonascii guibg=Red ctermbg=2
+
+" incsearch
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+" turn off hlsearch after motions
+let g:incsearch#auto_nohlsearch = 1
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
 
 " Arrow keys move visual select blocks (dragvisuals.vim)
 vmap <expr> <LEFT> DVB_Drag('left')
