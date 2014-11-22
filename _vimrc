@@ -1,6 +1,4 @@
 set nocompatible
-set directory=/tmp "swap files
-set backupdir=/tmp,. "tilde files
 
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
@@ -46,6 +44,9 @@ let g:grep_cmd_opts='--line-numbers --noheading'
 let g:agprg="ag --column --case-sensitive"
 let g:aghighlight = 1 " highlight Ag matches
 
+set directory=/tmp "swap files
+set backupdir=/tmp,. "tilde files
+
 set iskeyword+=- "add chars to keywords for w/b/e/* etc.
 set number
 set ignorecase
@@ -55,7 +56,8 @@ set rulerformat=%30(%=%<%3r%2l,%c\ \ \ %P%)
 set undolevels=1000
 set formatoptions=cql
 set sidescroll=10
-set hlsearch
+set sidescrolloff=2
+set lazyredraw
 
 set expandtab
 set softtabstop=2
@@ -63,6 +65,8 @@ set tabstop=2
 set shiftwidth=2
 set splitright
 set splitbelow
+set history=50
+set winminheight=0
 
 set foldtext=MyFoldFunction()
 function! MyFoldFunction()
@@ -107,6 +111,8 @@ set list
 syntax match nonascii "[^\x00-\x7F]"
 highlight nonascii guibg=Red ctermbg=2
 
+set hlsearch
+set incsearch
 " incsearch
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
@@ -149,10 +155,6 @@ nnoremap <silent> <C-n> :nohlsearch<CR>
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 " imap <C-CR> <CR><C-o>d0<C-o>>><C-o>>>
 inoremap <S-Tab> <C-o><<
-" switch semicolon and colon
-nnoremap ; :
-vnoremap ; :
-" nnoremap : ;
 
 nnoremap <Leader>c ct_
 nnoremap <Leader>m ]m
