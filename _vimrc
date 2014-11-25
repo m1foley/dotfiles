@@ -31,6 +31,7 @@ Plug 'gavinbeatty/dragvisuals.vim'
 Plug 'justinmk/vim-gtfo'
 Plug 'vim-scripts/SyntaxRange' "for vimdeck
 Plug 'haya14busa/incsearch.vim'
+Plug 'christoomey/vim-tmux-navigator'
 " required for snipmate
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
@@ -143,11 +144,6 @@ noremap ZA :qa!<CR>
 " ^e and ^y scroll 2 lines instead of 1
 noremap <C-e> 2<C-e>
 noremap <C-y> 2<C-y>
-" navigate splits more easily
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
 " ctrl+n temporarily clears hlsearch
 nnoremap <silent> <C-n> :nohlsearch<CR>
 " expand %% to current directory in command-line mode
