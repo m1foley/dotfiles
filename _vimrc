@@ -32,6 +32,7 @@ Plug 'justinmk/vim-gtfo'
 Plug 'vim-scripts/SyntaxRange' "for vimdeck
 Plug 'haya14busa/incsearch.vim'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'talek/obvious-resize'
 " required for snipmate
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
@@ -112,6 +113,8 @@ set list
 syntax match nonascii "[^\x00-\x7F]"
 highlight nonascii guibg=Red ctermbg=2
 
+let mapleader = ","
+
 set hlsearch
 set incsearch
 " incsearch
@@ -134,7 +137,11 @@ vmap <expr> <DOWN> DVB_Drag('down')
 vmap <expr> <UP> DVB_Drag('up')
 let g:DVB_TrimWS = 1 " trim whitespace after moving
 
-let mapleader = ","
+noremap <silent> <leader>wk :ObviousResizeUp 5<CR>
+noremap <silent> <leader>wj :ObviousResizeDown 5<CR>
+noremap <silent> <leader>wh :ObviousResizeLeft 5<CR>
+noremap <silent> <leader>wl :ObviousResizeRight 5<CR>
+
 cabbrev q1 q!
 cabbrev qa1 qa!
 noremap Y y$
