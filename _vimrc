@@ -33,6 +33,7 @@ Plug 'vim-scripts/SyntaxRange' "for vimdeck
 Plug 'haya14busa/incsearch.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'talek/obvious-resize'
+Plug 'ajh17/Spacegray.vim'
 " required for snipmate
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
@@ -82,25 +83,7 @@ set nofoldenable
 syntax enable
 set guifont=Monaco:h16
 set background=dark
-" colorscheme macvim
-" colorscheme koehler
-colorscheme base16-railscasts
-highlight clear SignColumn
-highlight VertSplit    ctermbg=236
-highlight ColorColumn  ctermbg=237
-" highlight LineNr       ctermbg=236 ctermfg=240
-highlight LineNr       ctermbg=0 ctermfg=240
-" highlight CursorLineNr ctermbg=236 ctermfg=240
-highlight CursorLineNr ctermbg=0 ctermfg=240
-highlight CursorLine   ctermbg=236
-highlight StatusLineNC ctermbg=238 ctermfg=0
-highlight StatusLine   ctermbg=240 ctermfg=12
-highlight IncSearch    ctermbg=3   ctermfg=1
-highlight Search       ctermbg=1   ctermfg=3
-highlight Visual       ctermbg=3   ctermfg=0
-highlight Pmenu        ctermbg=240 ctermfg=12
-highlight PmenuSel     ctermbg=3   ctermfg=1
-highlight SpellBad     ctermbg=0   ctermfg=1
+colorscheme spacegray
 
 set mousehide
 set visualbell
