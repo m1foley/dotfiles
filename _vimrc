@@ -83,7 +83,14 @@ set nofoldenable
 syntax enable
 set guifont=Monaco:h16
 set background=dark
+" echo synIDattr(synID(line("."), col("."), 1), "name")
 colorscheme spacegray
+highlight rubyRailsFilterMethod ctermfg=25
+highlight rubyFunction ctermfg=25
+highlight rubyDefine ctermfg=24
+highlight rubySymbol ctermfg=9
+highlight yamlBlockMappingKey ctermfg=25
+highlight yamlFlowString ctermfg=35
 
 set mousehide
 set visualbell
