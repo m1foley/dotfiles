@@ -103,8 +103,6 @@ set list
 syntax match nonascii "[^\x00-\x7F]"
 highlight nonascii guibg=Red ctermbg=2
 
-let mapleader = ","
-
 set hlsearch
 set incsearch
 " incsearch
@@ -120,17 +118,18 @@ map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
 
+" Arrow keys resize window
+noremap <silent> <LEFT> :ObviousResizeLeft 2<CR>
+noremap <silent> <RIGHT> :ObviousResizeRight 2<CR>
+noremap <silent> <DOWN> :ObviousResizeDown 2<CR>
+noremap <silent> <UP> :ObviousResizeUp 2<CR>
+
 " Arrow keys move visual select blocks (dragvisuals.vim)
 vmap <expr> <LEFT> DVB_Drag('left')
 vmap <expr> <RIGHT> DVB_Drag('right')
 vmap <expr> <DOWN> DVB_Drag('down')
 vmap <expr> <UP> DVB_Drag('up')
 let g:DVB_TrimWS = 1 " trim whitespace after moving
-
-noremap <silent> <leader>wk :ObviousResizeUp 5<CR>
-noremap <silent> <leader>wj :ObviousResizeDown 5<CR>
-noremap <silent> <leader>wh :ObviousResizeLeft 5<CR>
-noremap <silent> <leader>wl :ObviousResizeRight 5<CR>
 
 cabbrev q1 q!
 cabbrev qa1 qa!
@@ -148,6 +147,8 @@ nnoremap <silent> <C-n> :nohlsearch<CR>
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 " imap <C-CR> <CR><C-o>d0<C-o>>><C-o>>>
 inoremap <S-Tab> <C-o><<
+
+let mapleader = ","
 
 nnoremap <Leader>c ct_
 nnoremap <Leader>m ]m
