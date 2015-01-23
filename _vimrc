@@ -19,8 +19,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'vim-scripts/LargeFile'
-" waiting for: https://github.com/yegappan/greplace/pull/2
-Plug 'm1foley/greplace'
+Plug 'm1foley/greplace' " waiting for: https://github.com/yegappan/greplace/pull/2
 Plug 'kchmck/vim-coffee-script'
 Plug 'scrooloose/syntastic'
 Plug 'wincent/Command-T'
@@ -34,9 +33,10 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'talek/obvious-resize'
 Plug 'ajh17/Spacegray.vim'
-" required for snipmate
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
+Plug 'kana/vim-operator-user' " required for vim-operator-gsearch
+Plug 'rgrinberg/vim-operator-gsearch'
+Plug 'MarcWeber/vim-addon-mw-utils' " required for snipmate
+Plug 'tomtom/tlib_vim' " required for snipmate
 Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
 call plug#end()
@@ -73,9 +73,8 @@ set winminheight=0
 
 set foldtext=MyFoldFunction()
 function! MyFoldFunction()
-  let line = getline(v:foldstart)
-  let lastline = getline(v:foldend)
-  let numfolded = v:foldend - v:foldstart + 1
+  let s:line = getline(v:foldstart)
+  let s:numfolded = v:foldend - v:foldstart + 1
   return '+---' . line . '  ' . numfolded . ' '
 endfunction
 set nofoldenable
@@ -108,7 +107,6 @@ set incsearch
 " incsearch
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
 " turn off hlsearch after motions
 let g:incsearch#auto_nohlsearch = 1
 map n  <Plug>(incsearch-nohl-n)
@@ -117,6 +115,9 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
+
+" g/ calls motion-wise vim-operator-gsearch
+map g/ <Plug>(operator-ag)
 
 " Arrow keys resize window
 noremap <silent> <LEFT> :ObviousResizeLeft 2<CR>
@@ -148,28 +149,31 @@ cnoremap %% <C-R>=expand('%:h').'/'<CR>
 " imap <C-CR> <CR><C-o>d0<C-o>>><C-o>>>
 inoremap <S-Tab> <C-o><<
 
-let mapleader = ","
+let g:mapleader = ","
 
+" ,c replace until next underscore
 nnoremap <Leader>c ct_
+" ,a replace until next capital letter
+nnoremap <Leader>a c/[A-Z]<CR>
+" ,m ,n navigate to next/prev method
 nnoremap <Leader>m ]m
 vnoremap <Leader>m ]m
 nnoremap <Leader>n [m
 vnoremap <Leader>n [m
+" ,| go to 80th column
 nnoremap <Leader><Bar> 80<Bar>
 vnoremap <Leader><Bar> 80<Bar>
-nnoremap <Leader>j Jx
-",, opens previously edited file
+" ,, open previously edited file
 nnoremap <Leader>, <C-^>
-",s spec method
-" nnoremap <Leader>s :!bundle exec rspec <C-R>=expand("%:p")<CR> --format doc -c -l <C-R>=line(".")<CR><CR>
+" ,s spec method
 nnoremap <Leader>s :Dispatch bundle exec rspec <C-R>=expand("%:p")<CR>:<C-R>=line(".")<CR> --format doc --color<CR>
-",S spec file
+" ,S spec file
 nnoremap <Leader>S :Dispatch bundle exec rspec <C-r>=expand("%:p")<CR>                     --format doc --color<CR>
-" nnoremap <Leader>S :!bundle exec rspec <C-r>=expand("%:p")<CR> --format doc -c<CR>
-" ,<Space> strips all trailing whitespace from current file
+" ,<Space> strip all trailing whitespace from current file
 nnoremap <Leader><Space> :%s/\s\+$//<CR>
-" ,d = diff all
+" ,d diff all
 nnoremap <Leader>d :diffthis<CR><C-w><C-w>:diffthis<CR>
-" ,D = diff off
+" ,D diff off
 nnoremap <Leader>D :diffoff<CR><C-w><C-w>:diffoff<CR>
+" ,o git checkout current file
 nnoremap <Leader>o :!git checkout %<CR><CR>
