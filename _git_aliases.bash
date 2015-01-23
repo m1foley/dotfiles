@@ -15,6 +15,7 @@ alias gb="git branch"
 alias gc="git commit"
 alias gco="git checkout"
 alias gt="git tag"
+alias grh="git reset HEAD"
 function go {
   bare=$(echo $1 | sed 's/origin\///')
   git branch --track $bare $1 && git checkout $bare
