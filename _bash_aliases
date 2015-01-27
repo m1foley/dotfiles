@@ -25,8 +25,7 @@ alias du="du -h"
 #alias pps="ps axfo pid,nice,user,etime,args"
 #alias ppsm="ps axfo pid,pcpu,pmem,nice,user,etime,args"
 #alias grep="grep --exclude-dir=.svn"
-alias t="tmux -S /tmp/mtmux attach || tmux -S /tmp/mtmux new"
-alias tp="tmux -S /tmp/pairing attach || tmux -S /tmp/pairing new"
+alias t="tmux -S /tmp/tm attach || tmux -S /tmp/tm new"
 
 alias grpe="grep"
 alias heda="head"
@@ -46,21 +45,3 @@ alias herkou="heroku"
 alias raek="rake"
 alias :q=
 alias :qa=
-
-#find() {
-#  /usr/bin/find $@ -not \( -name \*\.svn\* -prune \)
-#}
-
-vi() {
-  args=$@
-  if [[ $@ =~ ^.+\ :([0-9]+)$ ]]; then #space correction
-    args=`echo "$@" | sed 's/ :/:/g'`
-  fi
-
-  if [[ $args =~ ^.+:([0-9]+)$ ]]; then #go to line
-    args=`echo "$args" | sed 's/^\(.\{1,\}\):\([0-9]\{1,\}\)$/\1 -c :\2/g'`
-  elif [[ $args =~ ^.+:$ ]]; then #ends with colon
-    args=`echo "$args" | sed 's/:$//g'`
-  fi
-  /usr/local/bin/vi $args
-}
