@@ -39,7 +39,6 @@ Plug 'MarcWeber/vim-addon-mw-utils' " required for snipmate
 Plug 'tomtom/tlib_vim' " required for snipmate
 Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
-Plug 'bogado/file-line'
 call plug#end()
 
 let g:LargeFile=1.5 "MB
