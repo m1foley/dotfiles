@@ -82,14 +82,9 @@ set nofoldenable
 syntax enable
 set guifont=Monaco:h16
 set background=dark
-" echo synIDattr(synID(line("."), col("."), 1), "name")
 colorscheme spacegray
-highlight rubyRailsFilterMethod ctermfg=25
-highlight rubyFunction ctermfg=25
-highlight rubyDefine ctermfg=24
-highlight rubySymbol ctermfg=9
-highlight yamlBlockMappingKey ctermfg=25
-highlight yamlFlowString ctermfg=35
+" to see what colors are being applied:
+" echo synIDattr(synID(line('.'), col('.'), 1), 'name')
 
 set mousehide
 set visualbell
@@ -99,8 +94,8 @@ set pastetoggle=<C-h>
 " display extra whitespace
 set list
 " make non-ascii chars stand out
-syntax match nonascii "[^\x00-\x7F]"
-highlight nonascii guibg=Red ctermbg=2
+autocmd BufReadPost * syntax match nonascii "[^\u0000-\u007F]"
+highlight nonascii guibg=Red ctermbg=1 term=standout
 
 set hlsearch
 set incsearch
