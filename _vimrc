@@ -10,12 +10,10 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rails'
-Plug 'tpope/vim-jdaddy'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-haml'
 Plug 'tpope/vim-characterize'
-Plug 'tpope/vim-markdown'
-Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-user' " required for vim-textobj-rubyblock
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'vim-scripts/LargeFile'
@@ -28,7 +26,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bruno-/vim-all'
 Plug 'gavinbeatty/dragvisuals.vim'
 Plug 'justinmk/vim-gtfo'
-Plug 'vim-scripts/SyntaxRange' "for vimdeck
+Plug 'vim-scripts/SyntaxRange' " required for vimdeck
 Plug 'haya14busa/incsearch.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'talek/obvious-resize'
@@ -42,7 +40,7 @@ Plug 'honza/vim-snippets'
 call plug#end()
 
 let g:LargeFile=1.5 "MB
-set grepprg=ag
+set grepprg=ag " search with Silver Searcher
 let g:grep_cmd_opts='--line-numbers --noheading'
 let g:agprg="ag --column --case-sensitive"
 let g:aghighlight = 1 " highlight Ag matches
@@ -82,9 +80,9 @@ set nofoldenable
 syntax enable
 set guifont=Monaco:h16
 set background=dark
-colorscheme spacegray
 " to see what colors are being applied:
 " echo synIDattr(synID(line('.'), col('.'), 1), 'name')
+colorscheme spacegray
 
 set mousehide
 set visualbell
