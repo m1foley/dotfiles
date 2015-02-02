@@ -20,4 +20,4 @@
 [init]
   templatedir = ~/.git_template
 [core]
-	excludesfile = /Users/mike/.gitignore_global
+  excludesfile = /Users/mike/.gitignore_global
