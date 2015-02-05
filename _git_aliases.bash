@@ -7,7 +7,7 @@ alias gd="git diff"
 alias gdd="git diff --no-ext-diff"
 alias gf="git fetch"
 alias gr="git rebase"
-alias gfr="git fetch && git rebase"
+alias gp="git pull --rebase"
 alias gl="git log"
 alias glp="git log -p"
 alias ga="git add"
@@ -34,3 +34,4 @@ __git_complete gc _git_commit
 __git_complete gco _git_checkout
 __git_complete gc _git_tag
 __git_complete go _git_branch
+__git_complete gp _git_pull
