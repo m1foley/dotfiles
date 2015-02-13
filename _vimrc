@@ -173,3 +173,5 @@ nnoremap <Leader>D :diffoff<CR><C-w><C-w>:diffoff<CR>
 nnoremap <Leader>o :!git checkout %<CR><CR>
 " ,: update Ruby hash syntax
 vnoremap <Leader>: :ChangeHashSyntax<CR>
+" ,=: evaluate highlighted expression
+vnoremap <Leader>= c<C-r>=<C-r>"<CR><ESC>
