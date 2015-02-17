@@ -38,13 +38,16 @@ Plug 'tomtom/tlib_vim' " required for snipmate
 Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
 Plug 'ck3g/vim-change-hash-syntax'
+Plug 'mrtazz/simplenote.vim'
 call plug#end()
 
 let g:LargeFile=1.5 "MB
-set grepprg=ag " search with Silver Searcher
+set grepprg=ag " greplace searches with Silver Searcher
 let g:grep_cmd_opts='--line-numbers --noheading'
 let g:agprg="ag --column --case-sensitive"
 let g:aghighlight = 1 " highlight Ag matches
+
+source ~/.simplenoterc " Simplenote credentials
 
 set directory=/tmp "swap files
 set backupdir=/tmp,. "tilde files
