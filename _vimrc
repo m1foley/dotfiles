@@ -73,13 +73,11 @@ set splitbelow
 set history=50
 set winminheight=0
 
-set foldtext=MyFoldFunction()
-function! MyFoldFunction()
-  let s:line = getline(v:foldstart)
-  let s:numfolded = v:foldend - v:foldstart + 1
-  return '+---' . line . '  ' . numfolded . ' '
-endfunction
-set nofoldenable
+set mousehide
+set visualbell
+set guioptions=agmrL "disable gui dialogs
+set pastetoggle=<C-h>
+set list " display extra whitespace
 
 syntax enable
 set guifont=Monaco:h16
@@ -88,13 +86,20 @@ set background=dark
 " echo synIDattr(synID(line('.'), col('.'), 1), 'name')
 colorscheme spacegray
 
-set mousehide
-set visualbell
-set guioptions=agmrL "disable gui dialogs
-set pastetoggle=<C-h>
+set foldtext=MyFoldFunction()
+function! MyFoldFunction()
+  let s:line = getline(v:foldstart)
+  let s:numfolded = v:foldend - v:foldstart + 1
+  return '+---' . line . '  ' . numfolded . ' '
+endfunction
+set nofoldenable
 
-" display extra whitespace
-set list
+" don't open binary files
+augroup nonvim
+  autocmd!
+  autocmd BufRead *.png,*.jpg,*.pdf,*.gif,*.xls*,*.ppt*,*.doc*,*.rtf bd! | let &ft=&ft | echoerr "Binary file not opened."
+augroup end
+
 " make non-ascii chars stand out
 autocmd BufReadPost * syntax match nonascii "[^\u0000-\u007F]"
 highlight nonascii guibg=Red ctermbg=1 term=standout
