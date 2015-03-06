@@ -39,6 +39,8 @@ Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
 Plug 'ck3g/vim-change-hash-syntax'
 Plug 'mrtazz/simplenote.vim'
+Plug 'jeetsukumaran/vim-indentwise'
+Plug 'kopischke/vim-fetch' " jump to line/col
 call plug#end()
 
 let g:LargeFile=1.5 "MB
@@ -79,7 +81,6 @@ set guioptions=agmrL "disable gui dialogs
 set pastetoggle=<C-h>
 set list " display extra whitespace
 
-syntax enable
 set guifont=Monaco:h16
 set background=dark
 " to see what colors are being applied:
@@ -122,10 +123,11 @@ map g# <Plug>(incsearch-nohl-g#)
 map g/ <Plug>(operator-ag)
 
 " Arrow keys resize window
-noremap <silent> <LEFT> :ObviousResizeLeft 2<CR>
-noremap <silent> <RIGHT> :ObviousResizeRight 2<CR>
-noremap <silent> <DOWN> :ObviousResizeDown 2<CR>
-noremap <silent> <UP> :ObviousResizeUp 2<CR>
+let g:obvious_resize_default = 3
+nnoremap <silent> <LEFT> :<C-U>ObviousResizeLeft<CR>
+nnoremap <silent> <RIGHT> :<C-U>ObviousResizeRight<CR>
+nnoremap <silent> <DOWN> :<C-U>ObviousResizeDown<CR>
+nnoremap <silent> <UP> :<C-U>ObviousResizeUp<CR>
 
 " Arrow keys move visual select blocks (dragvisuals.vim)
 vmap <expr> <LEFT> DVB_Drag('left')
@@ -181,5 +183,5 @@ nnoremap <Leader>D :diffoff<CR><C-w><C-w>:diffoff<CR>
 nnoremap <Leader>o :!git checkout %<CR><CR>
 " ,: update Ruby hash syntax
 vnoremap <Leader>: :ChangeHashSyntax<CR>
-" ,=: evaluate highlighted expression
+" ,= evaluate highlighted expression
 vnoremap <Leader>= c<C-r>=<C-r>"<CR><ESC>
