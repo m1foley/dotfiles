@@ -123,7 +123,7 @@ map g# <Plug>(incsearch-nohl-g#)
 map g/ <Plug>(operator-ag)
 
 " Arrow keys resize window
-let g:obvious_resize_default = 3
+let g:obvious_resize_default = 5
 nnoremap <silent> <LEFT> :<C-U>ObviousResizeLeft<CR>
 nnoremap <silent> <RIGHT> :<C-U>ObviousResizeRight<CR>
 nnoremap <silent> <DOWN> :<C-U>ObviousResizeDown<CR>
