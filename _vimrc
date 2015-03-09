@@ -1,4 +1,5 @@
 set nocompatible
+syntax on
 
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
@@ -142,16 +143,14 @@ noremap Y y$
 noremap K ""
 noremap Q ""
 noremap ZA :qa!<CR>
-" ^e and ^y scroll 2 lines instead of 1
-noremap <C-e> 2<C-e>
-noremap <C-y> 2<C-y>
+" ^e and ^y scroll 3 lines instead of 1
+noremap <C-e> 3<C-e>
+noremap <C-y> 3<C-y>
 " ctrl+n temporarily clears hlsearch
 nnoremap <silent> <C-n> :nohlsearch<CR>
 " expand %% to current directory in command-line mode
 " http://vimcasts.org/e/14
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
-" imap <C-CR> <CR><C-o>d0<C-o>>><C-o>>>
-inoremap <S-Tab> <C-o><<
 
 let g:mapleader = ","
 
