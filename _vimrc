@@ -1,5 +1,4 @@
 set nocompatible
-syntax on
 
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
@@ -27,7 +26,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bruno-/vim-all'
 Plug 'gavinbeatty/dragvisuals.vim'
 Plug 'justinmk/vim-gtfo'
-Plug 'vim-scripts/SyntaxRange' " required for vimdeck
+" Plug 'vim-scripts/SyntaxRange' " required for vimdeck
 Plug 'haya14busa/incsearch.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'talek/obvious-resize'
@@ -42,6 +41,8 @@ Plug 'ck3g/vim-change-hash-syntax'
 Plug 'mrtazz/simplenote.vim'
 Plug 'jeetsukumaran/vim-indentwise'
 Plug 'kopischke/vim-fetch' " jump to line/col
+Plug 'evanmiller/nginx-vim-syntax'
+Plug 'chrisbra/vim-diff-enhanced'
 call plug#end()
 
 let g:LargeFile=1.5 "MB
@@ -184,3 +185,5 @@ nnoremap <Leader>o :!git checkout %<CR><CR>
 vnoremap <Leader>: :ChangeHashSyntax<CR>
 " ,= evaluate highlighted expression
 vnoremap <Leader>= c<C-r>=<C-r>"<CR><ESC>
+" ,p use Patience diff algorithm
+nnoremap <Leader>p :CustomDiff patience<CR>:diffupdate<CR>
