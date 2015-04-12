@@ -33,9 +33,7 @@ Plug 'talek/obvious-resize'
 Plug 'ajh17/Spacegray.vim'
 Plug 'kana/vim-operator-user' " required for vim-operator-gsearch
 Plug 'rgrinberg/vim-operator-gsearch'
-Plug 'MarcWeber/vim-addon-mw-utils' " required for snipmate
-Plug 'tomtom/tlib_vim' " required for snipmate
-Plug 'garbas/vim-snipmate'
+Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'ck3g/vim-change-hash-syntax'
 Plug 'mrtazz/simplenote.vim'
@@ -50,6 +48,8 @@ set grepprg=ag " greplace searches with Silver Searcher
 let g:grep_cmd_opts='--line-numbers --noheading'
 let g:agprg="ag --column --case-sensitive"
 let g:aghighlight = 1 " highlight Ag matches
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 source ~/.simplenoterc " Simplenote credentials
 
