@@ -48,7 +48,6 @@ set grepprg=ag " greplace searches with Silver Searcher
 let g:grep_cmd_opts='--line-numbers --noheading'
 let g:agprg="ag --column --case-sensitive"
 let g:aghighlight = 1 " highlight Ag matches
-let g:UltiSnipsEnableSnipMate = 0
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
@@ -82,7 +81,7 @@ set winminheight=0
 set mousehide
 set visualbell
 set guioptions=agmrL "disable gui dialogs
-set pastetoggle=<C-h>
+set pastetoggle=<C-_>
 set list " display extra whitespace
 
 set guifont=Monaco:h16
@@ -188,4 +187,4 @@ vnoremap <Leader>: :ChangeHashSyntax<CR>
 " ,= evaluate highlighted expression
 vnoremap <Leader>= c<C-r>=<C-r>"<CR><ESC>
 " ,p use Patience diff algorithm
-nnoremap <Leader>p :CustomDiff patience<CR>:diffupdate<CR>
+nnoremap <Leader>p :EnhancedDiff patience<CR>:diffupdate<CR>
