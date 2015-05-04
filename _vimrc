@@ -41,6 +41,7 @@ Plug 'jeetsukumaran/vim-indentwise'
 Plug 'kopischke/vim-fetch' " jump to line/col
 Plug 'evanmiller/nginx-vim-syntax'
 Plug 'chrisbra/vim-diff-enhanced'
+Plug 'ngmy/vim-rubocop'
 call plug#end()
 
 let g:LargeFile=1.5 "MB
@@ -51,6 +52,7 @@ let g:aghighlight = 1 " highlight Ag matches
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:vimrubocop_rubocop_cmd="bundle exec rubocop"
 
 source ~/.simplenoterc " Simplenote credentials
 
