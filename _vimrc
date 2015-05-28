@@ -110,6 +110,13 @@ augroup end
 autocmd BufReadPost * syntax match nonascii "[^\u0000-\u007F]"
 highlight nonascii guibg=Red ctermbg=1 term=standout
 
+" tcsh-style command line
+cnoremap <C-A> <Home>
+cnoremap <C-F> <Right>
+cnoremap <C-B> <Left>
+cnoremap <Esc>b <S-Left>
+cnoremap <Esc>f <S-Right>
+
 set hlsearch
 set incsearch
 " incsearch
