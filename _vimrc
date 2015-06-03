@@ -33,7 +33,9 @@ Plug 'talek/obvious-resize'
 Plug 'ajh17/Spacegray.vim'
 Plug 'kana/vim-operator-user' " required for vim-operator-gsearch
 Plug 'rgrinberg/vim-operator-gsearch'
-Plug 'SirVer/ultisnips'
+Plug 'MarcWeber/vim-addon-mw-utils' " required for snipmate
+Plug 'tomtom/tlib_vim' " required for snipmate
+Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
 Plug 'ck3g/vim-change-hash-syntax'
 Plug 'mrtazz/simplenote.vim'
