@@ -52,7 +52,6 @@ let g:aghighlight = 1 " highlight Ag matches
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-let g:vimrubocop_rubocop_cmd="bundle exec rubocop"
 
 source ~/.simplenoterc " Simplenote credentials
 
@@ -178,7 +177,7 @@ vnoremap <Leader>n [m
 nnoremap <Leader><Bar> 80<Bar>
 vnoremap <Leader><Bar> 80<Bar>
 " ,, open previously edited file
-nnoremap <Leader>, <C-^>
+nnoremap <Leader><Leader> <C-^>
 " ,s spec method
 nnoremap <Leader>s :Dispatch bundle exec rspec <C-R>=expand("%:p")<CR>:<C-R>=line(".")<CR> --format doc --color<CR>
 " ,S spec file
