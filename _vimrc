@@ -50,7 +50,7 @@ let g:LargeFile=1.5 "MB
 set grepprg=ag " greplace searches with Silver Searcher
 let g:grep_cmd_opts='--line-numbers --noheading'
 let g:agprg="ag --column --case-sensitive"
-let g:aghighlight = 1 " highlight Ag matches
+let g:aghighlight=1 " highlight Ag matches
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
@@ -60,12 +60,19 @@ source ~/.simplenoterc " Simplenote credentials
 set directory=/tmp "swap files
 set backupdir=/tmp,. "tilde files
 
+set statusline=%<%f\ " filename
+set statusline+=%-7h " help status
+set statusline+=%-4m " modified flag
+set statusline+=%-5r " readonly flag
+set statusline+=\ %#ErrorMsg#%{SyntasticStatuslineFlag()}%* "syntastic
+set statusline+=%=%-14.(%l,%c%V%) " line/column
+set statusline+=%30(%=%<%P%) " rulerformat
+
 set iskeyword+=- "add chars to keywords for w/b/e/* etc.
 set number
 set ignorecase
 set smartcase
 set magic
-set rulerformat=%30(%=%<%3r%2l,%c\ \ \ %P%)
 set undolevels=1000
 set formatoptions=cql
 set sidescroll=10
@@ -95,8 +102,8 @@ colorscheme spacegray
 
 set foldtext=MyFoldFunction()
 function! MyFoldFunction()
-  let s:line = getline(v:foldstart)
-  let s:numfolded = v:foldend - v:foldstart + 1
+  let s:line=getline(v:foldstart)
+  let s:numfolded=v:foldend - v:foldstart + 1
   return '+---' . line . '  ' . numfolded . ' '
 endfunction
 set nofoldenable
@@ -124,7 +131,7 @@ set incsearch
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 " turn off hlsearch after motions
-let g:incsearch#auto_nohlsearch = 1
+let g:incsearch#auto_nohlsearch=1
 map n  <Plug>(incsearch-nohl-n)
 map N  <Plug>(incsearch-nohl-N)
 map *  <Plug>(incsearch-nohl-*)
@@ -136,7 +143,7 @@ map g# <Plug>(incsearch-nohl-g#)
 map g/ <Plug>(operator-ag)
 
 " Arrow keys resize window
-let g:obvious_resize_default = 5
+let g:obvious_resize_default=5
 nnoremap <silent> <LEFT> :<C-U>ObviousResizeLeft<CR>
 nnoremap <silent> <RIGHT> :<C-U>ObviousResizeRight<CR>
 nnoremap <silent> <DOWN> :<C-U>ObviousResizeDown<CR>
@@ -147,7 +154,7 @@ vmap <expr> <LEFT> DVB_Drag('left')
 vmap <expr> <RIGHT> DVB_Drag('right')
 vmap <expr> <DOWN> DVB_Drag('down')
 vmap <expr> <UP> DVB_Drag('up')
-let g:DVB_TrimWS = 1 " trim whitespace after moving
+let g:DVB_TrimWS=1 " trim whitespace after moving
 
 cabbrev q1 q!
 cabbrev qa1 qa!
@@ -164,7 +171,7 @@ nnoremap <silent> <C-n> :nohlsearch<CR>
 " http://vimcasts.org/e/14
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
-let g:mapleader = ","
+let g:mapleader=","
 
 " ,c replace until next underscore
 nnoremap <Leader>c ct_
