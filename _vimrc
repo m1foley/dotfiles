@@ -120,10 +120,8 @@ highlight nonascii guibg=Red ctermbg=1 term=standout
 
 " tcsh-style command line
 cnoremap <C-A> <Home>
-cnoremap <C-F> <Right>
-cnoremap <C-B> <Left>
-cnoremap <Esc>b <S-Left>
-cnoremap <Esc>f <S-Right>
+cnoremap <C-F> <S-Right>
+cnoremap <C-B> <S-Left>
 
 set hlsearch
 set incsearch
