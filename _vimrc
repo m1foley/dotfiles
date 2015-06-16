@@ -175,11 +175,6 @@ let g:mapleader=","
 nnoremap <Leader>c ct_
 " ,a replace until next capital letter
 nnoremap <Leader>a c/[A-Z]<CR>
-" ,m ,n navigate to next/prev method
-nnoremap <Leader>m ]m
-vnoremap <Leader>m ]m
-nnoremap <Leader>n [m
-vnoremap <Leader>n [m
 " ,| go to 80th column
 nnoremap <Leader><Bar> 80<Bar>
 vnoremap <Leader><Bar> 80<Bar>
@@ -203,3 +198,8 @@ vnoremap <Leader>: :ChangeHashSyntax<CR>
 vnoremap <Leader>= c<C-r>=<C-r>"<CR><ESC>
 " ,p use Patience diff algorithm
 nnoremap <Leader>p :EnhancedDiff patience<CR>:diffupdate<CR>
+" ,n :next
+nnoremap <Leader>n :next<CR>
+" ,y "*
+nnoremap <Leader>y "*
+vnoremap <Leader>y "*
