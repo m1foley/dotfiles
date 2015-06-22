@@ -2,24 +2,17 @@ set nocompatible
 
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rails'
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-haml'
 Plug 'tpope/vim-characterize'
-Plug 'kana/vim-textobj-user' " required for vim-textobj-rubyblock
-Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'vim-scripts/LargeFile'
   let g:LargeFile=1.5 "MB
 Plug 'm1foley/greplace' " waiting for: https://github.com/yegappan/greplace/pull/2
-Plug 'kchmck/vim-coffee-script'
 Plug 'scrooloose/syntastic'
 Plug 'wincent/Command-T'
 Plug 'rking/ag.vim'
@@ -27,8 +20,6 @@ Plug 'rking/ag.vim'
   let g:grep_cmd_opts='--line-numbers --noheading'
   let g:agprg="ag --column --case-sensitive"
   let g:aghighlight=1
-  " g/ calls motion-wise vim-operator-gsearch
-  map g/ <Plug>(operator-ag)
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bruno-/vim-all'
 Plug 'gavinbeatty/dragvisuals.vim'
@@ -61,20 +52,26 @@ Plug 'talek/obvious-resize'
   nnoremap <silent> <DOWN> :<C-U>ObviousResizeDown<CR>
   nnoremap <silent> <UP> :<C-U>ObviousResizeUp<CR>
 Plug 'ajh17/Spacegray.vim'
-Plug 'kana/vim-operator-user' " required for vim-operator-gsearch
-Plug 'rgrinberg/vim-operator-gsearch'
-Plug 'MarcWeber/vim-addon-mw-utils' " required for snipmate
-Plug 'tomtom/tlib_vim' " required for snipmate
-Plug 'garbas/vim-snipmate'
-Plug 'honza/vim-snippets'
-Plug 'ck3g/vim-change-hash-syntax'
-Plug 'mrtazz/simplenote.vim'
+Plug 'kana/vim-operator-user' | Plug 'rgrinberg/vim-operator-gsearch'
+  " g/ calls motion-wise vim-operator-gsearch
+  map g/ <Plug>(operator-ag)
+Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim' | Plug 'garbas/vim-snipmate' | Plug 'honza/vim-snippets'
+Plug 'mrtazz/simplenote.vim', { 'on': 'Simplenote' }
   source ~/.simplenoterc
 Plug 'jeetsukumaran/vim-indentwise'
 Plug 'kopischke/vim-fetch' " jump to line/col
-Plug 'evanmiller/nginx-vim-syntax'
 Plug 'chrisbra/vim-diff-enhanced'
-Plug 'ngmy/vim-rubocop'
+Plug 'ngmy/vim-rubocop', { 'on': 'RuboCop' }
+
+" language-specific plugins
+Plug 'tpope/vim-bundler', { 'for': 'ruby' }
+Plug 'tpope/vim-endwise', { 'for': ['ruby','sh'] }
+Plug 'tpope/vim-dispatch', { 'for': 'ruby' }
+Plug 'kana/vim-textobj-user', { 'for': 'ruby' } | Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
+Plug 'ck3g/vim-change-hash-syntax', { 'for': 'ruby' }
+Plug 'tpope/vim-haml', { 'for': 'haml' }
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
+Plug 'evanmiller/nginx-vim-syntax', { 'for': 'nginx' }
 call plug#end()
 
 set directory=/tmp "swap files
@@ -92,13 +89,12 @@ set iskeyword+=- "add chars to keywords for w/b/e/* etc.
 set number
 set ignorecase
 set smartcase
-set magic
+" set magic
 set undolevels=1000
 set formatoptions=cql
 set sidescroll=10
 set sidescrolloff=2
 set lazyredraw
-
 set expandtab
 set softtabstop=2
 set tabstop=2
@@ -106,18 +102,16 @@ set shiftwidth=2
 set splitright
 set splitbelow
 set winminheight=0
-
 set mousehide
 set visualbell
 set guioptions=agmrL "disable gui dialogs
-set pastetoggle=<C-_>
 set list " display extra whitespace
+set pastetoggle=<C-_>
 
 set guifont=Monaco:h16
 set background=dark
-" to see what colors are being applied:
-" echo synIDattr(synID(line('.'), col('.'), 1), 'name')
 colorscheme spacegray
+" print current color: echo synIDattr(synID(line('.'), col('.'), 1), 'name')
 
 set foldtext=MyFoldFunction()
 function! MyFoldFunction()
