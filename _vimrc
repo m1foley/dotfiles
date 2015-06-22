@@ -17,19 +17,49 @@ Plug 'kana/vim-textobj-user' " required for vim-textobj-rubyblock
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'vim-scripts/LargeFile'
+  let g:LargeFile=1.5 "MB
 Plug 'm1foley/greplace' " waiting for: https://github.com/yegappan/greplace/pull/2
 Plug 'kchmck/vim-coffee-script'
 Plug 'scrooloose/syntastic'
 Plug 'wincent/Command-T'
 Plug 'rking/ag.vim'
+  set grepprg=ag
+  let g:grep_cmd_opts='--line-numbers --noheading'
+  let g:agprg="ag --column --case-sensitive"
+  let g:aghighlight=1
+  " g/ calls motion-wise vim-operator-gsearch
+  map g/ <Plug>(operator-ag)
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bruno-/vim-all'
 Plug 'gavinbeatty/dragvisuals.vim'
+  " Arrow keys move visual select blocks
+  vmap <expr> <LEFT> DVB_Drag('left')
+  vmap <expr> <RIGHT> DVB_Drag('right')
+  vmap <expr> <DOWN> DVB_Drag('down')
+  vmap <expr> <UP> DVB_Drag('up')
+  let g:DVB_TrimWS=1 " trim whitespace after moving
 Plug 'justinmk/vim-gtfo'
-" Plug 'vim-scripts/SyntaxRange' " required for vimdeck
 Plug 'haya14busa/incsearch.vim'
+  set hlsearch
+  set incsearch
+  map /  <Plug>(incsearch-forward)
+  map ?  <Plug>(incsearch-backward)
+  " turn off hlsearch after motions
+  let g:incsearch#auto_nohlsearch=1
+  map n  <Plug>(incsearch-nohl-n)
+  map N  <Plug>(incsearch-nohl-N)
+  map *  <Plug>(incsearch-nohl-*)
+  map #  <Plug>(incsearch-nohl-#)
+  map g* <Plug>(incsearch-nohl-g*)
+  map g# <Plug>(incsearch-nohl-g#)
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'talek/obvious-resize'
+  " Arrow keys resize window
+  let g:obvious_resize_default=5
+  nnoremap <silent> <LEFT> :<C-U>ObviousResizeLeft<CR>
+  nnoremap <silent> <RIGHT> :<C-U>ObviousResizeRight<CR>
+  nnoremap <silent> <DOWN> :<C-U>ObviousResizeDown<CR>
+  nnoremap <silent> <UP> :<C-U>ObviousResizeUp<CR>
 Plug 'ajh17/Spacegray.vim'
 Plug 'kana/vim-operator-user' " required for vim-operator-gsearch
 Plug 'rgrinberg/vim-operator-gsearch'
@@ -39,23 +69,13 @@ Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
 Plug 'ck3g/vim-change-hash-syntax'
 Plug 'mrtazz/simplenote.vim'
+  source ~/.simplenoterc
 Plug 'jeetsukumaran/vim-indentwise'
 Plug 'kopischke/vim-fetch' " jump to line/col
 Plug 'evanmiller/nginx-vim-syntax'
 Plug 'chrisbra/vim-diff-enhanced'
 Plug 'ngmy/vim-rubocop'
 call plug#end()
-
-let g:LargeFile=1.5 "MB
-set grepprg=ag " greplace searches with Silver Searcher
-let g:grep_cmd_opts='--line-numbers --noheading'
-let g:agprg="ag --column --case-sensitive"
-let g:aghighlight=1 " highlight Ag matches
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
-source ~/.simplenoterc " Simplenote credentials
 
 set directory=/tmp "swap files
 set backupdir=/tmp,. "tilde files
@@ -85,7 +105,6 @@ set tabstop=2
 set shiftwidth=2
 set splitright
 set splitbelow
-set history=50
 set winminheight=0
 
 set mousehide
@@ -123,37 +142,6 @@ cnoremap <C-A> <Home>
 cnoremap <C-F> <S-Right>
 cnoremap <C-B> <S-Left>
 
-set hlsearch
-set incsearch
-" incsearch
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-" turn off hlsearch after motions
-let g:incsearch#auto_nohlsearch=1
-map n  <Plug>(incsearch-nohl-n)
-map N  <Plug>(incsearch-nohl-N)
-map *  <Plug>(incsearch-nohl-*)
-map #  <Plug>(incsearch-nohl-#)
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#)
-
-" g/ calls motion-wise vim-operator-gsearch
-map g/ <Plug>(operator-ag)
-
-" Arrow keys resize window
-let g:obvious_resize_default=5
-nnoremap <silent> <LEFT> :<C-U>ObviousResizeLeft<CR>
-nnoremap <silent> <RIGHT> :<C-U>ObviousResizeRight<CR>
-nnoremap <silent> <DOWN> :<C-U>ObviousResizeDown<CR>
-nnoremap <silent> <UP> :<C-U>ObviousResizeUp<CR>
-
-" Arrow keys move visual select blocks (dragvisuals.vim)
-vmap <expr> <LEFT> DVB_Drag('left')
-vmap <expr> <RIGHT> DVB_Drag('right')
-vmap <expr> <DOWN> DVB_Drag('down')
-vmap <expr> <UP> DVB_Drag('up')
-let g:DVB_TrimWS=1 " trim whitespace after moving
-
 cabbrev q1 q!
 cabbrev qa1 qa!
 noremap Y y$
@@ -169,7 +157,7 @@ nnoremap <silent> <C-n> :nohlsearch<CR>
 " http://vimcasts.org/e/14
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
-let g:mapleader=","
+let g:mapleader=','
 
 " ,c replace until next underscore
 nnoremap <Leader>c ct_
@@ -200,6 +188,6 @@ vnoremap <Leader>= c<C-r>=<C-r>"<CR><ESC>
 nnoremap <Leader>p :EnhancedDiff patience<CR>:diffupdate<CR>
 " ,n :next
 nnoremap <Leader>n :next<CR>
-" ,y "*
+" ,y use clipboard register: "*
 nnoremap <Leader>y "*
 vnoremap <Leader>y "*
