@@ -68,7 +68,7 @@ Plug 'tpope/vim-bundler', { 'for': 'ruby' }
 Plug 'tpope/vim-endwise', { 'for': ['ruby','sh'] }
 Plug 'tpope/vim-dispatch', { 'for': 'ruby' }
 Plug 'kana/vim-textobj-user', { 'for': 'ruby' } | Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
-Plug 'ck3g/vim-change-hash-syntax', { 'for': 'ruby' }
+Plug 'ck3g/vim-change-hash-syntax', { 'for': ['ruby','haml'] }
 Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'evanmiller/nginx-vim-syntax', { 'for': 'nginx' }
