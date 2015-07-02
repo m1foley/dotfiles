@@ -16,7 +16,12 @@ alias gb="git branch"
 alias gc="git commit"
 alias gco="git checkout"
 alias gt="git tag"
-alias grh="git reset HEAD"
+alias gh="git reset HEAD"
+alias grh1="git rebase -i HEAD~1"
+alias grh2="git rebase -i HEAD~2"
+alias grh3="git rebase -i HEAD~3"
+alias grh4="git rebase -i HEAD~4"
+alias grh5="git rebase -i HEAD~5"
 function go {
   bare=$(echo $1 | sed 's/origin\///')
   git branch --track $bare $1 && git checkout $bare
