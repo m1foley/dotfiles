@@ -62,6 +62,9 @@ Plug 'jeetsukumaran/vim-indentwise'
 Plug 'kopischke/vim-fetch' " jump to line/col
 Plug 'chrisbra/vim-diff-enhanced'
 Plug 'ngmy/vim-rubocop', { 'on': 'RuboCop' }
+Plug 'wincent/terminus'
+ let g:TerminusMouse=0
+ let g:TerminusCursorShape=0
 
 " language-specific plugins
 Plug 'tpope/vim-bundler', { 'for': 'ruby' }
