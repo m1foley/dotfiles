@@ -18,7 +18,7 @@ Plug 'wincent/Command-T'
 Plug 'rking/ag.vim'
   set grepprg=ag
   let g:grep_cmd_opts='--line-numbers --noheading'
-  let g:agprg="ag --column --case-sensitive"
+  let g:agprg="ag --vimgrep --case-sensitive"
   let g:aghighlight=1
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bruno-/vim-all'
