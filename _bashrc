@@ -22,5 +22,8 @@ if [ -f ~/.git_aliases.bash ]; then
   . ~/.git_aliases.bash
 fi
 
+# nvm
+source $(brew --prefix nvm)/nvm.sh
+
 # rbenv
 eval "$(rbenv init -)"
