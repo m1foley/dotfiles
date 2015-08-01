@@ -7,6 +7,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-characterize'
 Plug 'michaeljsmith/vim-indent-object'
@@ -62,12 +63,15 @@ Plug 'jeetsukumaran/vim-indentwise'
 Plug 'kopischke/vim-fetch' " jump to line/col
 Plug 'chrisbra/vim-diff-enhanced'
 Plug 'ngmy/vim-rubocop', { 'on': 'RuboCop' }
+  " let g:vimrubocop_rubocop_cmd="bundle exec rubocop"
 Plug 'wincent/terminus'
- let g:TerminusMouse=0
- let g:TerminusCursorShape=0
+  let g:TerminusMouse=0
+  let g:TerminusCursorShape=0
+Plug 'junegunn/vim-peekaboo'
+  let g:peekaboo_delay = 700
+  let g:peekaboo_compact = 1
 
 " language-specific plugins
-Plug 'tpope/vim-bundler', { 'for': 'ruby' }
 Plug 'tpope/vim-endwise', { 'for': ['ruby','sh'] }
 Plug 'tpope/vim-dispatch', { 'for': 'ruby' }
 Plug 'kana/vim-textobj-user', { 'for': 'ruby' } | Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
@@ -93,7 +97,6 @@ set number
 set ignorecase
 set smartcase
 " set magic
-set undolevels=1000
 set formatoptions=cql
 set sidescroll=10
 set sidescrolloff=2
@@ -109,7 +112,9 @@ set mousehide
 set visualbell
 set guioptions=agmrL "disable gui dialogs
 set list " display extra whitespace
+set synmaxcol=2048
 set pastetoggle=<C-_>
+let g:netrw_liststyle=3 " netrw default to tree view
 
 set guifont=Monaco:h16
 set background=dark
@@ -188,3 +193,5 @@ nnoremap <Leader>n :Simplenote -l<CR>
 " ,y use clipboard register: "*
 nnoremap <Leader>y "*
 vnoremap <Leader>y "*
+" ,<UP> restore arrow keys
+nnoremap <silent> <Leader><UP> :nunmap <LT>LEFT>\|nunmap <LT>RIGHT>\|nunmap <LT>DOWN>\|nunmap <LT>UP>\|echo 'Arrow keys restored.'<CR>
