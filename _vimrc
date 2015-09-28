@@ -157,7 +157,7 @@ noremap <C-y> 3<C-y>
 nnoremap <silent> <C-n> :nohlsearch<CR>
 " expand %% to current directory in command-line mode
 " http://vimcasts.org/e/14
-cnoremap %% <C-R>=expand('%:h').'/'<CR>
+cnoremap %% <C-r>=expand('%:h').'/'<CR>
 
 let g:mapleader=','
 
@@ -170,10 +170,12 @@ nnoremap <Leader><Bar> 80<Bar>
 vnoremap <Leader><Bar> 80<Bar>
 " ,, open previously edited file
 nnoremap <Leader><Leader> <C-^>
-" ,s spec method
-nnoremap <Leader>s :Dispatch bundle exec rspec <C-R>=expand("%:p")<CR>:<C-R>=line(".")<CR> --format doc --color<CR>
+" ,s spec line
+nnoremap <Leader>s :Dispatch bundle exec rspec <C-r>=expand("%:p")<CR>:<C-r>=line(".")<CR> --format doc --color<CR>
 " ,S spec file
 nnoremap <Leader>S :Dispatch bundle exec rspec <C-r>=expand("%:p")<CR>                     --format doc --color<CR>
+" ,r rake test file
+nnoremap <Leader>r :Dispatch rake test TEST=<C-r>=expand("%:p")<CR><CR>
 " ,<Space> strip all trailing whitespace from current file
 nnoremap <Leader><Space> :%s/\s\+$//<CR>
 " ,d diff all
