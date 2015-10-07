@@ -10,6 +10,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-characterize'
+Plug 'tpope/vim-haml'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'vim-scripts/LargeFile'
   let g:LargeFile=1.5 "MB
@@ -76,7 +77,6 @@ Plug 'tpope/vim-endwise', { 'for': ['ruby','sh'] }
 Plug 'tpope/vim-dispatch', { 'for': 'ruby' }
 Plug 'kana/vim-textobj-user', { 'for': 'ruby' } | Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
 Plug 'ck3g/vim-change-hash-syntax', { 'for': ['ruby','haml'] }
-Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'evanmiller/nginx-vim-syntax', { 'for': 'nginx' }
 call plug#end()
