@@ -12,7 +12,7 @@ function parse_git_branch {
 
 PS1='\[\e[36m\]$(parse_git_branch)\[\e[0m\]\W\$ '
 
-PATH=~/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$PATH
+PATH="~/.pollev/bin:~/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$PATH"
 
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
