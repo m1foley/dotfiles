@@ -20,8 +20,8 @@ Plug 'wincent/Command-T'
 Plug 'rking/ag.vim'
   set grepprg=ag
   let g:grep_cmd_opts='--line-numbers --noheading'
-  let g:agprg="ag --vimgrep --case-sensitive"
-  let g:aghighlight=1
+  let g:ag_prg="ag --vimgrep --case-sensitive"
+  let g:ag_highlight=1
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bruno-/vim-all'
 Plug 'gavinbeatty/dragvisuals.vim'
@@ -96,7 +96,6 @@ set iskeyword+=- "add chars to keywords for w/b/e/* etc.
 set number
 set ignorecase
 set smartcase
-" set magic
 set formatoptions=cql
 set sidescroll=10
 set sidescrolloff=2
