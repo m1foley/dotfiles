@@ -15,7 +15,6 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'vim-scripts/LargeFile'
   let g:LargeFile=1.5 "MB
 Plug 'm1foley/greplace' " waiting for: https://github.com/yegappan/greplace/pull/2
-Plug 'scrooloose/syntastic'
 Plug 'wincent/Command-T'
 Plug 'rking/ag.vim'
   set grepprg=ag
@@ -88,7 +87,6 @@ set statusline=%<%f\ " filename
 set statusline+=%-7h " help status
 set statusline+=%-4m " modified flag
 set statusline+=%-5r " readonly flag
-set statusline+=\ %#ErrorMsg#%{SyntasticStatuslineFlag()}%* "syntastic
 set statusline+=%=%-14.(%l,%c%V%) " line/column
 set statusline+=%30(%=%<%P%) " rulerformat
 
