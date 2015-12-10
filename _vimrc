@@ -153,7 +153,7 @@ noremap <C-y> 3<C-y>
 " ctrl+n temporarily clears hlsearch
 nnoremap <silent> <C-n> :nohlsearch<CR>
 " expand %% to current directory in command-line mode
-" http://vimcasts.org/e/14
+" http://vimcasts.org/episodes/the-edit-command/
 cnoremap %% <C-r>=expand('%:h').'/'<CR>
 
 let g:mapleader=','
