@@ -27,6 +27,7 @@ alias du="du -h"
 #alias grep="grep --exclude-dir=.svn"
 alias t="tmux -S /tmp/tm attach || tmux -S /tmp/tm new"
 alias tmatem="tmate show-messages"
+alias caf="caffeinate -i -s"
 
 alias grpe="grep"
 alias heda="head"
