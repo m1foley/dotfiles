@@ -70,6 +70,9 @@ Plug 'wincent/terminus'
 Plug 'junegunn/vim-peekaboo'
   let g:peekaboo_delay = 700
   let g:peekaboo_compact = 1
+Plug 'haya14busa/vim-operator-flashy' " flash yanked text
+  map y <Plug>(operator-flashy)
+  nmap Y <Plug>(operator-flashy)$
 
 " language-specific plugins
 Plug 'tpope/vim-endwise', { 'for': ['ruby','sh'] }
@@ -143,7 +146,6 @@ cnoremap <C-B> <S-Left>
 
 cabbrev q1 q!
 cabbrev qa1 qa!
-noremap Y y$
 noremap K ""
 noremap Q ""
 noremap ZA :qa!<CR>
