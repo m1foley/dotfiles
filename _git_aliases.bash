@@ -17,12 +17,12 @@ alias gc="git commit -v"
 alias gco="git checkout"
 alias gcom="git checkout master"
 alias gt="git tag"
-alias gh="git reset HEAD"
-alias grh1="git rebase -i HEAD~1"
-alias grh2="git rebase -i HEAD~2"
-alias grh3="git rebase -i HEAD~3"
-alias grh4="git rebase -i HEAD~4"
-alias grh5="git rebase -i HEAD~5"
+alias g1="git rebase -i HEAD~1"
+alias g2="git rebase -i HEAD~2"
+alias g3="git rebase -i HEAD~3"
+alias g4="git rebase -i HEAD~4"
+alias g5="git rebase -i HEAD~5"
+alias gcp="git cherry-pick"
 function go {
   bare=$(echo $1 | sed 's/origin\///')
   git branch --track $bare $1 && git checkout $bare
