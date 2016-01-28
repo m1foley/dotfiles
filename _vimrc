@@ -115,6 +115,7 @@ set list " display extra whitespace
 set synmaxcol=2048
 set pastetoggle=<C-_>
 let g:netrw_liststyle=3 " netrw default to tree view
+set diffopt+=vertical
 
 set guifont=Monaco:h16
 set background=dark
