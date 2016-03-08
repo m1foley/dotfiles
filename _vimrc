@@ -62,6 +62,7 @@ Plug 'mrtazz/simplenote.vim', { 'on': 'Simplenote' }
 Plug 'jeetsukumaran/vim-indentwise'
 Plug 'kopischke/vim-fetch' " jump to line/col
 Plug 'chrisbra/vim-diff-enhanced'
+  let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
 Plug 'ngmy/vim-rubocop', { 'on': 'RuboCop' }
   " let g:vimrubocop_rubocop_cmd="bundle exec rubocop"
 Plug 'wincent/terminus'
