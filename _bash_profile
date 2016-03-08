@@ -1,6 +1,12 @@
 export EDITOR=vim
-# set -o vi
+# prepopulate ! commands instead of running them
 shopt -s histverify
+# append to history file instead of overwriting
+shopt -s histappend
+# be lenient with typos in the cd command
+shopt -s cdspell
+# don't autocomplete an empty line
+shopt -s no_empty_cmd_completion
 
 function parse_git_dirty {
   [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working directory clean" ]] && echo "*"
