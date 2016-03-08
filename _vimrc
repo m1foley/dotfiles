@@ -98,7 +98,6 @@ set smartcase
 set formatoptions=cql
 set sidescroll=10
 set sidescrolloff=2
-set lazyredraw
 set expandtab
 set softtabstop=2
 set tabstop=2
