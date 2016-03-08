@@ -68,9 +68,6 @@ Plug 'ngmy/vim-rubocop', { 'on': 'RuboCop' }
 Plug 'wincent/terminus'
   let g:TerminusMouse=0
   let g:TerminusCursorShape=0
-Plug 'junegunn/vim-peekaboo'
-  let g:peekaboo_delay = 700
-  let g:peekaboo_compact = 1
 Plug 'haya14busa/vim-operator-flashy' " flash yanked text
   map y <Plug>(operator-flashy)
   nmap Y <Plug>(operator-flashy)$
