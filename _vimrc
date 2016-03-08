@@ -173,6 +173,8 @@ nnoremap <Leader>s :Dispatch bundle exec rspec <C-r>=expand("%:p")<CR>:<C-r>=lin
 nnoremap <Leader>S :Dispatch bundle exec rspec <C-r>=expand("%:p")<CR>                     --format doc --color<CR>
 " ,r rake test file
 nnoremap <Leader>r :Dispatch rake test TEST=<C-r>=expand("%:p")<CR><CR>
+" ,b remote pry
+nnoremap <Leader>b Orequire 'pry'; binding.remote_pry<ESC>
 " ,<Space> strip all trailing whitespace from current file
 nnoremap <Leader><Space> :%s/\s\+$//<CR>
 " ,d diff all
