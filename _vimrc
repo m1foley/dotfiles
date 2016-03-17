@@ -187,8 +187,6 @@ nnoremap <Leader>o :!git checkout %<CR><CR>
 vnoremap <Leader>: :ChangeHashSyntax<CR>
 " ,= evaluate highlighted expression
 vnoremap <Leader>= c<C-r>=<C-r>"<CR><ESC>
-" ,p use Patience diff algorithm
-nnoremap <Leader>p :EnhancedDiff patience<CR>:diffupdate<CR>
 " ,n Simplenote index
 nnoremap <Leader>n :Simplenote -l<CR>
 " ,y use clipboard register: "*
