@@ -1,7 +1,6 @@
 #/bin/bash
 alias p="cd ~/Documents/projects"
 alias s="cd ~/Documents/projects/polleverywhere/rails_app"
-alias v="cd ~/Documents/projects/polleverywhere/viz"
 alias m="cd ~/Documents/projects/polleverywhere/mobile"
 alias b="bundle"
 alias be="bundle exec"
