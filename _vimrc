@@ -71,6 +71,7 @@ Plug 'wincent/terminus'
 Plug 'haya14busa/vim-operator-flashy' " flash yanked text
   map y <Plug>(operator-flashy)
   nmap Y <Plug>(operator-flashy)$
+Plug 'm1foley/vim-expresso'
 
 " language-specific plugins
 Plug 'tpope/vim-endwise', { 'for': ['ruby','sh'] }
@@ -185,8 +186,6 @@ nnoremap <Leader>D :diffoff<CR><C-w><C-w>:diffoff<CR>
 nnoremap <Leader>o :!git checkout %<CR><CR>
 " ,: update Ruby hash syntax
 vnoremap <Leader>: :ChangeHashSyntax<CR>
-" ,= evaluate highlighted expression
-vnoremap <Leader>= c<C-r>=<C-r>"<CR><ESC>
 " ,n Simplenote index
 nnoremap <Leader>n :Simplenote -l<CR>
 " ,y use clipboard register: "*
