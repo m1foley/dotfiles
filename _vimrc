@@ -194,3 +194,5 @@ nnoremap <Leader>y "+
 vnoremap <Leader>y "+
 " ,<UP> restore arrow keys
 nnoremap <silent> <Leader><UP> :nunmap <LT>LEFT>\|nunmap <LT>RIGHT>\|nunmap <LT>DOWN>\|nunmap <LT>UP>\|echo 'Arrow keys restored.'<CR>
+" ,w ignore whitespace in diff
+nnoremap <Leader>w :set diffopt+=iwhite<CR>
