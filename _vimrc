@@ -189,8 +189,8 @@ nnoremap <Leader>o :!git checkout %<CR><CR>
 vnoremap <Leader>: :ChangeHashSyntax<CR>
 " ,n Simplenote index
 nnoremap <Leader>n :Simplenote -l<CR>
-" ,y use clipboard register: "*
-nnoremap <Leader>y "*
-vnoremap <Leader>y "*
+" ,y use clipboard register: "+
+nnoremap <Leader>y "+
+vnoremap <Leader>y "+
 " ,<UP> restore arrow keys
 nnoremap <silent> <Leader><UP> :nunmap <LT>LEFT>\|nunmap <LT>RIGHT>\|nunmap <LT>DOWN>\|nunmap <LT>UP>\|echo 'Arrow keys restored.'<CR>
