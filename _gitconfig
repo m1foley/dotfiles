@@ -21,3 +21,5 @@
   templatedir = ~/.git_template
 [core]
   excludesfile = /Users/mike/.gitignore_global
+[rebase]
+  instructionFormat = %s (%ae @ %ar)
