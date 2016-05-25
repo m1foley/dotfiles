@@ -152,8 +152,9 @@ noremap ZA :qa!<CR>
 " ^e and ^y scroll 3 lines instead of 1
 noremap <C-e> 3<C-e>
 noremap <C-y> 3<C-y>
-" ctrl+n temporarily clears hlsearch
-nnoremap <silent> <C-n> :nohlsearch<CR>
+" Esc/Return clears highlighted search text
+nnoremap <silent> <ESC> :nohlsearch<CR><ESC>
+nnoremap <silent> <CR> :nohlsearch<CR><CR>
 " expand %% to current directory in command-line mode
 " http://vimcasts.org/episodes/the-edit-command/
 cnoremap %% <C-r>=expand('%:h').'/'<CR>
