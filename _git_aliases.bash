@@ -15,6 +15,7 @@ alias ga="git add"
 alias gb="git branch"
 alias gc="git commit -v"
 alias gco="git checkout"
+alias gcob="git checkout -b"
 alias gcom="git checkout master"
 alias gt="git tag"
 alias g1="git rebase -i HEAD~1"
@@ -40,6 +41,7 @@ __git_complete ga _git_add
 __git_complete gb _git_branch
 __git_complete gc _git_commit
 __git_complete gco _git_checkout
+__git_complete gcob _git_checkout
 __git_complete gc _git_tag
 __git_complete go _git_branch
 __git_complete gp _git_pull
