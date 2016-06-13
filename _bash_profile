@@ -28,8 +28,10 @@ if [ -f ~/.git_aliases.bash ]; then
   . ~/.git_aliases.bash
 fi
 
-# nvm
-source $(brew --prefix nvm)/nvm.sh
-
 # rbenv
 eval "$(rbenv init -)"
+
+# Start the docker VM and tell the `docker` command to use it
+# https://github.com/polleverywhere/cli/blob/master/docs/docker-toolbox.md#connect-the-docker-cli-to-docker-machine
+docker-machine start polleverywhere &> /dev/null
+eval "$(docker-machine env polleverywhere)"
