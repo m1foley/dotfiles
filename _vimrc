@@ -16,6 +16,7 @@ Plug 'vim-scripts/LargeFile'
   let g:LargeFile=1.5 "MB
 Plug 'm1foley/greplace' " waiting for: https://github.com/yegappan/greplace/pull/2
 Plug 'wincent/Command-T'
+" TODO: replace with mileszs/ack.vim
 Plug 'rking/ag.vim'
   set grepprg=ag
   let g:grep_cmd_opts='--line-numbers --noheading'
@@ -197,3 +198,8 @@ vnoremap <Leader>y "+
 nnoremap <silent> <Leader><UP> :nunmap <LT>LEFT>\|nunmap <LT>RIGHT>\|nunmap <LT>DOWN>\|nunmap <LT>UP>\|echo 'Arrow keys restored.'<CR>
 " ,w ignore whitespace in diff
 nnoremap <Leader>w :set diffopt+=iwhite<CR>
+" ,j ,k jump to next/previous method
+nmap <Leader>j ]m
+nmap <Leader>k [m
+" ,p Plug update
+nnoremap <Leader>p :PlugUpdate \| PlugUpgrade<CR>
