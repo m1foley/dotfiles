@@ -16,7 +16,7 @@ Plug 'vim-scripts/LargeFile'
   let g:LargeFile=1.5 "MB
 Plug 'm1foley/greplace' " waiting for: https://github.com/yegappan/greplace/pull/2
 Plug 'wincent/Command-T'
-" TODO: replace with mileszs/ack.vim
+" TODO: replace with mileszs/ack.vim or ramele/agrep
 Plug 'rking/ag.vim'
   set grepprg=ag
   let g:grep_cmd_opts='--line-numbers --noheading'
@@ -81,6 +81,7 @@ Plug 'kana/vim-textobj-user', { 'for': 'ruby' } | Plug 'nelstrom/vim-textobj-rub
 Plug 'ck3g/vim-change-hash-syntax', { 'for': ['ruby','haml'] }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'evanmiller/nginx-vim-syntax', { 'for': 'nginx' }
+Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
 call plug#end()
 
 set directory=/tmp "swap files
