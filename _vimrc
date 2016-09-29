@@ -212,4 +212,4 @@ nmap <Leader>k [m
 " ,p Plug update
 nnoremap <Leader>p :PlugUpdate \| PlugUpgrade<CR>
 " ,g Grepper prompt
-nnoremap <Leader>g :Grepper -prompt -grepprg rg --no-heading --vimgrep --smart-case<CR>
+nnoremap <Leader>g :Grepper -prompt -grepprg rg --no-heading --vimgrep --smart-case --<CR>
