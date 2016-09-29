@@ -22,6 +22,7 @@ Plug 'mhinz/vim-grepper'
   let g:grepper.tools = ['rg']
   let g:grepper.prompt = 0
   let g:grepper.highlight = 1
+  " remove ignore-case from defaults
   let g:grepper.rg = { 'grepprg': 'rg --no-heading --vimgrep' }
   nmap g/ <Plug>(GrepperOperator)
   xmap g/ <Plug>(GrepperOperator)
