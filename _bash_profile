@@ -9,7 +9,7 @@ shopt -s cdspell
 shopt -s no_empty_cmd_completion
 
 function parse_git_dirty {
-  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working tree clean" ]] && echo "*"
+  [[ $(git status --long 2> /dev/null | tail -n1) != "nothing to commit, working tree clean" ]] && echo "*"
 }
 
 function parse_git_branch {
@@ -18,7 +18,9 @@ function parse_git_branch {
 
 PS1='\[\e[36m\]$(parse_git_branch)\[\e[0m\]\W\$ '
 
-PATH="/Users/mike/.pollev/bin:/Users/mike/.rbenv/bin:/usr/local/bin:/usr/local/sbin:$PATH"
+export GOPATH="/Users/mike/Documents/projects/go"
+
+PATH="/Users/mike/.pollev/bin:/Users/mike/.rbenv/bin:/usr/local/bin:/usr/local/sbin:$GOPATH/bin:$PATH"
 
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
