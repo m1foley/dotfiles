@@ -14,10 +14,10 @@ Plug 'tpope/vim-haml'
 Plug 'vim-scripts/LargeFile'
   let g:LargeFile=1.5 "MB
 Plug 'm1foley/greplace' " waiting for: https://github.com/yegappan/greplace/pull/2
-" TODO: try CtrlP https://robots.thoughtbot.com/faster-grepping-in-vim
-Plug 'wincent/Command-T'
+Plug 'ctrlpvim/ctrlp.vim'
+  let g:ctrlp_user_command='rg --files %s'
 Plug 'mhinz/vim-grepper'
-  set grepprg=rg
+  set grepprg=rg\ --vimgrep
   let g:grepper = {}
   let g:grepper.tools = ['rg']
   let g:grepper.prompt = 0
@@ -155,7 +155,6 @@ cnoremap <C-B> <S-Left>
 
 cabbrev q1 q!
 cabbrev qa1 qa!
-noremap K ""
 noremap Q ""
 noremap ZA :qa!<CR>
 " ^e and ^y scroll 3 lines instead of 1
@@ -211,5 +210,7 @@ nmap <Leader>j ]m
 nmap <Leader>k [m
 " ,p Plug update
 nnoremap <Leader>p :PlugUpdate \| PlugUpgrade<CR>
+" K searches
+nnoremap K :GrepperRg <cword><CR>
 " ,g Grepper prompt
 nnoremap <Leader>g :Grepper -prompt -grepprg rg --no-heading --vimgrep --smart-case --<CR>
