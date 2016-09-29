@@ -24,7 +24,7 @@ alias g3="git rebase -i HEAD~3"
 alias g4="git rebase -i HEAD~4"
 alias g5="git rebase -i HEAD~5"
 alias gcp="git cherry-pick"
-function go {
+function gto {
   bare=$(echo $1 | sed 's/origin\///')
   git branch --track $bare $1 && git checkout $bare
 }
@@ -43,5 +43,5 @@ __git_complete gc _git_commit
 __git_complete gco _git_checkout
 __git_complete gcob _git_checkout
 __git_complete gc _git_tag
-__git_complete go _git_branch
+__git_complete gto _git_branch
 __git_complete gp _git_pull
