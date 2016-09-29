@@ -23,3 +23,6 @@
   excludesfile = /Users/mike/.gitignore_global
 [rebase]
   instructionFormat = %s (%ae @ %ar)
+[status]
+  short = true
+  branch = true
