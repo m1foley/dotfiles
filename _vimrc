@@ -11,17 +11,20 @@ Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-haml'
-Plug 'michaeljsmith/vim-indent-object'
 Plug 'vim-scripts/LargeFile'
   let g:LargeFile=1.5 "MB
 Plug 'm1foley/greplace' " waiting for: https://github.com/yegappan/greplace/pull/2
+" TODO: try CtrlP https://robots.thoughtbot.com/faster-grepping-in-vim
 Plug 'wincent/Command-T'
-" TODO: replace with mileszs/ack.vim or ramele/agrep
-Plug 'rking/ag.vim'
-  set grepprg=ag
-  let g:grep_cmd_opts='--line-numbers --noheading'
-  let g:ag_prg="ag --vimgrep --case-sensitive"
-  let g:ag_highlight=1
+Plug 'mhinz/vim-grepper'
+  set grepprg=rg
+  let g:grepper = {}
+  let g:grepper.tools = ['rg']
+  let g:grepper.prompt = 0
+  let g:grepper.highlight = 1
+  let g:grepper.rg = { 'grepprg': 'rg --no-heading --vimgrep' }
+  nmap g/ <Plug>(GrepperOperator)
+  xmap g/ <Plug>(GrepperOperator)
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bruno-/vim-all'
 Plug 'gavinbeatty/dragvisuals.vim'
@@ -54,11 +57,8 @@ Plug 'talek/obvious-resize'
   nnoremap <silent> <DOWN> :<C-U>ObviousResizeDown<CR>
   nnoremap <silent> <UP> :<C-U>ObviousResizeUp<CR>
 Plug 'ajh17/Spacegray.vim'
-Plug 'kana/vim-operator-user' | Plug 'rgrinberg/vim-operator-gsearch'
-  " g/ calls motion-wise vim-operator-gsearch
-  map g/ <Plug>(operator-ag)
 Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim' | Plug 'garbas/vim-snipmate' | Plug 'honza/vim-snippets'
-Plug 'mrtazz/simplenote.vim', { 'on': 'Simplenote' }
+Plug 'mrtazz/simplenote.vim', { 'on': ['SimplenoteList','SimplenoteNew'] }
   source ~/.simplenoterc
 Plug 'jeetsukumaran/vim-indentwise'
 Plug 'kopischke/vim-fetch' " jump to line/col
@@ -69,14 +69,19 @@ Plug 'ngmy/vim-rubocop', { 'on': 'RuboCop' }
 Plug 'wincent/terminus'
   let g:TerminusMouse=0
   let g:TerminusCursorShape=0
-Plug 'haya14busa/vim-operator-flashy' " flash yanked text
+" flash yanked text
+Plug 'kana/vim-operator-user' | Plug 'haya14busa/vim-operator-flashy'
   map y <Plug>(operator-flashy)
   nmap Y <Plug>(operator-flashy)$
 Plug 'm1foley/vim-expresso'
+Plug 'metakirby5/codi.vim', { 'on': 'Codi' }
+Plug 'travisjeffery/vim-auto-mkdir'
 
 " language-specific plugins
 Plug 'tpope/vim-endwise', { 'for': ['ruby','sh'] }
 Plug 'tpope/vim-dispatch', { 'for': 'ruby' }
+  let g:dispatch_quickfix_height=20
+  let g:dispatch_tmux_height=20
 Plug 'kana/vim-textobj-user', { 'for': 'ruby' } | Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
 Plug 'ck3g/vim-change-hash-syntax', { 'for': ['ruby','haml'] }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
@@ -98,7 +103,7 @@ set iskeyword+=- "add chars to keywords for w/b/e/* etc.
 set number
 set ignorecase
 set smartcase
-set formatoptions=cql
+set formatoptions=cqj
 set sidescroll=10
 set sidescrolloff=2
 set lazyredraw
@@ -114,9 +119,10 @@ set visualbell
 set guioptions=agmrL "disable gui dialogs
 set list " display extra whitespace
 set synmaxcol=2048
-set pastetoggle=<C-_>
+" set pastetoggle=
 let g:netrw_liststyle=3 " netrw default to tree view
 set diffopt+=vertical
+set printoptions+=header:0
 
 set guifont=Monaco:h16
 set background=dark
@@ -173,9 +179,9 @@ vnoremap <Leader><Bar> 80<Bar>
 " ,, open previously edited file
 nnoremap <Leader><Leader> <C-^>
 " ,s spec line
-nnoremap <Leader>s :Dispatch bundle exec rspec <C-r>=expand("%:p")<CR>:<C-r>=line(".")<CR> --format doc --color<CR>
+nnoremap <Leader>s :Dispatch bin/rspec <C-r>=expand("%:p")<CR>:<C-r>=line(".")<CR> --format doc --color<CR>
 " ,S spec file
-nnoremap <Leader>S :Dispatch bundle exec rspec <C-r>=expand("%:p")<CR>                     --format doc --color<CR>
+nnoremap <Leader>S :Dispatch bin/rspec <C-r>=expand("%:p")<CR> --format doc --color<CR>
 " ,r rake test file
 nnoremap <Leader>r :Dispatch rake test TEST=<C-r>=expand("%:p")<CR><CR>
 " ,b remote pry
@@ -190,8 +196,8 @@ nnoremap <Leader>D :diffoff<CR><C-w><C-w>:diffoff<CR>
 nnoremap <Leader>o :!git checkout %<CR><CR>
 " ,: update Ruby hash syntax
 vnoremap <Leader>: :ChangeHashSyntax<CR>
-" ,n Simplenote index
-nnoremap <Leader>n :Simplenote -l<CR>
+" ,n Simplenote list
+nnoremap <Leader>n :SimplenoteList<CR>
 " ,y use clipboard register: "+
 nnoremap <Leader>y "+
 vnoremap <Leader>y "+
@@ -204,3 +210,5 @@ nmap <Leader>j ]m
 nmap <Leader>k [m
 " ,p Plug update
 nnoremap <Leader>p :PlugUpdate \| PlugUpgrade<CR>
+" ,g Grepper prompt
+nnoremap <Leader>g :Grepper -prompt -grepprg rg --no-heading --vimgrep --smart-case<CR>
