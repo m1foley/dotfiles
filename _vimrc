@@ -27,7 +27,7 @@ Plug 'mhinz/vim-grepper'
   " remove ignore-case from defaults
   let g:grepper.rg = { 'grepprg': 'rg --no-heading --vimgrep' }
   nmap g/ <Plug>(GrepperOperator)
-  xmap g/ <Plug>(GrepperOperator)
+  vmap g/ <Plug>(GrepperOperator)
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bruno-/vim-all'
 Plug 'gavinbeatty/dragvisuals.vim'
