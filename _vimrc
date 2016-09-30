@@ -16,6 +16,8 @@ Plug 'vim-scripts/LargeFile'
 Plug 'm1foley/greplace' " waiting for: https://github.com/yegappan/greplace/pull/2
 Plug 'ctrlpvim/ctrlp.vim'
   let g:ctrlp_user_command='rg --files %s'
+Plug 'JazzCore/ctrlp-cmatcher'
+  let g:ctrlp_match_func = { 'match' : 'matcher#cmatch' }
 Plug 'mhinz/vim-grepper'
   set grepprg=rg\ --vimgrep
   let g:grepper = {}
