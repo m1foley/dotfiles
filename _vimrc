@@ -22,7 +22,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'JazzCore/ctrlp-cmatcher'
   let g:ctrlp_match_func = { 'match' : 'matcher#cmatch' }
 Plug 'mhinz/vim-grepper'
-  set grepprg=rg\ --vimgrep
+  set grepprg=rg\ no-heading\ --vimgrep
   let g:grepper = {}
   let g:grepper.tools = ['rg']
   let g:grepper.prompt = 0
