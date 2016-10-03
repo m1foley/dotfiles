@@ -32,9 +32,8 @@ Plug 'mhinz/vim-grepper'
   " K searches
   nnoremap K :GrepperRg <cword><CR>
   " ctrl-slash for Grepper prompt
-  nnoremap  :Grepper -prompt -grepprg rg --no-heading --vimgrep --smart-case --<CR>
-  nmap g/ <Plug>(GrepperOperator)
-  vmap g/ <Plug>(GrepperOperator)
+  nmap \ :Grepper -prompt -grepprg rg --no-heading --vimgrep --smart-case --<CR>
+  vmap \ <Plug>(GrepperOperator)
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bruno-/vim-all'
 Plug 'gavinbeatty/dragvisuals.vim'
