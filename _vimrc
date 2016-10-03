@@ -11,6 +11,9 @@ Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-haml'
+Plug 'tpope/vim-dispatch'
+  let g:dispatch_quickfix_height=20
+  let g:dispatch_tmux_height=20
 Plug 'vim-scripts/LargeFile'
   let g:LargeFile=1.5 "MB
 Plug 'm1foley/greplace' " waiting for: https://github.com/yegappan/greplace/pull/2
@@ -26,6 +29,10 @@ Plug 'mhinz/vim-grepper'
   let g:grepper.highlight = 1
   " remove ignore-case from defaults
   let g:grepper.rg = { 'grepprg': 'rg --no-heading --vimgrep' }
+  " K searches
+  nnoremap K :GrepperRg <cword><CR>
+  " ctrl-slash for Grepper prompt
+  nnoremap  :Grepper -prompt -grepprg rg --no-heading --vimgrep --smart-case --<CR>
   nmap g/ <Plug>(GrepperOperator)
   vmap g/ <Plug>(GrepperOperator)
 Plug 'AndrewRadev/splitjoin.vim'
@@ -82,9 +89,6 @@ Plug 'travisjeffery/vim-auto-mkdir'
 
 " language-specific plugins
 Plug 'tpope/vim-endwise', { 'for': ['ruby','sh'] }
-Plug 'tpope/vim-dispatch', { 'for': 'ruby' }
-  let g:dispatch_quickfix_height=20
-  let g:dispatch_tmux_height=20
 Plug 'kana/vim-textobj-user', { 'for': 'ruby' } | Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
 Plug 'ck3g/vim-change-hash-syntax', { 'for': ['ruby','haml'] }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
@@ -212,7 +216,3 @@ nmap <Leader>j ]m
 nmap <Leader>k [m
 " ,p Plug update
 nnoremap <Leader>p :PlugUpdate \| PlugUpgrade<CR>
-" K searches
-nnoremap K :GrepperRg <cword><CR>
-" ,g Grepper prompt
-nnoremap <Leader>g :Grepper -prompt -grepprg rg --no-heading --vimgrep --smart-case --<CR>
