@@ -28,7 +28,7 @@ Plug 'mhinz/vim-grepper'
   let g:grepper.prompt = 0
   let g:grepper.highlight = 1
   " remove ignore-case from defaults
-  let g:grepper.rg = { 'grepprg': 'rg --no-heading --vimgrep' }
+  let g:grepper.rg = { 'grepprg': 'rg --no-heading --vimgrep --' }
   " backslash for Grepper
   vmap \ <Plug>(GrepperOperator)
   nmap \ <Plug>(GrepperOperator)
