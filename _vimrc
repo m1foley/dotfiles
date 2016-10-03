@@ -29,11 +29,13 @@ Plug 'mhinz/vim-grepper'
   let g:grepper.highlight = 1
   " remove ignore-case from defaults
   let g:grepper.rg = { 'grepprg': 'rg --no-heading --vimgrep' }
-  " K searches
-  nnoremap K :GrepperRg <cword><CR>
-  " ctrl-slash for Grepper prompt
-  nmap \ :Grepper -prompt -grepprg rg --no-heading --vimgrep --smart-case --<CR>
+  " backslash for Grepper
   vmap \ <Plug>(GrepperOperator)
+  nmap \ <Plug>(GrepperOperator)
+  " double-backslash for Grepper prompt
+  nmap \\ :Grepper -prompt -grepprg rg --no-heading --vimgrep --smart-case --<CR>
+  " K searches word
+  nnoremap K :GrepperRg <cword><CR>
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bruno-/vim-all'
 Plug 'gavinbeatty/dragvisuals.vim'
