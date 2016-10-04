@@ -32,8 +32,9 @@ Plug 'mhinz/vim-grepper'
   " backslash for Grepper
   vmap \ <Plug>(GrepperOperator)
   nmap \ <Plug>(GrepperOperator)
-  " double-backslash for Grepper prompt
-  nmap \\ :Grepper -prompt -grepprg rg --no-heading --vimgrep --smart-case --regexp<CR>
+  " :Rg or double-backslash for Grepper command
+  command! -nargs=+ -bang -complete=file Rg GrepperRg <args>
+  nmap \\ :Rg<Space>
   " K searches word
   nnoremap K :GrepperRg <cword><CR>
 Plug 'AndrewRadev/splitjoin.vim'
