@@ -34,3 +34,6 @@ fi
 eval "$(rbenv init -)"
 
 export DOCKER_HOST="unix:///var/run/docker.sock"
+
+export NVM_DIR="$HOME/.nvm"
+. "$(brew --prefix nvm)/nvm.sh"
