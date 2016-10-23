@@ -71,7 +71,11 @@ Plug 'talek/obvious-resize'
   nnoremap <silent> <DOWN> :<C-U>ObviousResizeDown<CR>
   nnoremap <silent> <UP> :<C-U>ObviousResizeUp<CR>
 Plug 'ajh17/Spacegray.vim'
-Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim' | Plug 'garbas/vim-snipmate' | Plug 'honza/vim-snippets'
+Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim' | Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+  let g:UltiSnipsExpandTrigger="<tab>"
+  let g:UltiSnipsListSnippets="<c-j>"
+  let g:UltiSnipsJumpForwardTrigger="<c-j>"
+  let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 Plug 'mrtazz/simplenote.vim', { 'on': ['SimplenoteList','SimplenoteNew'] }
   source ~/.simplenoterc
 Plug 'jeetsukumaran/vim-indentwise'
