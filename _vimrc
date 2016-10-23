@@ -208,7 +208,7 @@ nnoremap <Leader>D :diffoff<CR><C-w><C-w>:diffoff<CR>
 " ,o git checkout current file
 nnoremap <Leader>o :!git checkout %<CR><CR>
 " ,: update Ruby hash syntax
-vnoremap <Leader>: :ChangeHashSyntax<CR>
+vnoremap <silent> <Leader>: :ChangeHashSyntax<CR>
 " ,n Simplenote list
 nnoremap <Leader>n :SimplenoteList<CR>
 " ,y use clipboard register: "+
