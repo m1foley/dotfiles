@@ -97,8 +97,7 @@ Plug 'travisjeffery/vim-auto-mkdir'
 
 " language-specific plugins
 Plug 'tpope/vim-endwise', { 'for': ['ruby','sh'] }
-Plug 'kana/vim-textobj-user', { 'for': 'ruby' } | Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
-Plug 'ck3g/vim-change-hash-syntax', { 'for': ['ruby','haml'] }
+Plug 'ck3g/vim-change-hash-syntax', { 'on': 'ChangeHashSyntax'}
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'evanmiller/nginx-vim-syntax', { 'for': 'nginx' }
 Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
