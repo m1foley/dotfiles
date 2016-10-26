@@ -14,6 +14,8 @@ Plug 'tpope/vim-haml'
 Plug 'tpope/vim-dispatch'
   let g:dispatch_quickfix_height=20
   let g:dispatch_tmux_height=20
+  " TEMP: https://github.com/tpope/vim-dispatch/issues/192
+  set shellpipe+=\ 
 Plug 'vim-scripts/LargeFile'
   let g:LargeFile=1.5 "MB
 Plug 'm1foley/greplace' " waiting for: https://github.com/yegappan/greplace/pull/2
@@ -192,9 +194,9 @@ vnoremap <Leader><Bar> 80<Bar>
 " ,, open previously edited file
 nnoremap <Leader><Leader> <C-^>
 " ,s spec line
-nnoremap <Leader>s :Dispatch bin/rspec <C-r>=expand("%:p")<CR>:<C-r>=line(".")<CR> --format doc --color<CR>
+nnoremap <Leader>s :Dispatch bin/rspec <C-r>=expand("%:p")<CR>:<C-r>=line(".")<CR> --format doc<CR><CR>
 " ,S spec file
-nnoremap <Leader>S :Dispatch bin/rspec <C-r>=expand("%:p")<CR> --format doc --color<CR>
+nnoremap <Leader>S :Dispatch bin/rspec <C-r>=expand("%:p")<CR> --format doc<CR><CR>
 " ,r rake test file
 nnoremap <Leader>r :Dispatch rake test TEST=<C-r>=expand("%:p")<CR><CR>
 " ,b remote pry
