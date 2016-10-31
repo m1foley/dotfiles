@@ -1,5 +1,8 @@
 set nocompatible
 
+" TODO: check out:
+" https://github.com/wincent/ferret
+
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-commentary'
@@ -181,6 +184,8 @@ nnoremap <silent> <CR> :nohlsearch<CR><CR>
 " expand %% to current directory in command-line mode
 " http://vimcasts.org/episodes/the-edit-command/
 cnoremap %% <C-r>=expand('%:h').'/'<CR>
+" gw shortcut for :Gw
+nnoremap gw :Gwrite<CR>
 
 let g:mapleader=','
 
@@ -194,9 +199,9 @@ vnoremap <Leader><Bar> 80<Bar>
 " ,, open previously edited file
 nnoremap <Leader><Leader> <C-^>
 " ,s spec line
-nnoremap <Leader>s :Dispatch bin/rspec <C-r>=expand("%:p")<CR>:<C-r>=line(".")<CR> --format doc<CR><CR>
+nnoremap <Leader>s :Dispatch bin/rspec <C-r>=expand("%:p")<CR>:<C-r>=line(".")<CR> --format doc<CR>
 " ,S spec file
-nnoremap <Leader>S :Dispatch bin/rspec <C-r>=expand("%:p")<CR> --format doc<CR><CR>
+nnoremap <Leader>S :Dispatch bin/rspec <C-r>=expand("%:p")<CR> --format doc<CR>
 " ,r rake test file
 nnoremap <Leader>r :Dispatch rake test TEST=<C-r>=expand("%:p")<CR><CR>
 " ,b remote pry
@@ -225,3 +230,5 @@ nmap <Leader>j ]m
 nmap <Leader>k [m
 " ,p Plug update
 nnoremap <Leader>p :PlugUpdate \| PlugUpgrade<CR>
+" ,5 open current file
+nnoremap <Leader>5 :!open %<CR>
