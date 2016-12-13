@@ -530,7 +530,7 @@
 		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
 		hAErATGG
 		</data>
-		<string>307</string>
+		<string>322</string>
 	</array>
 	<key>NSTableView Hidden Columns KeyBingingTable</key>
 	<array/>
@@ -559,19 +559,19 @@
 	<key>NSWindow Frame Preferences</key>
 	<string>716 589 606 456 0 0 1920 1057 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
-	<string>1349 671 400 129 0 0 1920 1057 </string>
+	<string>760 716 400 129 0 0 1920 1057 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>650 519 620 392 0 0 1920 1057 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 162 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>918 367 918 512 0 0 1920 1057 </string>
+	<string>206 291 918 495 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1920 1080 0 0 1920 1057 </string>
+	<string>477 405 890 652 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>1011 187 890 652 0 0 1920 1057 </string>
+	<string>0 0 1440 900 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>0 369 890 652 0 0 1920 1057 </string>
+	<string>960 105 956 952 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
 	<string>66 79 890 652 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
@@ -1189,6 +1189,8 @@
 			<true/>
 			<key>Shortcut</key>
 			<string></string>
+			<key>Show Mark Indicators</key>
+			<true/>
 			<key>Silence Bell</key>
 			<true/>
 			<key>Smart Cursor Color</key>
@@ -1304,6 +1306,8 @@
 			<false/>
 			<key>Use Italic Font</key>
 			<true/>
+			<key>Use Non-ASCII Font</key>
+			<true/>
 			<key>Vertical Spacing</key>
 			<real>1</real>
 			<key>Visual Bell</key>
@@ -1392,7 +1396,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-09-28T23:09:05Z</date>
+	<date>2016-11-13T06:47:12Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
@@ -1444,6 +1448,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.10</string>
+	<string>3.0.12</string>
 </dict>
 </plist>
