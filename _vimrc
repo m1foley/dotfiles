@@ -211,8 +211,6 @@ nnoremap <Leader><Space> :%s/\s\+$//<CR>
 nnoremap <Leader>d :diffthis<CR><C-w><C-w>:diffthis<CR>
 " ,D diff off
 nnoremap <Leader>D :diffoff<CR><C-w><C-w>:diffoff<CR>
-" ,o git checkout current file
-nnoremap <Leader>o :!git checkout %<CR><CR>
 " ,: update Ruby hash syntax
 vnoremap <silent> <Leader>: :ChangeHashSyntax<CR>
 " ,n Simplenote list
@@ -231,3 +229,5 @@ nmap <Leader>k [m
 nnoremap <Leader>p :PlugUpdate \| PlugUpgrade<CR>
 " ,5 open current file
 nnoremap <Leader>5 :!open %<CR>
+" ,l git log -p
+nnoremap <Leader>l :!git log -p %<CR>
