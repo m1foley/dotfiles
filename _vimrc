@@ -27,13 +27,11 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'JazzCore/ctrlp-cmatcher'
   let g:ctrlp_match_func = { 'match' : 'matcher#cmatch' }
 Plug 'mhinz/vim-grepper'
-  set grepprg=rg\ no-heading\ --vimgrep
+  set grepprg=rg\ no-heading\ --vimgrep\ --
   let g:grepper = {}
   let g:grepper.tools = ['rg']
   let g:grepper.prompt = 0
   let g:grepper.highlight = 1
-  " remove ignore-case from defaults
-  let g:grepper.rg = { 'grepprg': 'rg --no-heading --vimgrep' }
   " backslash for Grepper
   vmap \ <Plug>(GrepperOperator)
   nmap \ <Plug>(GrepperOperator)
@@ -42,6 +40,7 @@ Plug 'mhinz/vim-grepper'
   nmap \\ :Rg<Space>
   " K searches word
   nnoremap K :GrepperRg <cword><CR>
+  vnoremap K :GrepperRg <cword><CR>
 Plug 'romainl/vim-qf'
   let g:qf_mapping_ack_style = 1
 Plug 'AndrewRadev/splitjoin.vim'
