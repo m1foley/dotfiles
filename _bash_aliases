@@ -2,6 +2,8 @@
 alias p="cd ~/Documents/projects"
 alias s="cd ~/Documents/projects/polleverywhere/rails_app"
 alias m="cd ~/Documents/projects/polleverywhere/mobile"
+alias prodc="pollev exec -a rails-app -e production -t puma_general -c 'bundle exec rails console'"
+alias stagingc="pollev exec -a rails-app -e staging -t puma_general -c 'bundle exec rails console'"
 alias b="bundle"
 alias be="bundle exec"
 alias ber="bundle exec rspec"
