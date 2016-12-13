@@ -80,7 +80,7 @@ Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim' | Plug 'SirVer/ulti
   let g:UltiSnipsListSnippets="<c-j>"
   let g:UltiSnipsJumpForwardTrigger="<c-j>"
   let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-Plug 'mrtazz/simplenote.vim', { 'on': ['SimplenoteList','SimplenoteNew'] }
+Plug 'mrtazz/simplenote.vim'
   source ~/.simplenoterc
 Plug 'jeetsukumaran/vim-indentwise'
 Plug 'kopischke/vim-fetch' " jump to line/col
@@ -101,7 +101,7 @@ Plug 'travisjeffery/vim-auto-mkdir'
 
 " language-specific plugins
 Plug 'tpope/vim-endwise', { 'for': ['ruby','sh'] }
-Plug 'ck3g/vim-change-hash-syntax', { 'on': 'ChangeHashSyntax'}
+Plug 'ck3g/vim-change-hash-syntax'
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'evanmiller/nginx-vim-syntax', { 'for': 'nginx' }
 Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
@@ -121,7 +121,7 @@ set iskeyword+=- "add chars to keywords for w/b/e/* etc.
 set number
 set ignorecase
 set smartcase
-set formatoptions=cqj
+set formatoptions+=lj
 set sidescroll=10
 set sidescrolloff=2
 set lazyredraw
