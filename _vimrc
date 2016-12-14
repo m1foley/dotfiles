@@ -96,7 +96,6 @@ Plug 'kana/vim-operator-user' | Plug 'haya14busa/vim-operator-flashy'
   map y <Plug>(operator-flashy)
   nmap Y <Plug>(operator-flashy)$
 Plug 'm1foley/vim-expresso'
-Plug 'metakirby5/codi.vim', { 'on': 'Codi' }
 Plug 'travisjeffery/vim-auto-mkdir'
 
 " language-specific plugins
