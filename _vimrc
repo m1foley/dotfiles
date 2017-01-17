@@ -2,6 +2,7 @@ set nocompatible
 
 " TODO: check out:
 " https://github.com/wincent/ferret
+" mattn/vim-maketable
 
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
@@ -27,11 +28,13 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'JazzCore/ctrlp-cmatcher'
   let g:ctrlp_match_func = { 'match' : 'matcher#cmatch' }
 Plug 'mhinz/vim-grepper'
-  set grepprg=rg\ no-heading\ --vimgrep\ --
+  set grepprg=rg\ --no-heading\ --sort-files\ --with-filename\ --vimgrep\ --
   let g:grepper = {}
   let g:grepper.tools = ['rg']
   let g:grepper.prompt = 0
   let g:grepper.highlight = 1
+  let g:grepper.rg = {}
+  let g:grepper.rg.grepprg  = 'rg --no-heading --sort-files --with-filename --vimgrep'
   " backslash for Grepper
   vmap \ <Plug>(GrepperOperator)
   nmap \ <Plug>(GrepperOperator)
@@ -173,7 +176,7 @@ cabbrev q1 q!
 cabbrev qa1 qa!
 noremap Q ""
 noremap ZA :qa!<CR>
-" ^e and ^y scroll 3 lines instead of 1
+" C-e and C-y scroll 3 lines instead of 1
 noremap <C-e> 3<C-e>
 noremap <C-y> 3<C-y>
 " Esc/Return clears highlighted search text
