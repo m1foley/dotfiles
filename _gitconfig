@@ -26,3 +26,6 @@
 [status]
   short = true
   branch = true
+[format]
+  ; similar to medium but doesn't indent the commit message
+  pretty=%C(yellow)commit %H%n%C(white)Author: %an <%ae>%n%C(white)Date:   %ad%n%n%w(0,0,0)%B
