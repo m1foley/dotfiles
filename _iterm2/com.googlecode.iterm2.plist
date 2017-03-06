@@ -461,6 +461,8 @@
 	<false/>
 	<key>DisableFullscreenTransparency</key>
 	<false/>
+	<key>DisableWindowSizeSnap</key>
+	<true/>
 	<key>EnableRendezvous</key>
 	<false/>
 	<key>FocusFollowsMouse</key>
@@ -561,25 +563,25 @@
 	<key>NSWindow Frame SUStatusFrame</key>
 	<string>760 716 400 129 0 0 1920 1057 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>650 519 620 392 0 0 1920 1057 </string>
+	<string>650 537 620 392 0 0 1920 1080 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 162 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>206 291 918 495 0 0 1440 877 </string>
+	<string>14 379 1018 447 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>477 405 890 652 0 0 1920 1057 </string>
+	<string>0 405 890 652 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>0 0 1440 900 0 0 1440 877 </string>
+	<string>749 405 890 652 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>960 105 956 952 0 0 1920 1057 </string>
+	<string>0 0 1440 900 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
-	<string>66 79 890 652 0 0 2560 1417 </string>
+	<string>470 95 890 652 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
-	<string>140 115 810 576 0 0 1440 877 </string>
+	<string>707 140 890 652 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 5</key>
-	<string>0 827 810 576 0 0 2560 1418 </string>
+	<string>0 214 890 652 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 6</key>
-	<string>1058 271 810 576 0 0 2560 1418 </string>
+	<string>298 72 890 652 0 0 3008 1669 </string>
 	<key>NSWindow Frame iTerm Window 7</key>
 	<string>142 202 810 576 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 8</key>
@@ -1307,7 +1309,7 @@
 			<key>Use Italic Font</key>
 			<true/>
 			<key>Use Non-ASCII Font</key>
-			<true/>
+			<false/>
 			<key>Vertical Spacing</key>
 			<real>1</real>
 			<key>Visual Bell</key>
@@ -1396,7 +1398,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-11-13T06:47:12Z</date>
+	<date>2017-02-03T00:26:26Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
@@ -1413,6 +1415,8 @@
 	<integer>4</integer>
 	<key>SwitchWindowModifier</key>
 	<integer>6</integer>
+	<key>TabStyle</key>
+	<integer>1</integer>
 	<key>TabViewType</key>
 	<integer>0</integer>
 	<key>ThreeFingerEmulates</key>
@@ -1448,6 +1452,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.12</string>
+	<string>3.0.13</string>
 </dict>
 </plist>
