@@ -27,25 +27,33 @@ Plug 'ctrlpvim/ctrlp.vim'
   let g:ctrlp_user_command='rg --files %s'
 Plug 'JazzCore/ctrlp-cmatcher'
   let g:ctrlp_match_func = { 'match' : 'matcher#cmatch' }
-Plug 'mhinz/vim-grepper'
-  set grepprg=rg\ --no-heading\ --sort-files\ --with-filename\ --vimgrep\ --
-  let g:grepper = {}
-  let g:grepper.tools = ['rg']
-  let g:grepper.prompt = 0
-  let g:grepper.highlight = 1
-  let g:grepper.rg = {}
-  let g:grepper.rg.grepprg  = 'rg --no-heading --sort-files --with-filename --vimgrep'
-  " backslash for Grepper
-  vmap \ <Plug>(GrepperOperator)
-  nmap \ <Plug>(GrepperOperator)
-  " :Rg or double-backslash for Grepper command
-  command! -nargs=+ -bang -complete=file Rg GrepperRg <args>
-  nmap \\ :Rg<Space>
-  " K searches word
-  nnoremap K :GrepperRg <cword><CR>
-  vnoremap K :GrepperRg <cword><CR>
-Plug 'romainl/vim-qf'
-  let g:qf_mapping_ack_style = 1
+Plug 'rking/ag.vim'
+  set grepprg=rg\ --no-heading\ --sort-files\ --with-filename\ --vimgrep
+  set grepformat^=%f:%l:%c:%m " vimgrep format
+  let g:ag_prg="rg --no-heading --sort-files --with-filename --vimgrep"
+  let g:ag_highlight=1
+  nmap \\ :Ag<Space>
+  " TODO: vim-operator-gsearch
+  " vmap \ <Plug>(operator-ag)
+  nnoremap K :Ag <cword><CR>
+  vnoremap \ "ay:Ag '<C-r>a'<CR>
+
+" function! Rg(search_term)
+  " let l:search_term = a:search_term
+  " if empty(l:search_term)
+  "   let l:search_term = input("Search term: ")
+  " endif
+  " if empty(l:search_term)
+  "   echo 'Empty search term'
+  " else
+  "   execute 'silent grep' l:search_term | copen
+  " endif
+  " redraw!
+" endfunction
+
+" command! -nargs=? Rg call Rg(<q-args>)
+" nmap \\ :Rg<Space>
+
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bruno-/vim-all'
 Plug 'gavinbeatty/dragvisuals.vim'
@@ -93,7 +101,7 @@ Plug 'ngmy/vim-rubocop', { 'on': 'RuboCop' }
   " let g:vimrubocop_rubocop_cmd="bundle exec rubocop"
 Plug 'wincent/terminus'
   let g:TerminusMouse=0
-  let g:TerminusCursorShape=0
+  " let g:TerminusCursorShape=0
 " flash yanked text
 Plug 'kana/vim-operator-user' | Plug 'haya14busa/vim-operator-flashy'
   map y <Plug>(operator-flashy)
@@ -143,6 +151,8 @@ set synmaxcol=2048
 let g:netrw_liststyle=3 " netrw default to tree view
 set diffopt+=vertical
 set printoptions+=header:0
+let g:ruby_indent_end_alignment = 'variable' " Ruby indentation
+" let ruby_no_expensive = 0
 
 set guifont=Monaco:h16
 set background=dark
@@ -179,14 +189,13 @@ noremap ZA :qa!<CR>
 " C-e and C-y scroll 3 lines instead of 1
 noremap <C-e> 3<C-e>
 noremap <C-y> 3<C-y>
-" Esc/Return clears highlighted search text
-nnoremap <silent> <ESC> :nohlsearch<CR><ESC>
-nnoremap <silent> <CR> :nohlsearch<CR><CR>
+" C-l highlighted search text
+nnoremap <C-l> <C-l>:nohlsearch<CR>
 " expand %% to current directory in command-line mode
 " http://vimcasts.org/episodes/the-edit-command/
 cnoremap %% <C-r>=expand('%:h').'/'<CR>
-" gw shortcut for :Gw
-nnoremap gw :Gwrite<CR>
+" gp selects last paste
+nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 let g:mapleader=','
 
@@ -199,22 +208,12 @@ nnoremap <Leader><Bar> 80<Bar>
 vnoremap <Leader><Bar> 80<Bar>
 " ,, open previously edited file
 nnoremap <Leader><Leader> <C-^>
-" ,s spec line
-nnoremap <Leader>s :Dispatch bin/rspec <C-r>=expand("%:p")<CR>:<C-r>=line(".")<CR> --format doc<CR>
-" ,S spec file
-nnoremap <Leader>S :Dispatch bin/rspec <C-r>=expand("%:p")<CR> --format doc<CR>
-" ,r rake test file
-nnoremap <Leader>r :Dispatch rake test TEST=<C-r>=expand("%:p")<CR><CR>
-" ,b remote pry
-nnoremap <Leader>b Orequire 'pry'; binding.remote_pry<ESC>
 " ,<Space> strip all trailing whitespace from current file
 nnoremap <Leader><Space> :%s/\s\+$//<CR>
 " ,d diff all
 nnoremap <Leader>d :diffthis<CR><C-w><C-w>:diffthis<CR>
 " ,D diff off
 nnoremap <Leader>D :diffoff<CR><C-w><C-w>:diffoff<CR>
-" ,: update Ruby hash syntax
-vnoremap <silent> <Leader>: :ChangeHashSyntax<CR>
 " ,n Simplenote list
 nnoremap <Leader>n :SimplenoteList<CR>
 " ,y use clipboard register: "+
@@ -224,12 +223,28 @@ vnoremap <Leader>y "+
 nnoremap <silent> <Leader><UP> :nunmap <LT>LEFT>\|nunmap <LT>RIGHT>\|nunmap <LT>DOWN>\|nunmap <LT>UP>\|echo 'Arrow keys restored.'<CR>
 " ,w ignore whitespace in diff
 nnoremap <Leader>w :set diffopt+=iwhite<CR>
-" ,j ,k jump to next/previous method
-nmap <Leader>j ]m
-nmap <Leader>k [m
 " ,p Plug update
 nnoremap <Leader>p :PlugUpdate \| PlugUpgrade<CR>
 " ,5 open current file
 nnoremap <Leader>5 :!open %<CR>
 " ,l git log -p
 nnoremap <Leader>l :!git log -p %<CR>
+
+autocmd Filetype ruby call LoadRubyMaps()
+function LoadRubyMaps()
+  " ,s spec line
+  nnoremap <Leader>s :Dispatch bin/rspec <C-r>=expand("%:p")<CR>:<C-r>=line(".")<CR> --format doc<CR>
+  " ,S spec file
+  nnoremap <Leader>S :Dispatch bin/rspec <C-r>=expand("%:p")<CR> --format doc<CR>
+  " ,r rake test file
+  nnoremap <Leader>r :Dispatch rake test TEST=<C-r>=expand("%:p")<CR><CR>
+  " ,b remote pry
+  nnoremap <Leader>b Orequire 'pry'; binding.remote_pry<ESC>
+  " ,: update Ruby hash syntax
+  nmap vnoremap <silent> <Leader>: :ChangeHashSyntax<CR>
+  " ,j ,k jump to next/previous method
+  nmap <Leader>j ]m
+  nmap <Leader>k [m
+  " ,m memoize a Ruby method
+  nmap <Leader>m [mwy$oreturn @0 if defined?(@0)jI@0 = l
+endfunction
