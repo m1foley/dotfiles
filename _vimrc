@@ -78,6 +78,9 @@ Plug 'haya14busa/incsearch.vim'
   map g* <Plug>(incsearch-nohl-g*)
   map g# <Plug>(incsearch-nohl-g#)
 Plug 'christoomey/vim-tmux-navigator'
+ let g:tmux_navigator_no_mappings = 1
+ nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
+ nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 Plug 'talek/obvious-resize'
   " Arrow keys resize window
   let g:obvious_resize_default=5
@@ -189,8 +192,8 @@ noremap ZA :qa!<CR>
 " C-e and C-y scroll 3 lines instead of 1
 noremap <C-e> 3<C-e>
 noremap <C-y> 3<C-y>
-" C-l highlighted search text
-nnoremap <C-l> <C-l>:nohlsearch<CR>
+" C-l un-highlights search text before clearing
+nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
 " expand %% to current directory in command-line mode
 " http://vimcasts.org/episodes/the-edit-command/
 cnoremap %% <C-r>=expand('%:h').'/'<CR>
