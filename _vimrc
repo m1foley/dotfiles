@@ -245,7 +245,7 @@ function LoadRubyMaps()
   " ,b remote pry
   nnoremap <Leader>b Orequire 'pry'; binding.remote_pry<ESC>
   " ,: update Ruby hash syntax
-  nmap vnoremap <silent> <Leader>: :ChangeHashSyntax<CR>
+  vnoremap <silent> <Leader>: :ChangeHashSyntax<CR>
   " ,j ,k jump to next/previous method
   nmap <Leader>j ]m
   nmap <Leader>k [m
