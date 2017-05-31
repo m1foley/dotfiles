@@ -143,8 +143,7 @@ set expandtab
 set softtabstop=2
 set tabstop=2
 set shiftwidth=2
-set splitright
-set splitbelow
+set splitbelow splitright
 set winminheight=0
 set mousehide
 set visualbell
@@ -157,6 +156,7 @@ set diffopt+=vertical
 set printoptions+=header:0
 let g:ruby_indent_end_alignment = 'variable' " Ruby indentation
 " let ruby_no_expensive = 0
+let g:is_posix = 1
 
 set guifont=Monaco:h16
 set background=dark
@@ -185,6 +185,8 @@ highlight nonascii guibg=Red ctermbg=1 term=standout
 cnoremap <C-A> <Home>
 cnoremap <C-F> <S-Right>
 cnoremap <C-B> <S-Left>
+cnoremap <C-E> <End>
+" set cedit=<C-E>
 
 cabbrev q1 q!
 cabbrev qa1 qa!
