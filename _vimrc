@@ -1,8 +1,8 @@
-set nocompatible
-
 " TODO: check out:
 " https://github.com/wincent/ferret
-" mattn/vim-maketable
+" https://github.com/mattn/vim-maketable
+
+set nocompatible
 
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
@@ -154,9 +154,9 @@ set synmaxcol=2048
 let g:netrw_liststyle=3 " netrw default to tree view
 set diffopt+=vertical
 set printoptions+=header:0
-let g:ruby_indent_end_alignment = 'variable' " Ruby indentation
+let g:ruby_indent_end_alignment='variable' " Ruby indentation
 " let ruby_no_expensive = 0
-let g:is_posix = 1
+let g:is_posix=1
 
 set guifont=Monaco:h16
 set background=dark
