@@ -1,6 +1,7 @@
 " TODO: check out:
 " https://github.com/wincent/ferret
 " https://github.com/mattn/vim-maketable
+" https://github.com/tpope/tpope-vim-abolish
 
 set nocompatible
 
@@ -103,25 +104,24 @@ Plug 'chrisbra/vim-diff-enhanced'
   let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
 Plug 'ngmy/vim-rubocop', { 'on': 'RuboCop' }
   " let g:vimrubocop_rubocop_cmd="bundle exec rubocop"
-Plug 'wincent/terminus'
-  let g:TerminusMouse=0
-  " let g:TerminusCursorShape=0
 " flash yanked text
 Plug 'kana/vim-operator-user' | Plug 'haya14busa/vim-operator-flashy'
   map y <Plug>(operator-flashy)
   nmap Y <Plug>(operator-flashy)$
 Plug 'm1foley/vim-expresso'
 Plug 'travisjeffery/vim-auto-mkdir'
+Plug 'johngrib/vim-game-code-break'
 
 " language-specific plugins
 Plug 'tpope/vim-endwise', { 'for': ['ruby','sh'] }
+Plug 'sunaku/vim-ruby-minitest' , { 'for': ['ruby'] }
 Plug 'ck3g/vim-change-hash-syntax'
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'evanmiller/nginx-vim-syntax', { 'for': 'nginx' }
 Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
 call plug#end()
 
-set directory=/tmp "swap files
+set directory=/tmp// "swap files
 set backupdir=/tmp,. "tilde files
 
 set statusline=%<%f\ " filename
@@ -154,7 +154,7 @@ set synmaxcol=2048
 let g:netrw_liststyle=3 " netrw default to tree view
 set diffopt+=vertical
 set printoptions+=header:0
-let g:ruby_indent_end_alignment='variable' " Ruby indentation
+let g:ruby_indent_assignment_style = 'variable' " Ruby indentation
 " let ruby_no_expensive = 0
 let g:is_posix=1
 
