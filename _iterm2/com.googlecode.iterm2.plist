@@ -493,6 +493,8 @@
 	<integer>0</integer>
 	<key>HotkeyCode</key>
 	<integer>0</integer>
+	<key>HotkeyMigratedFromSingleToMulti</key>
+	<true/>
 	<key>HotkeyModifiers</key>
 	<integer>0</integer>
 	<key>IRMemory</key>
@@ -509,6 +511,10 @@
 	<false/>
 	<key>NSFontPanelAttributes</key>
 	<string>1, 4</string>
+	<key>NSFontPanelPreviewHeight</key>
+	<real>100</real>
+	<key>NSFontPanelSizeSliderParams</key>
+	<string>2 0 100</string>
 	<key>NSNavLastRootDirectory</key>
 	<string>~/Documents/projects/dotfiles/_iterm2</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
@@ -532,7 +538,7 @@
 		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
 		hAErATGG
 		</data>
-		<string>322</string>
+		<string>307</string>
 	</array>
 	<key>NSTableView Hidden Columns KeyBingingTable</key>
 	<array/>
@@ -557,23 +563,27 @@
 	<key>NSWindow Frame NSColorPanel</key>
 	<string>357 143 409 734 0 0 1440 877 </string>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>761 434 694 318 0 0 1920 1057 </string>
+	<string>463 288 694 94 0 0 1440 900 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>716 589 606 456 0 0 1920 1057 </string>
+	<key>NSWindow Frame ProfilesPanel</key>
+	<string>484 327 735 382 0 0 1440 900 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
-	<string>760 716 400 129 0 0 1920 1057 </string>
+	<string>760 717 400 129 0 0 1920 1057 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>650 537 620 392 0 0 1920 1080 </string>
+	<string>370 210 700 622 0 0 1440 877 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 162 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>14 379 1018 447 0 0 1440 877 </string>
+	<string>615 366 796 473 0 0 1600 977 </string>
+	<key>NSWindow Frame com.apple.typography_panel_Monaco</key>
+	<string>398 554 260 120 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 405 890 652 0 0 1920 1057 </string>
+	<string>155 93 890 652 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>749 405 890 652 0 0 1920 1057 </string>
+	<string>720 77 720 800 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>0 0 1440 900 0 0 1440 877 </string>
+	<string>632 151 890 652 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
 	<string>470 95 890 652 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
@@ -1306,6 +1316,8 @@
 			<true/>
 			<key>Use Canonical Parser</key>
 			<false/>
+			<key>Use HFS Plus Mapping</key>
+			<false/>
 			<key>Use Italic Font</key>
 			<true/>
 			<key>Use Non-ASCII Font</key>
@@ -1398,7 +1410,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-02-03T00:26:26Z</date>
+	<date>2017-08-20T18:02:44Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
@@ -1408,7 +1420,7 @@
 	<key>ShowPaneTitles</key>
 	<true/>
 	<key>SmartPlacement</key>
-	<false/>
+	<true/>
 	<key>SplitPaneDimmingAmount</key>
 	<real>0.40000000596046448</real>
 	<key>SwitchTabModifier</key>
@@ -1449,9 +1461,11 @@
 	<string>/-+\~_.</string>
 	<key>findIgnoreCase_iTerm</key>
 	<true/>
+	<key>findMode_iTerm</key>
+	<integer>0</integer>
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.13</string>
+	<string>3.1.beta.6</string>
 </dict>
 </plist>
