@@ -111,6 +111,8 @@ Plug 'kana/vim-operator-user' | Plug 'haya14busa/vim-operator-flashy'
 Plug 'm1foley/vim-expresso'
 Plug 'travisjeffery/vim-auto-mkdir'
 Plug 'johngrib/vim-game-code-break'
+" TEMP until ruby_indent_assignment_style is in the latest MacVim build
+Plug 'vim-ruby/vim-ruby'
 
 " language-specific plugins
 Plug 'tpope/vim-endwise', { 'for': ['ruby','sh'] }
@@ -154,7 +156,8 @@ set synmaxcol=2048
 let g:netrw_liststyle=3 " netrw default to tree view
 set diffopt+=vertical
 set printoptions+=header:0
-let g:ruby_indent_assignment_style = 'variable' " Ruby indentation
+let g:ruby_indent_assignment_style = 'variable'
+let ruby_minlines = 400
 " let ruby_no_expensive = 0
 let g:is_posix=1
 
@@ -242,8 +245,9 @@ function LoadRubyMaps()
   nnoremap <Leader>s :Dispatch bin/rspec <C-r>=expand("%:p")<CR>:<C-r>=line(".")<CR> --format doc<CR>
   " ,S spec file
   nnoremap <Leader>S :Dispatch bin/rspec <C-r>=expand("%:p")<CR> --format doc<CR>
-  " ,r rake test file
-  nnoremap <Leader>r :Dispatch rake test TEST=<C-r>=expand("%:p")<CR><CR>
+  " ,r test file/line
+  nnoremap <Leader>r :Rails<CR>
+  vnoremap <Leader>r :Rails<CR>
   " ,b remote pry
   nnoremap <Leader>b Orequire 'pry'; binding.remote_pry<ESC>
   " ,: update Ruby hash syntax
