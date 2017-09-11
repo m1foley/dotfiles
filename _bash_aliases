@@ -25,6 +25,7 @@ alias du="du -h"
 #alias ppsm="ps axfo pid,pcpu,pmem,nice,user,etime,args"
 #alias grep="grep --exclude-dir=.svn"
 alias t="tmux -S /tmp/tm attach || tmux -S /tmp/tm new"
+alias t2="tmux -S /tmp/tm2 attach || tmux -S /tmp/tm2 new"
 alias tmatem="tmate show-messages"
 alias caf="caffeinate -i -s"
 
