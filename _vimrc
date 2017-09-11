@@ -151,7 +151,7 @@ set mousehide
 set visualbell
 set guioptions=agmrL "disable gui dialogs
 set list " display extra whitespace
-set synmaxcol=2048
+set synmaxcol=1024
 " set pastetoggle=
 let g:netrw_liststyle=3 " netrw default to tree view
 set diffopt+=vertical
