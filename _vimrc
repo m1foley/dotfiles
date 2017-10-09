@@ -236,7 +236,9 @@ nnoremap <Leader>p :PlugUpdate \| PlugUpgrade<CR>
 " ,5 open current file
 nnoremap <Leader>5 :!open %<CR>
 " ,l git log -p
-nnoremap <Leader>l :!git log -p %<CR>
+nnoremap <Leader>l :Git log -p %<CR>
+" ,L git log -p into temp file
+nnoremap <Leader>L :Git! log -p %<CR>
 
 autocmd Filetype ruby call LoadRubyMaps()
 function LoadRubyMaps()
