@@ -25,10 +25,9 @@ Plug 'tpope/vim-dispatch'
 Plug 'vim-scripts/LargeFile'
   let g:LargeFile=1.5 "MB
 Plug 'm1foley/greplace' " waiting for: https://github.com/yegappan/greplace/pull/2
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim' | Plug 'FelikZ/ctrlp-py-matcher'
   let g:ctrlp_user_command='rg --files %s'
-Plug 'JazzCore/ctrlp-cmatcher'
-  let g:ctrlp_match_func = { 'match' : 'matcher#cmatch' }
+  let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 Plug 'rking/ag.vim'
   set grepprg=rg\ --no-heading\ --sort-files\ --with-filename\ --vimgrep
   set grepformat^=%f:%l:%c:%m " vimgrep format
@@ -119,7 +118,7 @@ Plug 'tpope/vim-endwise', { 'for': ['ruby','sh'] }
 Plug 'sunaku/vim-ruby-minitest' , { 'for': ['ruby'] }
 Plug 'ck3g/vim-change-hash-syntax'
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
-Plug 'evanmiller/nginx-vim-syntax', { 'for': 'nginx' }
+Plug 'chr4/nginx.vim', { 'for': 'nginx' }
 Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
 call plug#end()
 
@@ -151,7 +150,7 @@ set mousehide
 set visualbell
 set guioptions=agmrL "disable gui dialogs
 set list " display extra whitespace
-set synmaxcol=128
+set synmaxcol=256
 " set pastetoggle=
 let g:netrw_liststyle=3 " netrw default to tree view
 set diffopt+=vertical
