@@ -1,7 +1,9 @@
 " TODO: check out:
 " https://github.com/wincent/ferret
 " https://github.com/mattn/vim-maketable
-" https://github.com/tpope/tpope-vim-abolish
+"
+" TODO: incsearch available in default Vim v8.0.1238
+" https://github.com/vim/vim/commit/2e51d9a0972080b087d566608472928d5b7b35d7
 
 set nocompatible
 
@@ -22,39 +24,36 @@ Plug 'tpope/vim-dispatch'
   let g:dispatch_tmux_height=20
   " TEMP: https://github.com/tpope/vim-dispatch/issues/192
   set shellpipe+=\ 
+Plug 'tpope/tpope-vim-abolish'
 Plug 'vim-scripts/LargeFile'
   let g:LargeFile=1.5 "MB
 Plug 'm1foley/greplace' " waiting for: https://github.com/yegappan/greplace/pull/2
-Plug 'ctrlpvim/ctrlp.vim' | Plug 'FelikZ/ctrlp-py-matcher'
-  let g:ctrlp_user_command='rg --files %s'
-  let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-Plug 'rking/ag.vim'
+Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+  nnoremap <C-p> :Files<CR>
+
   set grepprg=rg\ --no-heading\ --sort-files\ --with-filename\ --vimgrep
-  set grepformat^=%f:%l:%c:%m " vimgrep format
-  let g:ag_prg="rg --no-heading --sort-files --with-filename --vimgrep"
-  let g:ag_highlight=1
-  nmap \\ :Ag<Space>
-  " TODO: vim-operator-gsearch
-  " vmap \ <Plug>(operator-ag)
-  nnoremap K :Ag <cword><CR>
-  vnoremap \ "ay:Ag '<C-r>a'<CR>
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+  function! MySearch()
+    let grep_term = input("Enter search term: ")
+    if !empty(grep_term)
+      execute 'silent grep!' grep_term | copen
+    else
+      echo "Empty search term"
+    endif
+    redraw!
+  endfunction
+  command! Search call MySearch()
+  nnoremap \ :Search<CR>
+  nnoremap K :Search<CR><cword><CR>
+  vnoremap K "ay :Search<CR>'<C-r>a'<CR>
 
-" function! Rg(search_term)
-  " let l:search_term = a:search_term
-  " if empty(l:search_term)
-  "   let l:search_term = input("Search term: ")
-  " endif
-  " if empty(l:search_term)
-  "   echo 'Empty search term'
-  " else
-  "   execute 'silent grep' l:search_term | copen
-  " endif
-  " redraw!
-" endfunction
-
-" command! -nargs=? Rg call Rg(<q-args>)
-" nmap \\ :Rg<Space>
-
+  " Searches through all lines
+  command! -bang -nargs=* Rg
+    \ call fzf#vim#grep(
+    \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+    \   <bang>0 ? fzf#vim#with_preview('up:60%')
+    \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+    \ <bang>0)
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bruno-/vim-all'
 Plug 'gavinbeatty/dragvisuals.vim'
@@ -65,6 +64,8 @@ Plug 'gavinbeatty/dragvisuals.vim'
   vmap <expr> <UP> DVB_Drag('up')
   let g:DVB_TrimWS=1 " trim whitespace after moving
 Plug 'justinmk/vim-gtfo'
+" TODO: when incsearch is in default Vim v8.0.1238, it will be enabled if both
+" `incsearch` and `hlsearch` are enabled.
 Plug 'haya14busa/incsearch.vim'
   set hlsearch
   set incsearch
@@ -102,7 +103,7 @@ Plug 'kopischke/vim-fetch' " jump to line/col
 Plug 'chrisbra/vim-diff-enhanced'
   let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
 Plug 'ngmy/vim-rubocop', { 'on': 'RuboCop' }
-  " let g:vimrubocop_rubocop_cmd="bundle exec rubocop"
+  let g:vimrubocop_rubocop_cmd="bundle exec rubocop"
 " flash yanked text
 Plug 'kana/vim-operator-user' | Plug 'haya14busa/vim-operator-flashy'
   map y <Plug>(operator-flashy)
@@ -192,7 +193,8 @@ cnoremap <C-E> <End>
 
 cabbrev q1 q!
 cabbrev qa1 qa!
-noremap Q ""
+noremap Q <silent>
+noremap q: <silent>
 noremap ZA :qa!<CR>
 " C-e and C-y scroll 3 lines instead of 1
 noremap <C-e> 3<C-e>
