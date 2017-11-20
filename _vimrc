@@ -191,8 +191,22 @@ cnoremap <C-B> <S-Left>
 cnoremap <C-E> <End>
 " set cedit=<C-E>
 
+" Typos
+iabbrev particpant participant
+iabbrev particpants participants
+iabbrev particpant_id participant_id
+iabbrev particiapnt participant
+iabbrev particiapnts participants
+iabbrev particiapnt_id participant_id
+iabbrev particpiant participant
+iabbrev particpiants participants
+iabbrev particpiant_id participant_id
+iabbrev particiant participant
+iabbrev particiants participants
+iabbrev particiant_id participant_id
 cabbrev q1 q!
 cabbrev qa1 qa!
+
 noremap Q <silent>
 noremap q: <silent>
 noremap ZA :qa!<CR>
@@ -251,6 +265,8 @@ function LoadRubyMaps()
   " ,r test file/line
   nnoremap <Leader>r :Rails<CR>
   vnoremap <Leader>r :Rails<CR>
+  " ,R rake test file
+  nnoremap <Leader>R :Dispatch rake test TEST=<C-r>=expand("%:p")<CR><CR>
   " ,b remote pry
   nnoremap <Leader>b Orequire 'pry'; binding.remote_pry<ESC>
   " ,: update Ruby hash syntax
