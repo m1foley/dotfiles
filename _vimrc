@@ -168,6 +168,9 @@ augroup end
 autocmd BufReadPost * syntax match nonascii "[^\u0000-\u007F]"
 highlight nonascii guibg=Red ctermbg=1 term=standout
 
+" spellcheck git commit messages
+autocmd BufNewFile,BufRead COMMIT_EDITMSG set spell
+
 " tcsh-style command line
 cnoremap <C-A> <Home>
 cnoremap <C-F> <S-Right>
