@@ -1,9 +1,6 @@
 " TODO: check out:
 " https://github.com/wincent/ferret
 " https://github.com/mattn/vim-maketable
-"
-" TODO: incsearch available in default Vim v8.0.1238
-" https://github.com/vim/vim/commit/2e51d9a0972080b087d566608472928d5b7b35d7
 
 set nocompatible
 
@@ -64,21 +61,6 @@ Plug 'gavinbeatty/dragvisuals.vim'
   vmap <expr> <UP> DVB_Drag('up')
   let g:DVB_TrimWS=1 " trim whitespace after moving
 Plug 'justinmk/vim-gtfo'
-" TODO: when incsearch is in default Vim v8.0.1238, it will be enabled if both
-" `incsearch` and `hlsearch` are enabled.
-Plug 'haya14busa/incsearch.vim'
-  set hlsearch
-  set incsearch
-  map /  <Plug>(incsearch-forward)
-  map ?  <Plug>(incsearch-backward)
-  " turn off hlsearch after motions
-  let g:incsearch#auto_nohlsearch=1
-  map n  <Plug>(incsearch-nohl-n)
-  map N  <Plug>(incsearch-nohl-N)
-  map *  <Plug>(incsearch-nohl-*)
-  map #  <Plug>(incsearch-nohl-#)
-  map g* <Plug>(incsearch-nohl-g*)
-  map g# <Plug>(incsearch-nohl-g#)
 Plug 'christoomey/vim-tmux-navigator'
  let g:tmux_navigator_no_mappings = 1
  nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
@@ -152,6 +134,8 @@ set visualbell
 set guioptions=agmrL "disable gui dialogs
 set list " display extra whitespace
 set synmaxcol=256
+set hlsearch
+set incsearch
 " set pastetoggle=
 let g:netrw_liststyle=3 " netrw default to tree view
 set diffopt+=vertical
