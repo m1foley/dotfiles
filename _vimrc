@@ -22,6 +22,8 @@ Plug 'tpope/vim-dispatch'
   " TEMP: https://github.com/tpope/vim-dispatch/issues/192
   set shellpipe+=\ 
 Plug 'tpope/tpope-vim-abolish'
+" software capslock: <C-g>c in insert mode
+Plug 'tpope/vim-capslock'
 Plug 'vim-scripts/LargeFile'
   let g:LargeFile=1.5 "MB
 Plug 'm1foley/greplace' " waiting for: https://github.com/yegappan/greplace/pull/2
