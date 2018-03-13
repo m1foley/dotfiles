@@ -1,4 +1,5 @@
 " TODO: check out:
+" https://github.com/maralla/completor.vim
 " https://github.com/wincent/ferret
 " https://github.com/mattn/vim-maketable
 
