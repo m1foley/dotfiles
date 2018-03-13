@@ -117,7 +117,6 @@ set statusline+=%-5r " readonly flag
 set statusline+=%=%-14.(%l,%c%V%) " line/column
 set statusline+=%30(%=%<%P%) " rulerformat
 
-set iskeyword+=- "add chars to keywords for w/b/e/* etc.
 set number
 set ignorecase
 set smartcase
