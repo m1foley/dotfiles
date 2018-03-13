@@ -243,7 +243,7 @@ nnoremap <Leader>l :Git log -p %<CR>
 nnoremap <Leader>L :Git! log -p %<CR>
 
 autocmd Filetype ruby call LoadRubyMaps()
-function LoadRubyMaps()
+function! LoadRubyMaps()
   " ,s spec line
   nnoremap <Leader>s :Dispatch bin/rspec <C-r>=expand("%:p")<CR>:<C-r>=line(".")<CR> --format doc<CR>
   " ,S spec file
