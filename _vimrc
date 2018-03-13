@@ -26,7 +26,7 @@ Plug 'tpope/tpope-vim-abolish'
 Plug 'tpope/vim-capslock'
 Plug 'vim-scripts/LargeFile'
   let g:LargeFile=1.5 "MB
-Plug 'm1foley/greplace' " waiting for: https://github.com/yegappan/greplace/pull/2
+Plug 'yegappan/greplace'
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
   nnoremap <C-p> :Files<CR>
 
