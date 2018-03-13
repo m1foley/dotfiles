@@ -121,7 +121,7 @@ set iskeyword+=- "add chars to keywords for w/b/e/* etc.
 set number
 set ignorecase
 set smartcase
-set formatoptions+=lj
+set formatoptions+=l
 set sidescroll=10
 set sidescrolloff=2
 set lazyredraw
@@ -202,8 +202,6 @@ noremap ZA :qa!<CR>
 " C-e and C-y scroll 3 lines instead of 1
 noremap <C-e> 3<C-e>
 noremap <C-y> 3<C-y>
-" C-l un-highlights search text before clearing
-nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
 " expand %% to current directory in command-line mode
 " http://vimcasts.org/episodes/the-edit-command/
 cnoremap %% <C-r>=expand('%:h').'/'<CR>
