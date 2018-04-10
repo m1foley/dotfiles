@@ -77,10 +77,6 @@ Plug 'talek/obvious-resize'
   nnoremap <silent> <UP> :<C-U>ObviousResizeUp<CR>
 Plug 'ajh17/Spacegray.vim'
 Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim' | Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-  let g:UltiSnipsExpandTrigger="<tab>"
-  let g:UltiSnipsListSnippets="<c-j>"
-  let g:UltiSnipsJumpForwardTrigger="<c-j>"
-  let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 Plug 'mrtazz/simplenote.vim'
   source ~/.simplenoterc
 Plug 'jeetsukumaran/vim-indentwise'
@@ -98,6 +94,7 @@ Plug 'travisjeffery/vim-auto-mkdir'
 Plug 'johngrib/vim-game-code-break'
 " TEMP until ruby_indent_assignment_style is in the latest MacVim build
 Plug 'vim-ruby/vim-ruby'
+Plug 'ConradIrwin/vim-bracketed-paste'
 
 " language-specific plugins
 Plug 'tpope/vim-endwise', { 'for': ['ruby','sh'] }
