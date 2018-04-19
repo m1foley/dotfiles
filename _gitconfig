@@ -1,3 +1,6 @@
+[user]
+  name = Mike Foley
+  email = foley3@gmail.com
 [color]
   branch = auto
   status = auto
@@ -6,14 +9,12 @@
   decorate = auto
   grep = auto
   ui = true
-[user]
-  name = Mike Foley
-  email = foley3@gmail.com
 [diff]
   external = git_diff_wrapper
 [pager]
   diff =
 [merge]
+  ff = true
   tool = vimdiff
 [push]
   default = current
@@ -21,6 +22,11 @@
   templatedir = ~/.git_template
 [core]
   excludesfile = /Users/mike/.gitignore_global
+  repositoryformatversion = 0
+  bare = false
+  logallrefupdates = true
+  ignorecase = false
+  precomposeunicode = false
 [rebase]
   instructionFormat = %s (%ae @ %ar)
 [status]
@@ -29,3 +35,7 @@
 [format]
   ; similar to medium but doesn't indent the commit message
   pretty=%C(yellow)commit %H%n%C(white)Author: %an <%ae>%n%C(white)Date:   %ad%n%n%w(0,0,0)%B
+[branch]
+  autosetuprebase = always
+[branch "*branch-name*"]
+  rebase = true
