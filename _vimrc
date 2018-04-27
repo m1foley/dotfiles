@@ -99,6 +99,8 @@ Plug 'ConradIrwin/vim-bracketed-paste'
 " language-specific plugins
 Plug 'tpope/vim-endwise', { 'for': ['ruby','sh'] }
 Plug 'sunaku/vim-ruby-minitest' , { 'for': ['ruby'] }
+Plug 'thoughtbot/vim-rspec', { 'for': ['ruby'] }
+  let g:rspec_command = "Dispatch bin/rspec {spec}"
 Plug 'ck3g/vim-change-hash-syntax'
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'chr4/nginx.vim', { 'for': 'nginx' }
@@ -235,22 +237,18 @@ nnoremap <Leader>w :set diffopt+=iwhite<CR>
 nnoremap <Leader>p :PlugUpdate \| PlugUpgrade<CR>
 " ,5 open current file
 nnoremap <Leader>5 :!open %<CR>
-" ,l git log -p
-nnoremap <Leader>l :Git log -p %<CR>
-" ,L git log -p into temp file
-nnoremap <Leader>L :Git! log -p %<CR>
+" ,L git log -p
+nnoremap <Leader>L :Git log -p %<CR>
 
 autocmd Filetype ruby call LoadRubyMaps()
 function! LoadRubyMaps()
-  " ,s spec line
-  nnoremap <Leader>s :Dispatch bin/rspec <C-r>=expand("%:p")<CR>:<C-r>=line(".")<CR> --format doc<CR>
-  " ,S spec file
-  nnoremap <Leader>S :Dispatch bin/rspec <C-r>=expand("%:p")<CR> --format doc<CR>
-  " ,r test file/line
+  " vim-rspec mappings
+  map <Leader>t :call RunCurrentSpecFile()<CR>
+  map <Leader>s :call RunNearestSpec()<CR>
+  map <Leader>l :call RunLastSpec()<CR>
+  " vim-rails mappings
   nnoremap <Leader>r :Rails<CR>
   vnoremap <Leader>r :Rails<CR>
-  " ,R rake test file
-  nnoremap <Leader>R :Dispatch rake test TEST=<C-r>=expand("%:p")<CR><CR>
   " ,b remote pry
   nnoremap <Leader>b Orequire 'pry'; binding.remote_pry<ESC>
   " ,: update Ruby hash syntax
