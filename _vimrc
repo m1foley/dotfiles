@@ -56,13 +56,14 @@ Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
     \ <bang>0)
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bruno-/vim-all'
-Plug 'gavinbeatty/dragvisuals.vim'
+Plug 'zirrostig/vim-schlepp'
   " Arrow keys move visual select blocks
-  vmap <expr> <LEFT> DVB_Drag('left')
-  vmap <expr> <RIGHT> DVB_Drag('right')
-  vmap <expr> <DOWN> DVB_Drag('down')
-  vmap <expr> <UP> DVB_Drag('up')
-  let g:DVB_TrimWS=1 " trim whitespace after moving
+  vmap <unique> <up>    <Plug>SchleppUp
+  vmap <unique> <down>  <Plug>SchleppDown
+  vmap <unique> <left>  <Plug>SchleppLeft
+  vmap <unique> <right> <Plug>SchleppRight
+  let g:Schlepp#allowSquishingBlock = 1
+  let g:Schlepp#allowSquishingLines = 1
 Plug 'justinmk/vim-gtfo'
 Plug 'christoomey/vim-tmux-navigator'
  let g:tmux_navigator_no_mappings = 1
