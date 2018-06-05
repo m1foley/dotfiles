@@ -20,7 +20,7 @@ PS1='\[\e[36m\]$(parse_git_branch)\[\e[0m\]\W\$ '
 
 export GOPATH="/Users/mike/Documents/projects/go"
 
-PATH="/Users/mike/.pollev/bin:/Users/mike/.rbenv/bin:/usr/local/bin:/usr/local/sbin:$GOPATH/bin:$PATH"
+PATH="/Users/mike/.pollev/bin:/Users/mike/.rbenv/bin:/Users/mike/.local/bin:/usr/local/bin:/usr/local/sbin:$GOPATH/bin:$PATH"
 
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
