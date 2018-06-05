@@ -247,8 +247,11 @@ autocmd Filetype ruby call LoadRubyMaps()
 function! LoadRubyMaps()
   " vim-rspec mappings
   map <Leader>t :call RunCurrentSpecFile()<CR>
+  map <Leader>ft :let g:rspec_command.=' --fail-fast' \| call RunCurrentSpecFile() \| let g:rspec_command=join(split(g:rspec_command)[0:-2])<CR>
   map <Leader>s :call RunNearestSpec()<CR>
+  map <Leader>fs :let g:rspec_command.=' --fail-fast' \| call RunNearestSpec() \| let g:rspec_command=join(split(g:rspec_command)[0:-2])<CR>
   map <Leader>l :call RunLastSpec()<CR>
+  map <Leader>fl :let g:rspec_command.=' --fail-fast' \| call RunLastSpec() \| let g:rspec_command=join(split(g:rspec_command)[0:-2])<CR>
   " vim-rails mappings
   nnoremap <Leader>r :Rails<CR>
   vnoremap <Leader>r :Rails<CR>
