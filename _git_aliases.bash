@@ -34,6 +34,7 @@ function gto {
 __git_complete g __git_main
 __git_complete gst _git_stash
 __git_complete gd _git_diff
+__git_complete gdd _git_diff
 __git_complete gf _git_fetch
 __git_complete gr _git_rebase
 __git_complete gri _git_rebase
