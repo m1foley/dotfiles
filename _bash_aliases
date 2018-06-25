@@ -1,4 +1,5 @@
 #/bin/bash
+alias bikeshed='ruby -e '\''$stdout.print("Names: ");$stdout.puts("🚲 #{$stdin.readline.split.sample}")'\'''
 alias p="cd ~/Documents/projects"
 alias s="cd ~/Documents/projects/polleverywhere/rails_app"
 alias sf="cd ~/Documents/projects/fit-commit-ci"
