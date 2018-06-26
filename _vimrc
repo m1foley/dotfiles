@@ -116,6 +116,7 @@ set statusline=%<%f\ " filename
 set statusline+=%-7h " help status
 set statusline+=%-4m " modified flag
 set statusline+=%-5r " readonly flag
+set statusline+=%{fugitive#statusline()}\ " Git status
 set statusline+=%=%-14.(%l,%c%V%) " line/column
 set statusline+=%30(%=%<%P%) " rulerformat
 
@@ -241,7 +242,7 @@ nnoremap <Leader>p :PlugUpdate \| PlugUpgrade<CR>
 nnoremap <Leader>5 :!open %<CR>
 " ,L git log -p
 nnoremap <Leader>L :Git log -p %<CR>
-" ,g :Gstatus
+" ,g Fugitive git status
 nnoremap <Leader>g :Gstatus<CR>
 
 autocmd Filetype ruby call LoadRubyMaps()
