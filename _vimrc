@@ -31,29 +31,27 @@ Plug 'yegappan/greplace'
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
   nnoremap <C-p> :Files<CR>
 
-  set grepprg=rg\ --no-heading\ --sort-files\ --with-filename\ --vimgrep
+  set grepprg=rg\ --vimgrep\ --sort-files
   set grepformat=%f:%l:%c:%m,%f:%l:%m
   function! MySearch()
-    let grep_term = input("Enter search term: ")
+    let grep_term = input("Search: ")
     if !empty(grep_term)
       execute 'silent grep!' grep_term | copen
-    else
-      echo "Empty search term"
+      redraw!
     endif
-    redraw!
   endfunction
   command! Search call MySearch()
   nnoremap \ :Search<CR>
   nnoremap K :Search<CR><cword><CR>
   vnoremap K "ay :Search<CR>'<C-r>a'<CR>
 
-  " Searches through all lines
+  " :Rg = Global search that can be further filtered in real time
   command! -bang -nargs=* Rg
     \ call fzf#vim#grep(
     \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
     \   <bang>0 ? fzf#vim#with_preview('up:60%')
     \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-    \ <bang>0)
+    \   <bang>0)
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bruno-/vim-all'
 Plug 'zirrostig/vim-schlepp'
