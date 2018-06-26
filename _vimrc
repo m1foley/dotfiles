@@ -94,6 +94,9 @@ Plug 'johngrib/vim-game-code-break'
 " TEMP until ruby_indent_assignment_style is in the latest MacVim build
 Plug 'vim-ruby/vim-ruby'
 Plug 'ConradIrwin/vim-bracketed-paste'
+Plug 'vim-scripts/Align' | Plug 'vim-scripts/SQLUtilities'
+  let g:sqlutil_load_default_maps = 0
+  command! -range -nargs=* SQLFormat <line1>,<line2> call SQLUtilities#SQLU_Formatter(<q-args>)
 
 " language-specific plugins
 Plug 'tpope/vim-endwise', { 'for': ['ruby','sh'] }
