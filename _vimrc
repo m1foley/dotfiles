@@ -1,4 +1,8 @@
+" TEMP HACK: https://github.com/vim/vim/issues/3117
+silent! python3 1
+
 " TODO: check out:
+" https://github.com/dyng/ctrlsf.vim
 " https://github.com/maralla/completor.vim
 " https://github.com/wincent/ferret
 " https://github.com/mattn/vim-maketable
@@ -145,8 +149,8 @@ let g:netrw_liststyle=3 " netrw default to tree view
 set diffopt+=vertical
 set printoptions+=header:0
 let g:ruby_indent_assignment_style = 'variable'
-let ruby_minlines = 400
-" let ruby_no_expensive = 0
+let ruby_minlines = 200
+let ruby_no_expensive = 1
 let g:is_posix=1
 
 set guifont=Monaco:h16
@@ -154,13 +158,13 @@ set background=dark
 colorscheme spacegray
 " print current color: echo synIDattr(synID(line('.'), col('.'), 1), 'name')
 
-set foldtext=MyFoldFunction()
-function! MyFoldFunction()
-  let s:line=getline(v:foldstart)
-  let s:numfolded=v:foldend - v:foldstart + 1
-  return '+---' . line . '  ' . numfolded . ' '
-endfunction
-set nofoldenable
+" set foldtext=MyFoldFunction()
+" function! MyFoldFunction()
+"   let s:line=getline(v:foldstart)
+"   let s:numfolded=v:foldend - v:foldstart + 1
+"   return '+---' . line . '  ' . numfolded . ' '
+" endfunction
+" set nofoldenable
 
 " don't open binary files
 augroup nonvim
