@@ -248,6 +248,8 @@ nnoremap <Leader>5 :!open %<CR>
 nnoremap <Leader>L :Git log -p %<CR>
 " ,g Fugitive git status
 nnoremap <Leader>g :Gstatus<CR>
+" ,j format JSON
+nnoremap <Leader>j :%!python -c "import json, sys, collections; print json.dumps(json.load(sys.stdin, object_pairs_hook=collections.OrderedDict), indent=2)"<CR>:%s/\s\+$//<CR>:set filetype=json<CR>
 
 autocmd Filetype ruby call LoadRubyMaps()
 function! LoadRubyMaps()
