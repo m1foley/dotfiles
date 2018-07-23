@@ -29,6 +29,7 @@
   precomposeunicode = false
 [rebase]
   instructionFormat = %s (%ae @ %ar)
+	autoStash = true
 [status]
   short = true
   branch = true
