@@ -148,10 +148,9 @@ set incsearch
 let g:netrw_liststyle=3 " netrw default to tree view
 set diffopt+=vertical
 set printoptions+=header:0
-let g:ruby_indent_assignment_style = 'variable'
-let ruby_minlines = 200
-let ruby_no_expensive = 1
 let g:is_posix=1
+let g:ruby_indent_assignment_style = 'variable'
+let ruby_minlines = 100
 
 set guifont=Monaco:h16
 set background=dark
@@ -164,7 +163,7 @@ colorscheme spacegray
 "   let s:numfolded=v:foldend - v:foldstart + 1
 "   return '+---' . line . '  ' . numfolded . ' '
 " endfunction
-" set nofoldenable
+set nofoldenable
 
 " don't open binary files
 augroup nonvim
@@ -226,7 +225,7 @@ vnoremap <Leader><Bar> 80<Bar>
 " ,, open previously edited file
 nnoremap <Leader><Leader> <C-^>
 " ,<Space> strip all trailing whitespace from current file
-nnoremap <Leader><Space> :%s/\s\+$//<CR>
+nnoremap <Leader><Space> :%s/\s\+$//e<CR>
 " ,d diff all
 nnoremap <Leader>d :diffthis<CR><C-w><C-w>:diffthis<CR>
 " ,D diff off
@@ -249,7 +248,9 @@ nnoremap <Leader>L :Git log -p %<CR>
 " ,g Fugitive git status
 nnoremap <Leader>g :Gstatus<CR>
 " ,j format JSON
-nnoremap <Leader>j :%!python -c "import json, sys, collections; print json.dumps(json.load(sys.stdin, object_pairs_hook=collections.OrderedDict), indent=2)"<CR>:%s/\s\+$//<CR>:set filetype=json<CR>
+nnoremap <Leader>j :%!python -c "import json, sys, collections; print json.dumps(json.load(sys.stdin, object_pairs_hook=collections.OrderedDict), indent=2)"<CR>:%s/\s\+$//e<CR>:set filetype=json<CR>
+" ,R rake test file
+nnoremap <Leader>R :Dispatch rake test TEST=<C-r>=expand("%:p")<CR><CR>
 
 autocmd Filetype ruby call LoadRubyMaps()
 function! LoadRubyMaps()
