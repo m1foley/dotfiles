@@ -93,6 +93,7 @@ Plug 'kana/vim-operator-user' | Plug 'haya14busa/vim-operator-flashy'
   map y <Plug>(operator-flashy)
   nmap Y <Plug>(operator-flashy)$
 Plug 'm1foley/vim-expresso'
+Plug 'm1foley/vim-pivotal-tracker-jump'
 Plug 'travisjeffery/vim-auto-mkdir'
 Plug 'johngrib/vim-game-code-break'
 " TEMP until ruby_indent_assignment_style is in the latest MacVim build
