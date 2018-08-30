@@ -203,7 +203,6 @@ cabbrev q1 q!
 cabbrev qa1 qa!
 
 noremap Q <silent>
-noremap q: <silent>
 noremap ZA :qa!<CR>
 " C-e and C-y scroll 3 lines instead of 1
 noremap <C-e> 3<C-e>
