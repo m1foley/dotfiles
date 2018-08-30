@@ -107,7 +107,7 @@ Plug 'vim-scripts/Align' | Plug 'vim-scripts/SQLUtilities'
 Plug 'tpope/vim-endwise', { 'for': ['ruby','sh'] }
 Plug 'sunaku/vim-ruby-minitest' , { 'for': ['ruby'] }
 Plug 'thoughtbot/vim-rspec', { 'for': ['ruby'] }
-  let g:rspec_command = "Dispatch bin/rspec {spec}"
+  let g:rspec_command = "Dispatch bin/rspec {spec} 2>&1"
 Plug 'ck3g/vim-change-hash-syntax'
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'chr4/nginx.vim', { 'for': 'nginx' }
