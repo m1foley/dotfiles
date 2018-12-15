@@ -29,6 +29,7 @@ function gto {
 }
 
 __git_complete g __git_main
+__git_complete gs _git_show
 __git_complete gst _git_stash
 __git_complete gd _git_diff
 __git_complete gdd _git_diff
