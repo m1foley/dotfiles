@@ -84,8 +84,6 @@ Plug 'mrtazz/simplenote.vim'
   source ~/.simplenoterc
 Plug 'jeetsukumaran/vim-indentwise'
 Plug 'kopischke/vim-fetch' " jump to line/col
-Plug 'chrisbra/vim-diff-enhanced'
-  let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
 Plug 'ngmy/vim-rubocop', { 'on': 'RuboCop' }
   let g:vimrubocop_rubocop_cmd="bundle exec rubocop"
 " flash yanked text
@@ -102,6 +100,7 @@ Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'vim-scripts/Align' | Plug 'vim-scripts/SQLUtilities'
   let g:sqlutil_load_default_maps = 0
   command! -range -nargs=* SQLFormat <line1>,<line2> call SQLUtilities#SQLU_Formatter(<q-args>)
+Plug 'leafgarland/typescript-vim'
 
 " language-specific plugins
 Plug 'tpope/vim-endwise', { 'for': ['ruby','sh'] }
@@ -147,7 +146,7 @@ set hlsearch
 set incsearch
 " set pastetoggle=
 let g:netrw_liststyle=3 " netrw default to tree view
-set diffopt+=vertical
+set diffopt+=vertical,internal,algorithm:patience
 set printoptions+=header:0
 let g:is_posix=1
 let g:ruby_indent_assignment_style = 'variable'
@@ -237,8 +236,6 @@ nnoremap <Leader>y "+
 vnoremap <Leader>y "+
 " ,<UP> restore arrow keys
 nnoremap <silent> <Leader><UP> :nunmap <LT>LEFT>\|nunmap <LT>RIGHT>\|nunmap <LT>DOWN>\|nunmap <LT>UP>\|echo 'Arrow keys restored.'<CR>
-" ,w ignore whitespace in diff
-nnoremap <Leader>w :set diffopt+=iwhite<CR>
 " ,p Plug update
 nnoremap <Leader>p :PlugUpdate \| PlugUpgrade<CR>
 " ,5 open current file
@@ -268,9 +265,6 @@ function! LoadRubyMaps()
   nnoremap <Leader>b Orequire 'pry'; binding.remote_pry<ESC>
   " ,: update Ruby hash syntax
   vnoremap <silent> <Leader>: :ChangeHashSyntax<CR>
-  " ,j ,k jump to next/previous method
-  nmap <Leader>j ]m
-  nmap <Leader>k [m
   " ,m memoize a Ruby method
   nmap <Leader>m [mwy$oreturn @0 if defined?(@0)jI@0 = l
 endfunction
