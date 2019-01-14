@@ -29,9 +29,10 @@ Plug 'vim-scripts/LargeFile'
 Plug 'yegappan/greplace'
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
   nnoremap <C-p> :Files<CR>
+  " -s: case-sensitive
+  set grepprg=ag\ -s\ --vimgrep
+  set grepformat=%f:%l:%c:%m
 
-  set grepprg=rg\ --vimgrep\ --sort-files
-  set grepformat=%f:%l:%c:%m,%f:%l:%m
   function! MySearch()
     let grep_term = input("Search: ")
     if !empty(grep_term)
@@ -43,14 +44,6 @@ Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
   nnoremap \ :Search<CR>
   nnoremap K :Search<CR><cword><CR>
   vnoremap K "ay :Search<CR>'<C-r>a'<CR>
-
-  " :Rg = Global search that can be further filtered in real time
-  command! -bang -nargs=* Rg
-    \ call fzf#vim#grep(
-    \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-    \   <bang>0 ? fzf#vim#with_preview('up:60%')
-    \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-    \   <bang>0)
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bruno-/vim-all'
 Plug 'zirrostig/vim-schlepp'
