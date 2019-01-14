@@ -29,18 +29,18 @@ Plug 'vim-scripts/LargeFile'
 Plug 'yegappan/greplace'
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
   nnoremap <C-p> :Files<CR>
-  " -s: case-sensitive
-  set grepprg=ag\ -s\ --vimgrep
+  " -S: smart-case
+  set grepprg=ag\ -S\ --vimgrep
   set grepformat=%f:%l:%c:%m
 
   function! MySearch()
-    let grep_term = input("Search: ")
-    if !empty(grep_term)
-      execute 'silent grep!' grep_term | copen
-      redraw!
+    let s:grep_term = input("Search: ", "", "file")
+    if !empty(s:grep_term)
+      execute 'silent grep!' s:grep_term | copen
     endif
+    redraw!
   endfunction
-  command! Search call MySearch()
+  command! -nargs=* -complete=file Search call MySearch()
   nnoremap \ :Search<CR>
   nnoremap K :Search<CR><cword><CR>
   vnoremap K "ay :Search<CR>'<C-r>a'<CR>
