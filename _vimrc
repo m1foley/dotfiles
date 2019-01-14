@@ -128,6 +128,7 @@ set number
 set ignorecase
 set smartcase
 set formatoptions+=l
+set textwidth=80
 set sidescroll=10
 set sidescrolloff=2
 set lazyredraw
