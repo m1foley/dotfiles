@@ -1,6 +1,3 @@
-" TEMP HACK: https://github.com/vim/vim/issues/3117
-silent! python3 1
-
 " TODO: check out:
 " https://github.com/dyng/ctrlsf.vim
 " https://github.com/maralla/completor.vim
