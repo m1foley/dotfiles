@@ -21,8 +21,6 @@ Plug 'tpope/vim-haml'
 Plug 'tpope/vim-dispatch'
   let g:dispatch_quickfix_height=20
   let g:dispatch_tmux_height=20
-  " TEMP: https://github.com/tpope/vim-dispatch/issues/192
-  set shellpipe+=\ 
 Plug 'tpope/tpope-vim-abolish'
 " software capslock: <C-g>c in insert mode
 Plug 'tpope/vim-capslock'
