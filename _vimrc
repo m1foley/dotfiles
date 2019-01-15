@@ -34,13 +34,13 @@ Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
   set grepformat=%f:%l:%c:%m
 
   function! MySearch()
-    let s:grep_term = input("Search: ", "", "file")
+    let s:grep_term = input("Search: ", "")
     if !empty(s:grep_term)
       execute 'silent grep!' s:grep_term | copen
     endif
     redraw!
   endfunction
-  command! -nargs=* -complete=file Search call MySearch()
+  command! Search call MySearch()
   nnoremap \ :Search<CR>
   nnoremap K :Search<CR><cword><CR>
   vnoremap K "ay :Search<CR>'<C-r>a'<CR>
