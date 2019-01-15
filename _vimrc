@@ -126,21 +126,36 @@ let g:is_posix=1
 let g:ruby_indent_assignment_style = 'variable'
 let ruby_minlines = 100
 
-" Global searches
-" -S: smart-case, --vimgrep: output in grepformat
-set grepprg=ag\ -S\ --vimgrep
+set grepprg=ag\ -S\ --vimgrep " -S: smart-case
 set grepformat=%f:%l:%c:%m
-function! MySearch()
-  let s:grep_term = input("Search: ", "")
-  if !empty(s:grep_term)
-    execute 'silent grep!' s:grep_term | copen
+function! GlobalSearch(...)
+  if a:0 > 0
+    let s:grep_term = substitute(a:1, '\n\+$', '', '')
+    let s:interpret_as_literal = 1
+  else
+    let s:grep_term = ''
+    let s:interpret_as_literal = 0
   endif
+
+  if len(s:grep_term) < 3
+    let s:grep_term = input("Search: ")
+    let s:interpret_as_literal = 0
+  endif
+
+  if !empty(s:grep_term)
+    if s:interpret_as_literal
+      execute 'silent grep! -Q --' shellescape(s:grep_term, 1)
+    else
+      execute 'silent grep!' s:grep_term
+    endif
+    copen
+  endif
+
   redraw!
 endfunction
-command! Search call MySearch()
-nnoremap \ :Search<CR>
-nnoremap K :Search<CR><cword><CR>
-vnoremap K "ay :Search<CR>'<C-r>a'<CR>
+nnoremap <silent> \ :call GlobalSearch()<CR>
+nnoremap <silent> K :call GlobalSearch(expand('<cword>'))<CR>
+vnoremap <silent> K "ay :call GlobalSearch(@a)<CR>:call setreg('a', [])<CR>
 
 set guifont=Monaco:h16
 set background=dark
