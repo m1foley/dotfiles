@@ -128,7 +128,7 @@ let ruby_minlines = 100
 
 set grepprg=ag\ -S\ --vimgrep " -S: smart-case
 set grepformat=%f:%l:%c:%m
-function! GlobalSearch(...)
+function! Grep(...)
   if a:0 > 0
     let s:grep_term = substitute(a:1, '\n\+$', '', '')
     let s:interpret_as_literal = 1
@@ -153,9 +153,9 @@ function! GlobalSearch(...)
 
   redraw!
 endfunction
-nnoremap <silent> \ :call GlobalSearch()<CR>
-nnoremap <silent> K :call GlobalSearch(expand('<cword>'))<CR>
-vnoremap <silent> K "ay :call GlobalSearch(@a)<CR>:call setreg('a', [])<CR>
+nnoremap <silent> \ :call Grep()<CR>
+nnoremap <silent> K :call Grep(expand('<cword>'))<CR>
+vnoremap <silent> K "gy :call Grep(@g)<CR>:call setreg('g', [])<CR>
 
 set guifont=Monaco:h16
 set background=dark
