@@ -128,9 +128,12 @@ let ruby_minlines = 100
 set grepprg=ag\ -S\ --vimgrep " -S: smart-case
 set grepformat=%f:%l:%c:%m
 function! Grep(...)
+  " called via K
   if a:0 > 0
+    " strip accidental newlines from visual mode
     let s:grep_term = substitute(a:1, '\n\+$', '', '')
     let s:interpret_as_literal = 1
+  " called via \
   else
     let s:grep_term = ''
     let s:interpret_as_literal = 0
@@ -141,7 +144,7 @@ function! Grep(...)
     let s:interpret_as_literal = 0
   endif
 
-  if !empty(s:grep_term)
+  if len(s:grep_term) >= 3
     if s:interpret_as_literal
       execute 'silent grep! -Q --' shellescape(s:grep_term, 1)
     else
@@ -149,7 +152,6 @@ function! Grep(...)
     endif
     copen
   endif
-
   redraw!
 endfunction
 nnoremap <silent> \ :call Grep()<CR>
