@@ -101,7 +101,6 @@ set number
 set ignorecase
 set smartcase
 set formatoptions+=l
-set textwidth=80
 set sidescroll=10
 set sidescrolloff=2
 set lazyredraw
@@ -253,9 +252,13 @@ nnoremap <Leader>g :Gstatus<CR>
 nnoremap <Leader>j :%!python -c "import json, sys, collections; print json.dumps(json.load(sys.stdin, object_pairs_hook=collections.OrderedDict), indent=2)"<CR>:%s/\s\+$//e<CR>:set filetype=json<CR>
 " ,R rake test file
 nnoremap <Leader>R :Dispatch rake test TEST=<C-r>=expand("%:p")<CR><CR>
+" ,f set filetype to ruby
+nnoremap <Leader>f :set filetype=ruby<CR>
 
 autocmd Filetype ruby call LoadRubyMaps()
 function! LoadRubyMaps()
+  set textwidth=80
+
   " vim-rspec mappings
   map <Leader>t :call RunCurrentSpecFile()<CR>
   map <Leader>ft :let g:rspec_command.=' --fail-fast' \| call RunCurrentSpecFile() \| let g:rspec_command=join(split(g:rspec_command)[0:-2])<CR>
