@@ -33,10 +33,10 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bruno-/vim-all'
 Plug 'zirrostig/vim-schlepp'
   " Arrow keys move visual select blocks
-  vmap <unique> <up>    <Plug>SchleppUp
-  vmap <unique> <down>  <Plug>SchleppDown
-  vmap <unique> <left>  <Plug>SchleppLeft
-  vmap <unique> <right> <Plug>SchleppRight
+  vmap <up>    <Plug>SchleppUp
+  vmap <down>  <Plug>SchleppDown
+  vmap <left>  <Plug>SchleppLeft
+  vmap <right> <Plug>SchleppRight
   let g:Schlepp#allowSquishingBlock = 1
   let g:Schlepp#allowSquishingLines = 1
 Plug 'justinmk/vim-gtfo'
