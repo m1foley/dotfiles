@@ -74,6 +74,8 @@ Plug 'vim-scripts/Align' | Plug 'vim-scripts/SQLUtilities'
   let g:sqlutil_load_default_maps = 0
   command! -range -nargs=* SQLFormat <line1>,<line2> call SQLUtilities#SQLU_Formatter(<q-args>)
 Plug 'leafgarland/typescript-vim'
+Plug 'uptech/vim-ping-cursor'
+  let g:ping_cursor_flash_milliseconds = 50
 
 " language-specific plugins
 Plug 'tpope/vim-endwise', { 'for': ['ruby','sh'] }
@@ -217,6 +219,8 @@ noremap <C-y> 3<C-y>
 cnoremap %% <C-r>=expand('%:h').'/'<CR>
 " gp selects last paste
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
+" <C-L> modified from vim-sensible to ping cursor
+nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>:PingCursor<CR><C-L>
 
 let g:mapleader=','
 
