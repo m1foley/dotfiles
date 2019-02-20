@@ -102,7 +102,6 @@ set statusline+=%30(%=%<%P%) " rulerformat
 set number
 set ignorecase
 set smartcase
-set formatoptions+=l
 set sidescroll=10
 set sidescrolloff=2
 set lazyredraw
@@ -185,6 +184,10 @@ highlight nonascii guibg=Red ctermbg=1 term=standout
 
 " spellcheck git commit messages
 autocmd BufNewFile,BufRead COMMIT_EDITMSG set spell
+
+" -o = Don't continue comment when hitting o
+" +l = Don't break long lines in insert mode
+autocmd FileType * set formatoptions-=o formatoptions+=l
 
 " tcsh-style command line
 cnoremap <C-A> <Home>
