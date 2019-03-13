@@ -175,7 +175,7 @@ set nofoldenable
 " don't open binary files
 augroup nonvim
   autocmd!
-  autocmd BufRead *.png,*.jpg,*.pdf,*.gif,*.xls*,*.ppt*,*.doc*,*.rtf bd! | let &ft=&ft | echoerr "Binary file not opened."
+  autocmd BufRead *.png,*.jpg,*.pdf,*.gif,*.xls*,*.ppt*,*.doc,*.docx,*.rtf bd! | let &ft=&ft | echoerr "Binary file not opened."
 augroup end
 
 " make non-ascii chars stand out
