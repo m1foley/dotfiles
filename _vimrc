@@ -259,8 +259,6 @@ nnoremap <Leader>L :Git log -p %<CR>
 nnoremap <Leader>g :Gstatus<CR>
 " ,j format JSON
 nnoremap <Leader>j :%!python -c "import json, sys, collections; print json.dumps(json.load(sys.stdin, object_pairs_hook=collections.OrderedDict), indent=2)"<CR>:%s/\s\+$//e<CR>:set filetype=json<CR>
-" ,R rake test file
-nnoremap <Leader>R :Dispatch rake test TEST=<C-r>=expand("%:p")<CR><CR>
 " ,f set filetype to ruby
 nnoremap <Leader>f :set filetype=ruby<CR>
 
