@@ -51,8 +51,6 @@ Plug 'mrtazz/simplenote.vim'
   source ~/.simplenoterc
 Plug 'jeetsukumaran/vim-indentwise'
 Plug 'kopischke/vim-fetch' " jump to line/col
-Plug 'ngmy/vim-rubocop', { 'on': 'RuboCop' }
-  let g:vimrubocop_rubocop_cmd="bundle exec rubocop"
 " flash yanked text
 Plug 'kana/vim-operator-user' | Plug 'haya14busa/vim-operator-flashy'
   map y <Plug>(operator-flashy)
