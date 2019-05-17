@@ -1,9 +1,3 @@
-" TODO: check out:
-" https://github.com/dyng/ctrlsf.vim
-" https://github.com/maralla/completor.vim
-" https://github.com/wincent/ferret
-" https://github.com/mattn/vim-maketable
-
 set nocompatible
 
 call plug#begin('~/.vim/plugged')
@@ -164,12 +158,6 @@ set background=dark
 colorscheme spacegray
 " print current color: echo synIDattr(synID(line('.'), col('.'), 1), 'name')
 
-" set foldtext=MyFoldFunction()
-" function! MyFoldFunction()
-"   let s:line=getline(v:foldstart)
-"   let s:numfolded=v:foldend - v:foldstart + 1
-"   return '+---' . line . '  ' . numfolded . ' '
-" endfunction
 set nofoldenable
 
 " don't open binary files
@@ -194,7 +182,6 @@ cnoremap <C-A> <Home>
 cnoremap <C-F> <S-Right>
 cnoremap <C-B> <S-Left>
 cnoremap <C-E> <End>
-" set cedit=<C-E>
 
 " Typos
 iabbrev particpant participant
@@ -276,8 +263,6 @@ function! LoadRubyMaps()
   " vim-rails mappings
   nnoremap <Leader>r :Rails<CR>
   vnoremap <Leader>r :Rails<CR>
-  " ,b remote pry
-  nnoremap <Leader>b Orequire 'pry'; binding.remote_pry<ESC>
   " ,: update Ruby hash syntax
   vnoremap <silent> <Leader>: :ChangeHashSyntax<CR>
   " ,m memoize a Ruby method
