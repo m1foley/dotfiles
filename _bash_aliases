@@ -1,10 +1,6 @@
 #/bin/bash
 alias bikeshed='ruby -e '\''$stdout.print("Names: ");$stdout.puts("🚲 #{$stdin.readline.split.sample}")'\'''
 alias p="cd ~/Documents/projects"
-alias s="cd ~/Documents/projects/polleverywhere/rails_app"
-alias fcci="cd ~/Documents/projects/fit-commit-ci"
-alias prodc="pollev exec -a rails-app -e production -t puma_general -c 'bundle exec rails console'"
-alias stagingc="pollev exec -a rails-app -e staging -t puma_general -c 'bundle exec rails console'"
 alias b="bundle"
 alias be="bundle exec"
 alias ber="bundle exec rspec"
