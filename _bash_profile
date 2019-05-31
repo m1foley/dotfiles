@@ -3,8 +3,6 @@ export EDITOR=vim
 shopt -s histverify
 # append to history file instead of overwriting
 shopt -s histappend
-# be lenient with typos in the cd command
-shopt -s cdspell
 # don't autocomplete an empty line
 shopt -s no_empty_cmd_completion
 
@@ -18,9 +16,7 @@ function parse_git_branch {
 
 PS1='\[\e[36m\]$(parse_git_branch)\[\e[0m\]\W\$ '
 
-export GOPATH="/Users/mike/Documents/projects/go"
-
-PATH="/Users/mike/.pollev/bin:/Users/mike/.local/bin:/usr/local/bin:/usr/local/sbin:$GOPATH/bin:$PATH"
+PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
@@ -29,17 +25,6 @@ fi
 if [ -f ~/.git_aliases.bash ]; then
   . ~/.git_aliases.bash
 fi
-
-ssh-add -K ~/.ssh/id_rsa 2>/dev/null
-
-# rbenv
-eval "$(rbenv init -)"
-
-export DOCKER_HOST="unix:///var/run/docker.sock"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_DEFAULT_OPTS='--no-mouse'
