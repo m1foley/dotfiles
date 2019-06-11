@@ -1,6 +1,7 @@
 #/bin/bash
 alias bikeshed='ruby -e '\''$stdout.print("Names: ");$stdout.puts("🚲 #{$stdin.readline.split.sample}")'\'''
 alias p="cd ~/Documents/projects"
+alias s="cd ~/Documents/projects/sfdc"
 alias b="bundle"
 alias be="bundle exec"
 alias ber="bundle exec rspec"
