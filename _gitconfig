@@ -40,3 +40,5 @@
   autosetuprebase = always
 [branch "*branch-name*"]
   rebase = true
+[credential]
+	helper = osxkeychain
