@@ -25,8 +25,8 @@ Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
   nnoremap <C-p> :Files<CR>
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bruno-/vim-all'
+" Arrow keys move visual select blocks
 Plug 'zirrostig/vim-schlepp'
-  " Arrow keys move visual select blocks
   vmap <up>    <Plug>SchleppUp
   vmap <down>  <Plug>SchleppDown
   vmap <left>  <Plug>SchleppLeft
@@ -38,9 +38,10 @@ Plug 'christoomey/vim-tmux-navigator'
  let g:tmux_navigator_no_mappings = 1
  nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
  nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
+" Arrow keys resize window
 Plug 'talek/obvious-resize'
-  " Arrow keys resize window
   let g:obvious_resize_default=5
+  let g:obvious_resize_run_tmux=1
   nnoremap <silent> <LEFT> :<C-U>ObviousResizeLeft<CR>
   nnoremap <silent> <RIGHT> :<C-U>ObviousResizeRight<CR>
   nnoremap <silent> <DOWN> :<C-U>ObviousResizeDown<CR>
