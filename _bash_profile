@@ -16,7 +16,11 @@ function parse_git_branch {
 
 PS1='\[\e[36m\]$(parse_git_branch)\[\e[0m\]\W\$ '
 
-PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+# PostgreSQL path
+export PATH="/Applications/Postgres.app/Contents/Versions/10/bin:$PATH"
+# yarn paths
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
@@ -28,3 +32,5 @@ fi
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_DEFAULT_OPTS='--no-mouse'
+
+eval "$(rbenv init -)"
