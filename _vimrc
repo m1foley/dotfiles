@@ -18,6 +18,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/tpope-vim-abolish'
 " software capslock: <C-g>c in insert mode
 Plug 'tpope/vim-capslock'
+Plug 'tpope/vim-endwise'
 Plug 'vim-scripts/LargeFile'
   let g:LargeFile=1.5 "MB
 Plug 'yegappan/greplace'
@@ -50,6 +51,8 @@ Plug 'ajh17/Spacegray.vim'
 Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim' | Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'mrtazz/simplenote.vim'
   source ~/.simplenoterc
+  let g:SimplenoteNoteFormat='%N%>[%D]'
+  let g:SimplenoteStrftime='%Y-%m-%d %H:%M:%S'
 Plug 'jeetsukumaran/vim-indentwise'
 Plug 'kopischke/vim-fetch' " jump to line/col
 " flash yanked text
@@ -69,16 +72,15 @@ Plug 'vim-scripts/Align' | Plug 'vim-scripts/SQLUtilities'
 Plug 'leafgarland/typescript-vim'
 Plug 'uptech/vim-ping-cursor'
   let g:ping_cursor_flash_milliseconds = 50
+Plug 'ngmy/vim-rubocop', { 'on': 'RuboCop' }
+  let g:vimrubocop_rubocop_cmd='bundle exec rubocop '
 
 " language-specific plugins
-Plug 'tpope/vim-endwise', { 'for': ['ruby','sh'] }
 Plug 'sunaku/vim-ruby-minitest' , { 'for': ['ruby'] }
 Plug 'thoughtbot/vim-rspec', { 'for': ['ruby'] }
-  let g:rspec_command = "Dispatch bin/rspec {spec} 2>&1"
+  let g:rspec_command = "Dispatch bundle exec rspec {spec} 2>&1"
 Plug 'ck3g/vim-change-hash-syntax'
-Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'chr4/nginx.vim', { 'for': 'nginx' }
-Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
 call plug#end()
 
 set directory=/tmp// "swap files
@@ -115,6 +117,7 @@ set incsearch
 let g:netrw_liststyle=3 " netrw default to tree view
 set diffopt+=vertical,internal,algorithm:patience
 set printoptions+=header:0
+set tags^=./.git/tags; " ctags support
 let g:is_posix=1
 let g:ruby_indent_assignment_style = 'variable'
 let ruby_minlines = 100
