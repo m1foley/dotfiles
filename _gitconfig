@@ -21,7 +21,7 @@
 [init]
   templatedir = ~/.git_template
 [core]
-  excludesfile = /Users/mike/.gitignore_global
+  excludesfile = ~/.gitignore_global
   repositoryformatversion = 0
   bare = false
   logallrefupdates = true
