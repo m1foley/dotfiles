@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-# Creates a detached tmux session on startup
-
-set -o errexit -o nounset -o pipefail
-
-/usr/local/bin/tmux -S /tmp/tm new -d -c ~
