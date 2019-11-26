@@ -63,8 +63,6 @@ Plug 'm1foley/vim-expresso'
 Plug 'm1foley/vim-pivotal-tracker-jump'
 Plug 'travisjeffery/vim-auto-mkdir'
 Plug 'johngrib/vim-game-code-break'
-" TEMP until ruby_indent_assignment_style is in the latest MacVim build
-Plug 'vim-ruby/vim-ruby'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'vim-scripts/Align' | Plug 'vim-scripts/SQLUtilities'
   let g:sqlutil_load_default_maps = 0
@@ -119,7 +117,6 @@ set diffopt+=vertical,internal,algorithm:patience
 set printoptions+=header:0
 set tags^=./.git/tags; " ctags support
 let g:is_posix=1
-let g:ruby_indent_assignment_style = 'variable'
 let ruby_minlines = 100
 
 set grepprg=ag\ -S\ --vimgrep " -S: smart-case
