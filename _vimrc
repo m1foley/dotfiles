@@ -55,10 +55,8 @@ Plug 'mrtazz/simplenote.vim'
   let g:SimplenoteStrftime='%Y-%m-%d %H:%M:%S'
 Plug 'jeetsukumaran/vim-indentwise'
 Plug 'kopischke/vim-fetch' " jump to line/col
-" flash yanked text
-Plug 'kana/vim-operator-user' | Plug 'haya14busa/vim-operator-flashy'
-  map y <Plug>(operator-flashy)
-  nmap Y <Plug>(operator-flashy)$
+Plug 'machakann/vim-highlightedyank'
+  let g:highlightedyank_highlight_duration = 600
 Plug 'm1foley/vim-expresso'
 Plug 'm1foley/vim-pivotal-tracker-jump'
 Plug 'travisjeffery/vim-auto-mkdir'
