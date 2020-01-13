@@ -43,10 +43,10 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'talek/obvious-resize'
   let g:obvious_resize_default=5
   let g:obvious_resize_run_tmux=1
-  nnoremap <silent> <LEFT> :<C-U>ObviousResizeLeft<CR>
-  nnoremap <silent> <RIGHT> :<C-U>ObviousResizeRight<CR>
-  nnoremap <silent> <DOWN> :<C-U>ObviousResizeDown<CR>
-  nnoremap <silent> <UP> :<C-U>ObviousResizeUp<CR>
+  nnoremap <silent> <up> :<C-U>ObviousResizeUp<CR>
+  nnoremap <silent> <down> :<C-U>ObviousResizeDown<CR>
+  nnoremap <silent> <left> :<C-U>ObviousResizeLeft<CR>
+  nnoremap <silent> <right> :<C-U>ObviousResizeRight<CR>
 Plug 'ajh17/Spacegray.vim'
 Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim' | Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'mrtazz/simplenote.vim'
