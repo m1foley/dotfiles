@@ -56,6 +56,7 @@ Plug 'mrtazz/simplenote.vim'
 Plug 'jeetsukumaran/vim-indentwise'
 Plug 'kopischke/vim-fetch' " jump to line/col
 Plug 'machakann/vim-highlightedyank'
+  nmap Y y$
 Plug 'm1foley/vim-expresso'
 Plug 'm1foley/vim-pivotal-tracker-jump'
 Plug 'travisjeffery/vim-auto-mkdir'
