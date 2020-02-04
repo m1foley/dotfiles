@@ -22,8 +22,15 @@ Plug 'tpope/vim-endwise'
 Plug 'vim-scripts/LargeFile'
   let g:LargeFile=1.5 "MB
 Plug 'yegappan/greplace'
-Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-  nnoremap <C-p> :Files<CR>
+Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
+  nnoremap <C-p> :FZF<CR>
+  let g:fzf_action = {
+    \ 'ctrl-t': 'tab split',
+    \ 'ctrl-o': 'split',
+    \ 'ctrl-v': 'vsplit' }
+  let g:fzf_layout = { 'down': '~60%' }
+  " Popup support in 8.2.0191:
+  " let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bruno-/vim-all'
 " Arrow keys move visual select blocks
