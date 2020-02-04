@@ -65,16 +65,13 @@ Plug 'kopischke/vim-fetch' " jump to line/col
 Plug 'machakann/vim-highlightedyank'
   nmap Y y$
 Plug 'm1foley/vim-expresso'
-Plug 'm1foley/vim-pivotal-tracker-jump'
 Plug 'travisjeffery/vim-auto-mkdir'
 Plug 'johngrib/vim-game-code-break'
-Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'vim-scripts/Align' | Plug 'vim-scripts/SQLUtilities'
   let g:sqlutil_load_default_maps = 0
   command! -range -nargs=* SQLFormat <line1>,<line2> call SQLUtilities#SQLU_Formatter(<q-args>)
-Plug 'leafgarland/typescript-vim'
 Plug 'uptech/vim-ping-cursor'
-  let g:ping_cursor_flash_milliseconds = 50
+  let g:ping_cursor_flash_milliseconds = 150
 Plug 'ngmy/vim-rubocop', { 'on': 'RuboCop' }
   let g:vimrubocop_rubocop_cmd='bundle exec rubocop '
 
@@ -83,7 +80,6 @@ Plug 'sunaku/vim-ruby-minitest' , { 'for': ['ruby'] }
 Plug 'thoughtbot/vim-rspec', { 'for': ['ruby'] }
   let g:rspec_command = "Dispatch bundle exec rspec {spec} 2>&1"
 Plug 'ck3g/vim-change-hash-syntax'
-Plug 'chr4/nginx.vim', { 'for': 'nginx' }
 call plug#end()
 
 set directory=/tmp// "swap files
