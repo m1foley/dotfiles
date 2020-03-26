@@ -22,10 +22,10 @@ alias gt="git tag"
 alias gcp="git cherry-pick"
 alias gpush="git push"
 alias gpushf="git push --force-with-lease"
-alias grod="git fetch -q origin && SKIP_HOOKUP=1 git checkout develop && git rebase origin/develop && SKIP_HOOKUP=1 git checkout - && git rebase develop"
-alias grodi="git fetch -q origin && SKIP_HOOKUP=1 git checkout develop && git rebase origin/develop && SKIP_HOOKUP=1 git checkout - && git rebase -i develop"
-alias grom="git fetch -q origin && SKIP_HOOKUP=1 git checkout master && git rebase origin/master && SKIP_HOOKUP=1 git checkout - && git rebase master"
-alias gromi="git fetch -q origin && SKIP_HOOKUP=1 git checkout master && git rebase origin/master && SKIP_HOOKUP=1 git checkout - && git rebase -i master"
+alias grod="git fetch -q origin && git checkout develop && git rebase origin/develop && git checkout - && git rebase develop"
+alias grodi="git fetch -q origin && git checkout develop && git rebase origin/develop && git checkout - && git rebase -i develop"
+alias grom="git fetch -q origin && git checkout master && git rebase origin/master && git checkout - && git rebase master"
+alias gromi="git fetch -q origin && git checkout master && git rebase origin/master && git checkout - && git rebase -i master"
 function gto {
   bare=$(echo $1 | sed 's/origin\///')
   git branch --track $bare $1 && git checkout $bare
