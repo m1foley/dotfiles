@@ -248,6 +248,8 @@ nnoremap <Leader>g :Gstatus<CR>
 nnoremap <Leader>j :%!python -c "import json, sys, collections; print json.dumps(json.load(sys.stdin, object_pairs_hook=collections.OrderedDict), indent=2)"<CR>:%s/\s\+$//e<CR>:set filetype=json<CR>
 " ,f set filetype to ruby
 nnoremap <Leader>f :set filetype=ruby<CR>
+" ctrl-d in insert/command mode inserts today's date
+noremap! <C-d> <C-r>=strftime("%Y-%m-%d")<Enter>
 
 autocmd Filetype ruby call LoadRubyMaps()
 function! LoadRubyMaps()
