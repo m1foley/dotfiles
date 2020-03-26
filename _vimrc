@@ -73,6 +73,10 @@ Plug 'uptech/vim-ping-cursor'
   let g:ping_cursor_flash_milliseconds = 150
 Plug 'ngmy/vim-rubocop', { 'on': 'RuboCop' }
   let g:vimrubocop_rubocop_cmd='bundle exec rubocop '
+Plug 'tyru/open-browser.vim'
+  let g:netrw_nogx = 1
+  nmap gx <Plug>(openbrowser-smart-search)
+  vmap gx <Plug>(openbrowser-smart-search)
 
 " language-specific plugins
 Plug 'sunaku/vim-ruby-minitest' , { 'for': ['ruby'] }
