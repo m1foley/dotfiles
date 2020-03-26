@@ -13,8 +13,10 @@
   external = git_diff_wrapper
 [pager]
   diff =
+[commit]
+  verbose=true
 [merge]
-  ff = true
+  ff = false
   tool = vimdiff
 [push]
   default = current
