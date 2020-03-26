@@ -49,7 +49,6 @@ Plug 'christoomey/vim-tmux-navigator'
 " Arrow keys resize window
 Plug 'talek/obvious-resize'
   let g:obvious_resize_default=5
-  let g:obvious_resize_run_tmux=1
   nnoremap <silent> <up> :<C-U>ObviousResizeUp<CR>
   nnoremap <silent> <down> :<C-U>ObviousResizeDown<CR>
   nnoremap <silent> <left> :<C-U>ObviousResizeLeft<CR>
