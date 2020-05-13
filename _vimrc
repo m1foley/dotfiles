@@ -29,8 +29,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
     \ 'ctrl-o': 'split',
     \ 'ctrl-v': 'vsplit' }
   let g:fzf_layout = { 'down': '~60%' }
-  " Popup support in 8.2.0191:
-  " let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bruno-/vim-all'
 " Arrow keys move visual select blocks
@@ -83,6 +81,8 @@ Plug 'sunaku/vim-ruby-minitest' , { 'for': ['ruby'] }
 Plug 'thoughtbot/vim-rspec', { 'for': ['ruby'] }
   let g:rspec_command = "Dispatch bundle exec rspec {spec} 2>&1"
 Plug 'ck3g/vim-change-hash-syntax'
+Plug 'hashivim/vim-terraform'
+  let g:terraform_fmt_on_save=1
 call plug#end()
 
 set directory=/tmp// "swap files
@@ -123,7 +123,7 @@ set tags^=./.git/tags; " ctags support
 let g:is_posix=1
 let ruby_minlines = 100
 
-set grepprg=ag\ -S\ --vimgrep " -S: smart-case
+set grepprg=ag\ --smart-case\ --vimgrep\ --path-to-ignore\ ~/.ignore
 set grepformat=%f:%l:%c:%m
 function! Grep(...)
   " called via K
