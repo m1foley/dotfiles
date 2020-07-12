@@ -60,7 +60,6 @@ Plug 'mrtazz/simplenote.vim'
 Plug 'jeetsukumaran/vim-indentwise'
 Plug 'kopischke/vim-fetch' " jump to line/col
 Plug 'machakann/vim-highlightedyank'
-  nmap Y y$
 Plug 'm1foley/vim-expresso'
 Plug 'travisjeffery/vim-auto-mkdir'
 Plug 'johngrib/vim-game-code-break'
@@ -75,6 +74,7 @@ Plug 'tyru/open-browser.vim'
   let g:netrw_nogx = 1
   nmap gx <Plug>(openbrowser-smart-search)
   vmap gx <Plug>(openbrowser-smart-search)
+Plug 'markonm/traces.vim'
 
 " language-specific plugins
 Plug 'sunaku/vim-ruby-minitest' , { 'for': ['ruby'] }
@@ -115,6 +115,7 @@ set list " display extra whitespace
 set synmaxcol=256
 set hlsearch
 set incsearch
+set shortmess=aoOtT
 " set pastetoggle=
 let g:netrw_liststyle=3 " netrw default to tree view
 set diffopt+=vertical,internal,algorithm:patience
@@ -202,6 +203,7 @@ iabbrev particiant_id participant_id
 cabbrev q1 q!
 cabbrev qa1 qa!
 
+nmap Y y$
 noremap Q <silent>
 noremap ZA :qa!<CR>
 " C-e and C-y scroll 3 lines instead of 1
