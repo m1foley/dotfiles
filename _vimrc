@@ -15,7 +15,7 @@ Plug 'tpope/vim-haml'
 Plug 'tpope/vim-dispatch'
   let g:dispatch_quickfix_height=20
   let g:dispatch_tmux_height=20
-Plug 'tpope/tpope-vim-abolish'
+Plug 'tpope/vim-abolish'
 " software capslock: <C-g>c in insert mode
 Plug 'tpope/vim-capslock'
 Plug 'tpope/vim-endwise'
