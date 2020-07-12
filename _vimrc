@@ -53,7 +53,7 @@ Plug 'talek/obvious-resize'
   nnoremap <silent> <right> :<C-U>ObviousResizeRight<CR>
 Plug 'ajh17/Spacegray.vim'
 Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim' | Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'mrtazz/simplenote.vim'
+Plug 'simplenote-vim/simplenote.vim'
   source ~/.simplenoterc
   let g:SimplenoteNoteFormat='%N%>[%D]'
   let g:SimplenoteStrftime='%Y-%m-%d %H:%M:%S'
