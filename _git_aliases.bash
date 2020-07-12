@@ -28,7 +28,7 @@ alias grom="git fetch -q origin && git checkout master && git rebase origin/mast
 alias gromi="git fetch -q origin && git checkout master && git rebase origin/master && git checkout - && git rebase -i master"
 function gto {
   bare=$(echo $1 | sed 's/origin\///')
-  git branch --track $bare $1 && git checkout $bare
+  git fetch -q origin && git branch --track $bare origin/$bare && git checkout $bare
 }
 
 __git_complete g __git_main
