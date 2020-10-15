@@ -13,8 +13,8 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-haml'
 Plug 'tpope/vim-dispatch'
-  let g:dispatch_quickfix_height=20
-  let g:dispatch_tmux_height=20
+  let g:dispatch_quickfix_height=25
+  let g:dispatch_tmux_height=25
 Plug 'tpope/vim-abolish'
 " software capslock: <C-g>c in insert mode
 Plug 'tpope/vim-capslock'
@@ -23,12 +23,10 @@ Plug 'vim-scripts/LargeFile'
   let g:LargeFile=1.5 "MB
 Plug 'yegappan/greplace'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
-  nnoremap <C-p> :FZF<CR>
-  let g:fzf_action = {
-    \ 'ctrl-t': 'tab split',
-    \ 'ctrl-o': 'split',
-    \ 'ctrl-v': 'vsplit' }
+  let g:fzf_action = { 'ctrl-t': 'tab split', 'ctrl-o': 'split', 'ctrl-v': 'vsplit' }
   let g:fzf_layout = { 'down': '~60%' }
+  command! FZFMru call fzf#run(fzf#wrap({ 'source': v:oldfiles }))
+  nnoremap <silent> <C-p> :FZF<CR>
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bruno-/vim-all'
 " Arrow keys move visual select blocks
@@ -74,7 +72,7 @@ Plug 'tyru/open-browser.vim'
   let g:netrw_nogx = 1
   nmap gx <Plug>(openbrowser-smart-search)
   vmap gx <Plug>(openbrowser-smart-search)
-Plug 'markonm/traces.vim'
+Plug 'markonm/traces.vim' " preview substitutions
 
 " language-specific plugins
 Plug 'sunaku/vim-ruby-minitest' , { 'for': ['ruby'] }
@@ -127,12 +125,12 @@ let ruby_minlines = 100
 set grepprg=ag\ --smart-case\ --vimgrep\ --path-to-ignore\ ~/.ignore
 set grepformat=%f:%l:%c:%m
 function! Grep(...)
-  " called via K
+  " normal mode
   if a:0 > 0
     " strip accidental newlines from visual mode
     let s:grep_term = substitute(a:1, '\n\+$', '', '')
     let s:interpret_as_literal = 1
-  " called via \
+  " command-line mode
   else
     let s:grep_term = ''
     let s:interpret_as_literal = 0
@@ -150,6 +148,7 @@ function! Grep(...)
       execute 'silent grep!' s:grep_term
     endif
     copen
+    resize 20
   endif
   redraw!
 endfunction
@@ -255,6 +254,8 @@ nnoremap <Leader>j :%!python -c "import json, sys, collections; print json.dumps
 nnoremap <Leader>f :set filetype=ruby<CR>
 " ctrl-d in insert/command mode inserts today's date
 noremap! <C-d> <C-r>=strftime("%Y-%m-%d")<Enter>
+" ,<c-p> most recently used files
+nnoremap <silent> <Leader><C-p> :FZFMru<CR>
 
 autocmd Filetype ruby call LoadRubyMaps()
 function! LoadRubyMaps()
