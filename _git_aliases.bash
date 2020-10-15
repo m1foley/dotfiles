@@ -17,15 +17,15 @@ alias gc="git commit"
 alias gco="git checkout"
 alias gcob="git checkout -b"
 alias gcod="git checkout develop"
-alias gcom="git checkout master"
+alias gcom="git checkout main"
 alias gt="git tag"
 alias gcp="git cherry-pick"
 alias gpush="git push"
 alias gpushf="git push --force-with-lease"
 alias grod="git fetch -q origin && git checkout develop && git rebase origin/develop && git checkout - && git rebase develop"
 alias grodi="git fetch -q origin && git checkout develop && git rebase origin/develop && git checkout - && git rebase -i develop"
-alias grom="git fetch -q origin && git checkout master && git rebase origin/master && git checkout - && git rebase master"
-alias gromi="git fetch -q origin && git checkout master && git rebase origin/master && git checkout - && git rebase -i master"
+alias grom="git fetch -q origin && git checkout main && git rebase origin/main && git checkout - && git rebase main"
+alias gromi="git fetch -q origin && git checkout main && git rebase origin/main && git checkout - && git rebase -i main"
 function gto {
   bare=$(echo $1 | sed 's/origin\///')
   git fetch -q origin && git branch --track $bare origin/$bare && git checkout $bare
