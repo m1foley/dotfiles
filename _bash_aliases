@@ -25,7 +25,7 @@ alias du="du -h"
 alias t="tmux -S /tmp/tm attach || tmux -S /tmp/tm new"
 alias t2="tmux -S /tmp/tm2 attach || tmux -S /tmp/tm2 new"
 alias tmatem="tmate show-messages"
-
+alias brewu='brew update && OD=$(brew outdated) && echo && if [ -z "$OD" ]; then echo "Up to date."; else echo $OD && echo -n "brew upgrade? [y/N] " && read YN && [[ $YN == "y" ]] && brew upgrade && brew cleanup -s; fi'
 alias grpe="grep"
 alias heda="head"
 alias x="exit"
