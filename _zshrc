@@ -1,6 +1,12 @@
 export EDITOR=vim
 bindkey -e # emacs mode shell
 
+# C-x C-e edits command line
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
+bindkey '^x^e' edit-command-line
+
 function parse_git_dirty {
   [[ $(git status --long 2> /dev/null | tail -n1) != "nothing to commit, working tree clean" ]] && echo "*"
 }
