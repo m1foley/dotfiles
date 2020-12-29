@@ -9,6 +9,8 @@ bindkey '^x^e' edit-command-line
 
 # only autocomplete on tab
 setopt no_auto_menu
+# allow comments
+setopt interactivecomments
 # C-u behaves like bash instead of clearing whole line
 bindkey \^U backward-kill-line
 # don't automatically run history commands
