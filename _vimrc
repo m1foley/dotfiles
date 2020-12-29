@@ -81,6 +81,7 @@ Plug 'thoughtbot/vim-rspec', { 'for': ['ruby'] }
 Plug 'ck3g/vim-change-hash-syntax'
 Plug 'hashivim/vim-terraform'
   let g:terraform_fmt_on_save=1
+Plug 'elixir-editors/vim-elixir'
 call plug#end()
 
 set directory=/tmp// "swap files
