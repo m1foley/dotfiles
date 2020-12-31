@@ -19,6 +19,7 @@ Plug 'tpope/vim-abolish'
 " software capslock: <C-g>c in insert mode
 Plug 'tpope/vim-capslock'
 Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-projectionist'
 Plug 'vim-scripts/LargeFile'
   let g:LargeFile=1.5 "MB
 Plug 'yegappan/greplace'
@@ -73,15 +74,18 @@ Plug 'tyru/open-browser.vim'
   nmap gx <Plug>(openbrowser-smart-search)
   vmap gx <Plug>(openbrowser-smart-search)
 Plug 'markonm/traces.vim' " preview substitutions
+Plug 'vim-test/vim-test'
+  let test#strategy='dispatch'
 
 " language-specific plugins
 Plug 'sunaku/vim-ruby-minitest' , { 'for': ['ruby'] }
-Plug 'thoughtbot/vim-rspec', { 'for': ['ruby'] }
-  let g:rspec_command = "Dispatch bundle exec rspec {spec} 2>&1"
 Plug 'ck3g/vim-change-hash-syntax'
 Plug 'hashivim/vim-terraform'
-  let g:terraform_fmt_on_save=1
+  let g:terraform_fmt_on_save = 1
 Plug 'elixir-editors/vim-elixir'
+Plug 'mhinz/vim-mix-format'
+  let g:mix_format_on_save = 1
+Plug 'kana/vim-textobj-user' | Plug 'andyl/vim-textobj-elixir'
 call plug#end()
 
 set directory=/tmp// "swap files
@@ -258,17 +262,17 @@ noremap! <C-d> <C-r>=strftime("%Y-%m-%d")<Enter>
 " ,<c-p> most recently used files
 nnoremap <silent> <Leader><C-p> :FZFMru<CR>
 
+" vim-test mappings
+nmap <Leader>t :TestFile<CR>
+nmap <Leader>ft :TestFile --max-failures 1<CR>
+nmap <Leader>s :TestNearest<CR>
+nmap <Leader>fs :TestNearest --max-failures 1<CR>
+nmap <Leader>l :TestLast<CR>
+nmap <Leader>fl :TestLast --max-failures 1<CR>
+
 autocmd Filetype ruby call LoadRubyMaps()
 function! LoadRubyMaps()
   set textwidth=80
-
-  " vim-rspec mappings
-  map <Leader>t :call RunCurrentSpecFile()<CR>
-  map <Leader>ft :let g:rspec_command.=' --fail-fast' \| call RunCurrentSpecFile() \| let g:rspec_command=join(split(g:rspec_command)[0:-2])<CR>
-  map <Leader>s :call RunNearestSpec()<CR>
-  map <Leader>fs :let g:rspec_command.=' --fail-fast' \| call RunNearestSpec() \| let g:rspec_command=join(split(g:rspec_command)[0:-2])<CR>
-  map <Leader>l :call RunLastSpec()<CR>
-  map <Leader>fl :let g:rspec_command.=' --fail-fast' \| call RunLastSpec() \| let g:rspec_command=join(split(g:rspec_command)[0:-2])<CR>
   " vim-rails mappings
   nnoremap <Leader>r :Rails<CR>
   vnoremap <Leader>r :Rails<CR>
