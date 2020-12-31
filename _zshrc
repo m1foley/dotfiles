@@ -21,11 +21,11 @@ setopt auto_cd
 HISTFILE=~/.zsh/.zsh_history
 SAVEHIST=5000
 HISTSIZE=2000
-# share history across multiple zsh sessions
-setopt share_history
-setopt append_history
 # record history as they are typed, not at shell exit
-setopt inc_append_history
+# setopt inc_append_history
+setopt share_history
+setopt extended_history
+# unsetopt extended_history
 # do not store duplications
 setopt hist_ignore_dups
 # removes blank lines from history
