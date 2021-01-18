@@ -67,13 +67,12 @@ Plug 'vim-scripts/Align' | Plug 'vim-scripts/SQLUtilities'
   command! -range -nargs=* SQLFormat <line1>,<line2> call SQLUtilities#SQLU_Formatter(<q-args>)
 Plug 'uptech/vim-ping-cursor'
   let g:ping_cursor_flash_milliseconds = 150
-Plug 'ngmy/vim-rubocop', { 'on': 'RuboCop' }
-  let g:vimrubocop_rubocop_cmd='bundle exec rubocop '
 Plug 'tyru/open-browser.vim'
   let g:netrw_nogx = 1
   nmap gx <Plug>(openbrowser-smart-search)
   vmap gx <Plug>(openbrowser-smart-search)
 Plug 'markonm/traces.vim' " preview substitutions
+Plug 'idanarye/vim-merginal'
 Plug 'vim-test/vim-test'
   let test#strategy='dispatch'
 
@@ -119,13 +118,16 @@ set synmaxcol=256
 set hlsearch
 set incsearch
 set shortmess=aoOtT
-" set pastetoggle=
 let g:netrw_liststyle=3 " netrw default to tree view
 set diffopt+=vertical,internal,algorithm:patience
 set printoptions+=header:0
 set tags^=./.git/tags; " ctags support
 let g:is_posix=1
 let ruby_minlines = 100
+set nofoldenable
+set guifont=Monaco:h16
+set background=dark
+colorscheme spacegray
 
 set grepprg=ag\ --smart-case\ --vimgrep\ --path-to-ignore\ ~/.ignore
 set grepformat=%f:%l:%c:%m
@@ -161,12 +163,39 @@ nnoremap <silent> \ :call Grep()<CR>
 nnoremap <silent> K :call Grep(expand('<cword>'))<CR>
 vnoremap <silent> K "gy :call Grep(@g)<CR>:call setreg('g', [])<CR>
 
-set guifont=Monaco:h16
-set background=dark
-colorscheme spacegray
-" print current color: echo synIDattr(synID(line('.'), col('.'), 1), 'name')
+" replace functionality of rubocop.vim
+function! s:RuboCop(args)
+  let l:rubocop_cmd = 'bundle exec rubocop --format emacs'
+  if len(a:args)
+    let l:rubocop_cmd = l:rubocop_cmd . ' ' . a:args
+  else
+    let l:rubocop_cmd = '(git diff --name-status; git diff --name-status --cached) | grep -v ^D | cut -f 2 | xargs ' . l:rubocop_cmd
+  endif
 
-set nofoldenable
+  let l:rubocop_output  = system(l:rubocop_cmd)
+  let l:rubocop_output  = substitute(l:rubocop_output, '\\"', "'", 'g')
+
+  " remove noise from TH projects
+  let l:rubocop_output  = substitute(l:rubocop_output, 'Warning: unrecognized cop \(Rails\|Style\)\S\+ found in \S\+[\x0]', '', 'g')
+  let l:rubocop_output  = substitute(l:rubocop_output, '\S\+devforce\S\+: `\S\+` is concealed by line \S\+[\x0]', '', 'g')
+  let l:rubocop_output  = substitute(l:rubocop_output, '\S\+devforce\S\+: \S\+ has the wrong namespace - should be \S\+[\x0]', '', 'g')
+
+  let l:rubocop_results = split(l:rubocop_output, "\n")
+  cexpr l:rubocop_results
+  if len(l:rubocop_results)
+    copen
+  else
+    echo 'RuboCop: No offenses detected'
+    cclose
+  endif
+endfunction
+command! -complete=file -nargs=? RuboCop :call <SID>RuboCop(<q-args>)
+
+" quickfix: o opens file in split
+augroup quickfix
+  autocmd!
+  autocmd FileType qf nnoremap <buffer> o <C-W><CR>
+augroup END
 
 " don't open binary files
 augroup nonvim
@@ -192,18 +221,6 @@ cnoremap <C-B> <S-Left>
 cnoremap <C-E> <End>
 
 " Typos
-iabbrev particpant participant
-iabbrev particpants participants
-iabbrev particpant_id participant_id
-iabbrev particiapnt participant
-iabbrev particiapnts participants
-iabbrev particiapnt_id participant_id
-iabbrev particpiant participant
-iabbrev particpiants participants
-iabbrev particpiant_id participant_id
-iabbrev particiant participant
-iabbrev particiants participants
-iabbrev particiant_id participant_id
 cabbrev q1 q!
 cabbrev qa1 qa!
 
@@ -259,8 +276,8 @@ nnoremap <Leader>j :%!python -c "import json, sys, collections; print json.dumps
 nnoremap <Leader>f :set filetype=ruby<CR>
 " ctrl-d in insert/command mode inserts today's date
 noremap! <C-d> <C-r>=strftime("%Y-%m-%d")<Enter>
-" ,<c-p> most recently used files
-nnoremap <silent> <Leader><C-p> :FZFMru<CR>
+" ,h most recently used files
+nnoremap <silent> <Leader>h :FZFMru<CR>
 
 " vim-test mappings
 nmap <Leader>t :TestFile<CR>
