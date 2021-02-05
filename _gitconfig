@@ -10,7 +10,9 @@
   grep = auto
   ui = true
 [diff]
-  external = git_diff_wrapper
+  tool = vimdiff
+[difftool]
+  prompt = false
 [pager]
   diff =
 [commit]
@@ -19,6 +21,7 @@
 [merge]
   ff = false
   tool = vimdiff
+  prompt = true
 [push]
   default = current
 [init]
@@ -32,7 +35,7 @@
   precomposeunicode = false
 [rebase]
   instructionFormat = %s (%ae @ %ar)
-	autoStash = true
+  autoStash = true
 [status]
   short = true
   branch = true
@@ -44,4 +47,4 @@
 [branch "*branch-name*"]
   rebase = true
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
