@@ -1,8 +1,8 @@
 function g { if [[ $# > 0 ]]; then git $@; else git status; fi; }
 alias gs="git show"
 alias gst="git stash"
-alias gd="git diff"
-alias gdd="git diff --no-ext-diff"
+alias gd="git difftool"
+alias gdd="git diff"
 alias gf="git fetch"
 alias gr="git rebase"
 alias gri="git rebase -i"
