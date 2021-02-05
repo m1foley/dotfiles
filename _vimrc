@@ -108,6 +108,7 @@ set expandtab
 set softtabstop=2
 set tabstop=2
 set shiftwidth=2
+set shiftround
 set splitbelow splitright
 set winminheight=0
 set mousehide
@@ -275,7 +276,7 @@ nnoremap <Leader>j :%!python -c "import json, sys, collections; print json.dumps
 " ,f set filetype to ruby
 nnoremap <Leader>f :set filetype=ruby<CR>
 " ctrl-d in insert/command mode inserts today's date
-noremap! <C-d> <C-r>=strftime("%Y-%m-%d")<Enter>
+noremap! <C-d> <C-r>=strftime("%Y-%m-%d")<CR>
 " ,h most recently used files
 nnoremap <silent> <Leader>h :FZFMru<CR>
 
@@ -283,6 +284,8 @@ nnoremap <silent> <Leader>h :FZFMru<CR>
 nmap <Leader>t :TestFile<CR>
 nmap <Leader>ft :TestFile --max-failures 1<CR>
 nmap <Leader>s :TestNearest<CR>
+nmap <Leader>is :Dispatch iex -S mix test %:<C-r>=line(".")<CR><CR>
+
 nmap <Leader>fs :TestNearest --max-failures 1<CR>
 nmap <Leader>l :TestLast<CR>
 nmap <Leader>fl :TestLast --max-failures 1<CR>
