@@ -47,9 +47,9 @@ PROMPT='%{%F{cyan}%}$(parse_git_branch)%{%F{none}%}%1~$ '
 
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 # PostgreSQL path
-export PATH="/Applications/Postgres.app/Contents/Versions/13/bin:$PATH"
+export PATH="/Applications/Postgres.app/Contents/Versions/11/bin:$PATH"
 # node path
-export PATH="/usr/local/opt/node@14/bin:$PATH"
+export PATH="/usr/local/opt/node/bin:$PATH"
 # swagger-codegen path
 export PATH="/usr/local/opt/swagger-codegen@2/bin:$PATH"
 
@@ -58,14 +58,14 @@ if [ -f ~/.zsh_aliases ]; then
 fi
 
 # git completion
-if [ -f ~/.git_aliases.bash ]; then
+if [ -f ~/.git_aliases.zsh ]; then
   fpath=(~/.zsh $fpath)
   autoload -Uz compinit && compinit
-  . ~/.git_aliases.bash
+  . ~/.git_aliases.zsh
 fi
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_DEFAULT_OPTS='--no-mouse'
 
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@1.1"
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl"
 eval "$(rbenv init -)"
