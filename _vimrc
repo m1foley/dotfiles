@@ -66,7 +66,7 @@ Plug 'vim-scripts/Align' | Plug 'vim-scripts/SQLUtilities'
   let g:sqlutil_load_default_maps = 0
   command! -range -nargs=* SQLFormat <line1>,<line2> call SQLUtilities#SQLU_Formatter(<q-args>)
 Plug 'uptech/vim-ping-cursor'
-  let g:ping_cursor_flash_milliseconds = 150
+  let g:ping_cursor_flash_milliseconds = 100
 Plug 'tyru/open-browser.vim'
   let g:netrw_nogx = 1
   nmap gx <Plug>(openbrowser-smart-search)
