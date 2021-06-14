@@ -29,7 +29,6 @@
 [core]
   excludesfile = ~/.gitignore_global
   repositoryformatversion = 0
-  bare = false
   logallrefupdates = true
   ignorecase = false
   precomposeunicode = false
