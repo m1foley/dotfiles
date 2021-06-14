@@ -1,4 +1,6 @@
 function g { if [[ $# > 0 ]]; then git $@; else git status; fi; }
+alias ghw="gh repo view --web --branch=\"\$(git branch --show-current)\""
+alias ghpr="gh pr create"
 alias gs="git show"
 alias gst="git stash"
 alias gd="git difftool"
