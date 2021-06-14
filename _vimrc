@@ -58,6 +58,7 @@ Plug 'simplenote-vim/simplenote.vim'
   let g:SimplenoteStrftime='%Y-%m-%d %H:%M:%S'
 Plug 'jeetsukumaran/vim-indentwise'
 Plug 'kopischke/vim-fetch' " jump to line/col
+Plug 'scrooloose/vim-colon-therapy' " ignore trailing colon in filename
 Plug 'machakann/vim-highlightedyank'
 Plug 'm1foley/vim-expresso'
 Plug 'travisjeffery/vim-auto-mkdir'
@@ -125,6 +126,7 @@ set printoptions+=header:0
 set tags^=./.git/tags; " ctags support
 let g:is_posix=1
 let ruby_minlines = 100
+let g:markdown_fenced_languages = ['ruby', 'rb=ruby', 'sh', 'bash=sh', 'javascript', 'js=javascript']
 set nofoldenable
 set guifont=Monaco:h16
 set background=dark
@@ -270,7 +272,7 @@ nnoremap <Leader>5 :!open %<CR>
 " ,L git log -p
 nnoremap <Leader>L :Git log -p %<CR>
 " ,g Fugitive git status
-nnoremap <Leader>g :Gstatus<CR>
+nnoremap <Leader>g :Git<CR>
 " ,j format JSON
 nnoremap <Leader>j :%!python -c "import json, sys, collections; print json.dumps(json.load(sys.stdin, object_pairs_hook=collections.OrderedDict), indent=2)"<CR>:%s/\s\+$//e<CR>:set filetype=json<CR>
 " ,f set filetype to ruby
