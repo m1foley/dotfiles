@@ -16,7 +16,7 @@
 [pager]
   diff =
 [commit]
-  verbose=true
+  verbose = true
   gpgsign = true
 [merge]
   ff = false
