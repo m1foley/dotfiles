@@ -66,6 +66,11 @@ fi
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_DEFAULT_OPTS='--no-mouse'
-
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl"
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+export NVM_DIR="$HOME/.nvm"
+# Uncomment to `yarn install` th-web
+# . "/usr/local/opt/nvm/nvm.sh"
+
 eval "$(rbenv init -)"
