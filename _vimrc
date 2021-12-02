@@ -1,5 +1,3 @@
-set nocompatible
-
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-commentary'
@@ -58,7 +56,6 @@ Plug 'simplenote-vim/simplenote.vim'
   let g:SimplenoteStrftime='%Y-%m-%d %H:%M:%S'
 Plug 'jeetsukumaran/vim-indentwise'
 Plug 'kopischke/vim-fetch' " jump to line/col
-Plug 'scrooloose/vim-colon-therapy' " ignore trailing colon in filename
 Plug 'machakann/vim-highlightedyank'
 Plug 'm1foley/vim-expresso'
 Plug 'travisjeffery/vim-auto-mkdir'
@@ -78,7 +75,7 @@ Plug 'vim-test/vim-test'
   let test#strategy='dispatch'
 
 " language-specific plugins
-Plug 'sunaku/vim-ruby-minitest' , { 'for': ['ruby'] }
+Plug 'sunaku/vim-ruby-minitest'
 Plug 'ck3g/vim-change-hash-syntax'
 Plug 'hashivim/vim-terraform'
   let g:terraform_fmt_on_save = 1
@@ -266,7 +263,7 @@ vnoremap <Leader>y "+
 " ,<UP> restore arrow keys
 nnoremap <silent> <Leader><UP> :nunmap <LT>LEFT>\|nunmap <LT>RIGHT>\|nunmap <LT>DOWN>\|nunmap <LT>UP>\|echo 'Arrow keys restored.'<CR>
 " ,p Plug update
-nnoremap <Leader>p :PlugUpdate \| PlugUpgrade<CR>
+nnoremap <Leader>p :PlugUpdate<CR>
 " ,5 open current file
 nnoremap <Leader>5 :!open %<CR>
 " ,L git log -p
@@ -277,20 +274,24 @@ nnoremap <Leader>g :Git<CR>
 nnoremap <Leader>j :%!python -c "import json, sys, collections; print json.dumps(json.load(sys.stdin, object_pairs_hook=collections.OrderedDict), indent=2)"<CR>:%s/\s\+$//e<CR>:set filetype=json<CR>
 " ,f set filetype to ruby
 nnoremap <Leader>f :set filetype=ruby<CR>
-" ctrl-d in insert/command mode inserts today's date
-noremap! <C-d> <C-r>=strftime("%Y-%m-%d")<CR>
+" ctrl-l in insert/command mode inserts today's date
+noremap! <C-l> <C-r>=strftime("%Y-%m-%d")<CR>
 " ,h most recently used files
 nnoremap <silent> <Leader>h :FZFMru<CR>
 
 " vim-test mappings
 nmap <Leader>t :TestFile<CR>
-nmap <Leader>ft :TestFile --max-failures 1<CR>
+" TODO: change vim-test options per lanuage
+" nmap <Leader>ft :TestFile --max-failures 1<CR>
+nmap <Leader>ft :TestFile --fail-fast<CR>
 nmap <Leader>s :TestNearest<CR>
 nmap <Leader>is :Dispatch iex -S mix test %:<C-r>=line(".")<CR><CR>
 
-nmap <Leader>fs :TestNearest --max-failures 1<CR>
+" nmap <Leader>fs :TestNearest --max-failures 1<CR>
+nmap <Leader>fs :TestNearest --fail-fast<CR>
 nmap <Leader>l :TestLast<CR>
-nmap <Leader>fl :TestLast --max-failures 1<CR>
+" nmap <Leader>fl :TestLast --max-failures 1<CR>
+nmap <Leader>fl :TestLast --fail-fast<CR>
 
 autocmd Filetype ruby call LoadRubyMaps()
 function! LoadRubyMaps()
