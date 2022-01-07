@@ -58,6 +58,7 @@ Plug 'jeetsukumaran/vim-indentwise'
 Plug 'kopischke/vim-fetch' " jump to line/col
 Plug 'machakann/vim-highlightedyank'
 Plug 'm1foley/vim-expresso'
+Plug 'git@github.com:devforce/vim-gus-jump.git'
 Plug 'travisjeffery/vim-auto-mkdir'
 Plug 'johngrib/vim-game-code-break'
 Plug 'vim-scripts/Align' | Plug 'vim-scripts/SQLUtilities'
