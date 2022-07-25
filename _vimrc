@@ -196,7 +196,7 @@ command! -complete=file -nargs=? RuboCop :call <SID>RuboCop(<q-args>)
 augroup quickfix
   autocmd!
   autocmd FileType qf nnoremap <buffer> o <C-W><CR>
-augroup END
+augroup end
 
 " don't open binary files
 augroup nonvim
