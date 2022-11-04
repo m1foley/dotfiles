@@ -46,12 +46,18 @@ setopt prompt_subst
 PROMPT='%{%F{cyan}%}$(parse_git_branch)%{%F{none}%}%1~$ '
 
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
-# PostgreSQL path
-export PATH="/Applications/Postgres.app/Contents/Versions/11/bin:$PATH"
+# export PATH="/Applications/Postgres.app/Contents/Versions/11/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@12/bin:$PATH"
 # node path
-export PATH="/usr/local/opt/node/bin:$PATH"
+# export PATH="/opt/homebrew/opt/node/bin:$PATH"
+# export PATH="/opt/homebrew/opt/node@14/bin:$PATH"
+export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
 # swagger-codegen path
-export PATH="/usr/local/opt/swagger-codegen@2/bin:$PATH"
+export PATH="/opt/homebrew/opt/swagger-codegen@2/bin:$PATH"
+# pyenv
+export PATH="/Users/mike/.pyenv/shims:$PATH"
+# PE
+export PATH="$HOME/.pollev/bin:$PATH"
 
 if [ -f ~/.zsh_aliases ]; then
   . ~/.zsh_aliases
@@ -64,13 +70,26 @@ if [ -f ~/.git_aliases.zsh ]; then
   . ~/.git_aliases.zsh
 fi
 
+export PYTHON=python
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_DEFAULT_OPTS='--no-mouse'
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl"
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/opt/homebrew/opt/openssl@1.1"
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 export NVM_DIR="$HOME/.nvm"
-# Uncomment to `yarn install` th-web
-# . "/usr/local/opt/nvm/nvm.sh"
+# Uncomment to `yarn install` in th-web or Trailmaker
+# . "/opt/homebrew/opt/nvm/nvm.sh"
 
+# ruby compilation
+export LDFLAGS="-L/opt/homebrew/opt/libffi/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/libffi/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/libffi/lib/pkgconfig"
+export LDFLAGS="$LDFLAGS -L/opt/homebrew/opt/openssl@1.1/lib"
+export CPPFLAGS="$CPPFLAGS -I/opt/homebrew/opt/openssl@1.1/include"
+export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/opt/homebrew/opt/openssl@1.1/lib/pkgconfig"
+# export LDFLAGS="$LDFLAGS -L/opt/homebrew/opt/postgresql@12/lib"
+# export CPPFLAGS="$CPPFLAGS -I/opt/homebrew/opt/postgresql@12/include"
+# export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/opt/homebrew/opt/postgresql@12/lib/pkgconfig"
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(rbenv init -)"

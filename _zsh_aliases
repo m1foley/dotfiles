@@ -1,13 +1,13 @@
 #/bin/bash
 alias p="cd ~/Code"
 alias s="cd ~/Code/sfdc/trailhead-content-service"
-alias a="cd ~/Code/sfdc/trailhead-api"
+alias a="cd ~/Code/sfdc/th-content-assembler"
 alias w="cd ~/Code/sfdc/trailhead-web"
 alias c="cd ~/Code/sfdc/trailhead-core"
 alias cc="cd ~/Code/sfdc/th-content-catalog"
 alias tt="cd ~/Code/sfdc/trailhead-terraform"
 alias m='cd ~/Code/mjw && . "/usr/local/opt/nvm/nvm.sh"'
-alias h="heroku"
+alias h="cd ~/Documents/housing/webster"
 alias rc="DISABLE_SPRING=true rails console --sandbox"
 alias b="bundle"
 alias be="bundle exec"
