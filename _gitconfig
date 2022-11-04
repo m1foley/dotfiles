@@ -48,4 +48,4 @@
 [credential]
   helper = osxkeychain
 [gpg]
-  program = gpg2
+  program = gpg
