@@ -39,8 +39,8 @@ Plug 'zirrostig/vim-schlepp'
 Plug 'justinmk/vim-gtfo'
 Plug 'christoomey/vim-tmux-navigator'
  let g:tmux_navigator_no_mappings = 1
- nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
- nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
+ noremap <silent> <c-j> :TmuxNavigateDown<cr>
+ noremap <silent> <c-k> :TmuxNavigateUp<cr>
 " Arrow keys resize window
 Plug 'talek/obvious-resize'
   let g:obvious_resize_default=5
