@@ -20,7 +20,7 @@ setopt auto_cd
 # preserve history when exiting shell
 HISTFILE=~/.zsh/.zsh_history
 SAVEHIST=5000
-HISTSIZE=2000
+HISTSIZE=5000
 # record history as they are typed, not at shell exit
 # setopt inc_append_history
 setopt share_history
@@ -70,7 +70,7 @@ if [ -f ~/.git_aliases.zsh ]; then
   . ~/.git_aliases.zsh
 fi
 
-export PYTHON=python
+# export PYTHON=python3
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_DEFAULT_OPTS='--no-mouse'
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/opt/homebrew/opt/openssl@1.1"
@@ -79,6 +79,10 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 export NVM_DIR="$HOME/.nvm"
 # Uncomment to `yarn install` in th-web or Trailmaker
 # . "/opt/homebrew/opt/nvm/nvm.sh"
+# Uncomment for Trailmaker
+# export PYENV_ROOT="$HOME/.pyenv"
+# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
 
 # ruby compilation
 export LDFLAGS="-L/opt/homebrew/opt/libffi/lib"
