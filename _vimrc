@@ -58,12 +58,12 @@ Plug 'jeetsukumaran/vim-indentwise'
 Plug 'kopischke/vim-fetch' " jump to line/col
 Plug 'machakann/vim-highlightedyank'
 Plug 'm1foley/vim-expresso'
-Plug 'git@github.com:devforce/vim-gus-jump.git'
+Plug '~/Code/vim-gus-jump'
 Plug 'travisjeffery/vim-auto-mkdir'
 Plug 'johngrib/vim-game-code-break'
-Plug 'vim-scripts/Align' | Plug 'vim-scripts/SQLUtilities'
-  let g:sqlutil_load_default_maps = 0
-  command! -range -nargs=* SQLFormat <line1>,<line2> call SQLUtilities#SQLU_Formatter(<q-args>)
+" Plug 'vim-scripts/Align' | Plug 'vim-scripts/SQLUtilities'
+"   let g:sqlutil_load_default_maps = 0
+"   command! -range -nargs=* SQLFormat <line1>,<line2> call SQLUtilities#SQLU_Formatter(<q-args>)
 Plug 'uptech/vim-ping-cursor'
   let g:ping_cursor_flash_milliseconds = 100
 Plug 'tyru/open-browser.vim'
@@ -122,7 +122,6 @@ let g:netrw_liststyle=3 " netrw default to tree view
 set diffopt+=vertical,internal,algorithm:patience
 set printoptions+=header:0
 set tags^=./.git/tags; " ctags support
-let g:is_posix=1
 let ruby_minlines = 100
 let g:markdown_fenced_languages = ['ruby', 'rb=ruby', 'sh', 'bash=sh', 'javascript', 'js=javascript']
 set nofoldenable
@@ -225,6 +224,9 @@ cnoremap <C-E> <End>
 cabbrev q1 q!
 cabbrev qa1 qa!
 
+" :spn = :sp | :n
+cabbrev spn sp \| n
+
 nmap Y y$
 noremap Q <silent>
 noremap ZA :qa!<CR>
@@ -279,6 +281,8 @@ nnoremap <Leader>f :set filetype=ruby<CR>
 noremap! <C-l> <C-r>=strftime("%Y-%m-%d")<CR>
 " ,h most recently used files
 nnoremap <silent> <Leader>h :FZFMru<CR>
+" ,w autopopulate GUS ticket in commit msg
+nnoremap <Leader>w /^# Please eO4j/ W-l2yt-{o@0OdipOk
 
 " vim-test mappings
 nmap <Leader>t :TestFile<CR>
