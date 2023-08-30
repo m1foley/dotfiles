@@ -48,7 +48,7 @@ Plug 'talek/obvious-resize'
   nnoremap <silent> <down> :<C-U>ObviousResizeDown<CR>
   nnoremap <silent> <left> :<C-U>ObviousResizeLeft<CR>
   nnoremap <silent> <right> :<C-U>ObviousResizeRight<CR>
-Plug 'ajh17/Spacegray.vim'
+Plug 'https://git.sr.ht/~ackyshake/spacegray.vim'
 Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim' | Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'simplenote-vim/simplenote.vim'
   source ~/.simplenoterc
@@ -76,6 +76,7 @@ Plug 'vim-test/vim-test'
   let test#strategy='dispatch'
 
 " language-specific plugins
+Plug 'dense-analysis/ale'
 Plug 'sunaku/vim-ruby-minitest'
 Plug 'ck3g/vim-change-hash-syntax'
 Plug 'hashivim/vim-terraform'
@@ -163,33 +164,43 @@ nnoremap <silent> \ :call Grep()<CR>
 nnoremap <silent> K :call Grep(expand('<cword>'))<CR>
 vnoremap <silent> K "gy :call Grep(@g)<CR>:call setreg('g', [])<CR>
 
+" ale + standardrb
+let g:ale_linters = {'ruby': ['standardrb']}
+let g:ale_fixers = {'ruby': ['standardrb']}
+let g:ruby_indent_assignment_style = 'variable'
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 'never'
+let g:ale_lint_on_insert_leave = 'never'
+let g:ale_fix_on_save = 0
+let g:ale_lint_on_save = 1
+
 " replace functionality of rubocop.vim
-function! s:RuboCop(args)
-  let l:rubocop_cmd = 'bundle exec rubocop --format emacs'
-  if len(a:args)
-    let l:rubocop_cmd = l:rubocop_cmd . ' ' . a:args
-  else
-    let l:rubocop_cmd = '(git diff --name-status; git diff --name-status --cached) | grep -v ^D | cut -f 2 | xargs ' . l:rubocop_cmd
-  endif
+" function! s:RuboCop(args)
+"   let l:rubocop_cmd = 'bundle exec rubocop --format emacs'
+"   if len(a:args)
+"     let l:rubocop_cmd = l:rubocop_cmd . ' ' . a:args
+"   else
+"     let l:rubocop_cmd = '(git diff --name-status; git diff --name-status --cached) | grep -v ^D | cut -f 2 | xargs ' . l:rubocop_cmd
+"   endif
 
-  let l:rubocop_output  = system(l:rubocop_cmd)
-  let l:rubocop_output  = substitute(l:rubocop_output, '\\"', "'", 'g')
+"   let l:rubocop_output  = system(l:rubocop_cmd)
+"   let l:rubocop_output  = substitute(l:rubocop_output, '\\"', "'", 'g')
 
-  " remove noise from TH projects
-  let l:rubocop_output  = substitute(l:rubocop_output, 'Warning: unrecognized cop \(Rails\|Style\)\S\+ found in \S\+[\x0]', '', 'g')
-  let l:rubocop_output  = substitute(l:rubocop_output, '\S\+devforce\S\+: `\S\+` is concealed by line \S\+[\x0]', '', 'g')
-  let l:rubocop_output  = substitute(l:rubocop_output, '\S\+devforce\S\+: \S\+ has the wrong namespace - should be \S\+[\x0]', '', 'g')
+"   " remove noise from TH projects
+"   let l:rubocop_output  = substitute(l:rubocop_output, 'Warning: unrecognized cop \(Rails\|Style\)\S\+ found in \S\+[\x0]', '', 'g')
+"   let l:rubocop_output  = substitute(l:rubocop_output, '\S\+devforce\S\+: `\S\+` is concealed by line \S\+[\x0]', '', 'g')
+"   let l:rubocop_output  = substitute(l:rubocop_output, '\S\+devforce\S\+: \S\+ has the wrong namespace - should be \S\+[\x0]', '', 'g')
 
-  let l:rubocop_results = split(l:rubocop_output, "\n")
-  cexpr l:rubocop_results
-  if len(l:rubocop_results)
-    copen
-  else
-    echo 'RuboCop: No offenses detected'
-    cclose
-  endif
-endfunction
-command! -complete=file -nargs=? RuboCop :call <SID>RuboCop(<q-args>)
+"   let l:rubocop_results = split(l:rubocop_output, "\n")
+"   cexpr l:rubocop_results
+"   if len(l:rubocop_results)
+"     copen
+"   else
+"     echo 'RuboCop: No offenses detected'
+"     cclose
+"   endif
+" endfunction
+" command! -complete=file -nargs=? RuboCop :call <SID>RuboCop(<q-args>)
 
 " quickfix: o opens file in split
 augroup quickfix
@@ -216,8 +227,8 @@ autocmd FileType * set formatoptions-=o formatoptions+=l
 
 " tcsh-style command line
 cnoremap <C-A> <Home>
-cnoremap <C-F> <S-Right>
-cnoremap <C-B> <S-Left>
+" cnoremap <C-F> <S-Right>
+" cnoremap <C-B> <S-Left>
 cnoremap <C-E> <End>
 
 " Typos
@@ -274,7 +285,8 @@ nnoremap <Leader>L :Git log -p %<CR>
 " ,g Fugitive git status
 nnoremap <Leader>g :Git<CR>
 " ,j format JSON
-nnoremap <Leader>j :%!python -c "import json, sys, collections; print json.dumps(json.load(sys.stdin, object_pairs_hook=collections.OrderedDict), indent=2)"<CR>:%s/\s\+$//e<CR>:set filetype=json<CR>
+nnoremap <Leader>j :%!jq .
+" nnoremap <Leader>j :%!python -c "import json, sys, collections; print json.dumps(json.load(sys.stdin, object_pairs_hook=collections.OrderedDict), indent=2)"<CR>:%s/\s\+$//e<CR>:set filetype=json<CR>
 " ,f set filetype to ruby
 nnoremap <Leader>f :set filetype=ruby<CR>
 " ctrl-l in insert/command mode inserts today's date
