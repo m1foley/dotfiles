@@ -1,5 +1,6 @@
 [user]
   name = Michael Foley
+  ; email = foley3@gmail.com
   email = michael.foley@salesforce.com
 [color]
   branch = auto
@@ -49,3 +50,5 @@
   helper = osxkeychain
 [gpg]
   program = gpg
+[http]
+	postBuffer = 157286400
