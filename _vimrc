@@ -235,9 +235,6 @@ cnoremap <C-E> <End>
 cabbrev q1 q!
 cabbrev qa1 qa!
 
-" :spn = :sp | :n
-cabbrev spn sp \| n
-
 nmap Y y$
 noremap Q <silent>
 noremap ZA :qa!<CR>
