@@ -1,6 +1,17 @@
 export EDITOR=vim
 bindkey -e # emacs mode shell
 
+export BUNDLE_GEM__FURY__IO=hidden
+export BUNDLE_ENTERPRISE__CONTRIBSYS__COM=hidden
+export BUNDLE_NEXUS___PROXY__REPO__LOCAL__SFDC__NET=hidden
+export GITHUB_PACKAGES_TOKEN=hidden
+
+# th-components
+export NPM_CERT_DIR="$HOME/ssl"
+export NEXUS_USERNAME=hidden
+export NEXUS_PASSWORD=hidden
+export NEXUS_PASSWORD_B64=hidden
+
 # C-x C-e edits command line
 autoload -U edit-command-line
 zle -N edit-command-line
@@ -77,7 +88,7 @@ export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/opt/homebrew/opt/openssl@1.1"
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 export NVM_DIR="$HOME/.nvm"
-# Uncomment to `yarn install` in th-web or Trailmaker
+# Uncomment to `yarn install` in th-web, Trailmaker, etc.
 # . "/opt/homebrew/opt/nvm/nvm.sh"
 # Uncomment for Trailmaker
 # export PYENV_ROOT="$HOME/.pyenv"
