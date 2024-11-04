@@ -28,6 +28,7 @@ alias grod="git fetch -q origin && git checkout develop && git rebase origin/dev
 alias grodi="git fetch -q origin && git checkout develop && git rebase origin/develop && git checkout - && git rebase -i develop"
 alias grom="git fetch -q origin && git checkout main && git rebase origin/main && git checkout - && git rebase main"
 alias gromi="git fetch -q origin && git checkout main && git rebase origin/main && git checkout - && git rebase -i main"
+alias gam="git commit --amend --no-edit"
 function gto {
   bare=$(echo $1 | sed 's/origin\///')
   git fetch -q origin && git branch --track $bare origin/$bare && git checkout $bare
