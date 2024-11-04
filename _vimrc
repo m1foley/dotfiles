@@ -21,13 +21,13 @@ Plug 'tpope/vim-projectionist'
 Plug 'vim-scripts/LargeFile'
   let g:LargeFile=1.5 "MB
 Plug 'yegappan/greplace'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
+Plug '/opt/homebrew/opt/fzf'
   let g:fzf_action = { 'ctrl-t': 'tab split', 'ctrl-o': 'split', 'ctrl-v': 'vsplit' }
   let g:fzf_layout = { 'down': '~60%' }
   command! FZFMru call fzf#run(fzf#wrap({ 'source': v:oldfiles }))
   nnoremap <silent> <C-p> :FZF<CR>
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'bruno-/vim-all'
+Plug 'kana/vim-textobj-entire'
 " Arrow keys move visual select blocks
 Plug 'zirrostig/vim-schlepp'
   vmap <up>    <Plug>SchleppUp
@@ -71,9 +71,10 @@ Plug 'tyru/open-browser.vim'
   nmap gx <Plug>(openbrowser-smart-search)
   vmap gx <Plug>(openbrowser-smart-search)
 Plug 'markonm/traces.vim' " preview substitutions
-Plug 'idanarye/vim-merginal'
+" Plug 'idanarye/vim-merginal'
 Plug 'vim-test/vim-test'
   let test#strategy='dispatch'
+Plug 'powerman/vim-plugin-AnsiEsc'
 
 " language-specific plugins
 Plug 'dense-analysis/ale'
@@ -151,7 +152,9 @@ function! Grep(...)
 
   if len(s:grep_term) >= 3
     if s:interpret_as_literal
-      execute 'silent grep! -Q --' shellescape(s:grep_term, 1)
+      let s:grep_term = shellescape(s:grep_term)
+      let s:grep_term = substitute(s:grep_term, '|', '\\|', 'g')
+      execute 'silent grep! -Q --' s:grep_term
     else
       execute 'silent grep!' s:grep_term
     endif
@@ -202,6 +205,9 @@ let g:ale_lint_on_save = 1
 " endfunction
 " command! -complete=file -nargs=? RuboCop :call <SID>RuboCop(<q-args>)
 
+" recognize heex extention for Elixir templates
+autocmd BufRead,BufNewFile *.html.heex set filetype=eelixir
+
 " quickfix: o opens file in split
 augroup quickfix
   autocmd!
@@ -214,12 +220,18 @@ augroup nonvim
   autocmd BufRead *.png,*.jpg,*.pdf,*.gif,*.xls*,*.ppt*,*.doc,*.docx,*.rtf bd! | let &ft=&ft | echoerr "Binary file not opened."
 augroup end
 
+" escape ANSI escape sequences in log files
+augroup logfile
+  autocmd!
+  autocmd BufReadPost *.log :AnsiEsc
+augroup end
+
 " make non-ascii chars stand out
 autocmd BufReadPost * syntax match nonascii "[^\u0000-\u007F]"
 highlight nonascii guibg=Red ctermbg=1 term=standout
 
 " spellcheck git commit messages
-autocmd BufNewFile,BufRead COMMIT_EDITMSG set spell
+autocmd BufRead,BufNewFile COMMIT_EDITMSG set spell
 
 " -o = Don't continue comment when hitting o
 " +l = Don't break long lines in insert mode
@@ -286,8 +298,9 @@ nnoremap <Leader>j :%!jq .
 " nnoremap <Leader>j :%!python -c "import json, sys, collections; print json.dumps(json.load(sys.stdin, object_pairs_hook=collections.OrderedDict), indent=2)"<CR>:%s/\s\+$//e<CR>:set filetype=json<CR>
 " ,f set filetype to ruby
 nnoremap <Leader>f :set filetype=ruby<CR>
-" ctrl-l in insert/command mode inserts today's date
-noremap! <C-l> <C-r>=strftime("%Y-%m-%d")<CR>
+" ctrl-r ,d in insert/command mode inserts today's date
+inoremap <silent> <C-r><Leader>d <C-r>=strftime("%Y-%m-%d")<CR>
+cnoremap <C-r><Leader>d <C-r>=strftime("%Y-%m-%d")<CR>
 " ,h most recently used files
 nnoremap <silent> <Leader>h :FZFMru<CR>
 " ,w autopopulate GUS ticket in commit msg
