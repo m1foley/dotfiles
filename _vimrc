@@ -134,7 +134,7 @@ colorscheme spacegray
 set grepprg=ag\ --smart-case\ --vimgrep\ --path-to-ignore\ ~/.ignore
 set grepformat=%f:%l:%c:%m
 function! Grep(...)
-  " normal mode
+  " normal/visual mode
   if a:0 > 0
     " strip accidental newlines from visual mode
     let s:grep_term = substitute(a:1, '\n\+$', '', '')
@@ -153,7 +153,7 @@ function! Grep(...)
   if len(s:grep_term) >= 3
     if s:interpret_as_literal
       let s:grep_term = shellescape(s:grep_term)
-      let s:grep_term = substitute(s:grep_term, '|', '\\|', 'g')
+      let s:grep_term = substitute(s:grep_term, '[|#]', '\\\0', 'g')
       execute 'silent grep! -Q --' s:grep_term
     else
       execute 'silent grep!' s:grep_term
