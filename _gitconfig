@@ -2,6 +2,7 @@
   name = Michael Foley
   ; email = foley3@gmail.com
   email = michael.foley@salesforce.com
+  signingkey = hidden
 [color]
   branch = auto
   status = auto
