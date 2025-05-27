@@ -10,7 +10,15 @@ export GITHUB_PACKAGES_TOKEN=hidden
 export NPM_CERT_DIR="$HOME/ssl"
 export NEXUS_USERNAME=hidden
 export NEXUS_PASSWORD=hidden
-export NEXUS_PASSWORD_B64=hidden
+export NEXUS_PASSWORD_B64=$( echo -n "${NEXUS_PASSWORD}" | base64 |  xargs echo -n )
+
+# th-web
+export PGUSER=postgres
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/15/bin
+export PGHOST=localhost
+
+# PE
+# export NPM_TOKEN=hidden
 
 # C-x C-e edits command line
 autoload -U edit-command-line
@@ -46,25 +54,16 @@ setopt hist_reduce_blanks
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
 
-# Git info in prompt
-function parse_git_dirty {
-  [[ $(git status --long 2> /dev/null | tail -n1) != "nothing to commit, working tree clean" ]] && echo "*"
-}
-function parse_git_branch {
-  git branch --no-color 2> /dev/null | sed -e "/^[^\*]/d" -e "s/^\*\ \(.*\)/[\1$(parse_git_dirty)]/"
-}
-setopt prompt_subst
-PROMPT='%{%F{cyan}%}$(parse_git_branch)%{%F{none}%}%1~$ '
-
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
 # swagger-codegen path
-export PATH="/opt/homebrew/opt/swagger-codegen@2/bin:$PATH"
+# export PATH="/opt/homebrew/opt/swagger-codegen@2/bin:$PATH"
 # pyenv
 export PATH="/Users/mike/.pyenv/shims:$PATH"
 # PE
 # export PATH="$HOME/.pollev/bin:$PATH"
-export PATH="$HOME/.mix/escripts:$PATH"
+# Livebook
+# export PATH="$HOME/.mix/escripts:$PATH"
 
 if [ -f ~/.zsh_aliases ]; then
   . ~/.zsh_aliases
@@ -87,7 +86,7 @@ export NVM_DIR="$HOME/.nvm"
 # Uncomment to `yarn install` in th-web, Trailmaker, etc.
 # . "/opt/homebrew/opt/nvm/nvm.sh"
 # Uncomment to run th-web
-# export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 # Uncomment for Trailmaker
 # export PYENV_ROOT="$HOME/.pyenv"
 # command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
@@ -104,5 +103,18 @@ export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/opt/homebrew/opt/openssl@1.1/lib/pkgco
 # export CPPFLAGS="$CPPFLAGS -I/opt/homebrew/opt/postgresql@12/include"
 # export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/opt/homebrew/opt/postgresql@12/lib/pkgconfig"
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
-eval "$(rbenv init -)"
+# only if interactive shell
+if [[ $- == *i* ]]; then
+  # Git info in prompt
+  function parse_git_dirty {
+    [[ $(git status --long 2> /dev/null | tail -n1) != "nothing to commit, working tree clean" ]] && echo "*"
+  }
+  function parse_git_branch {
+    git branch --no-color 2> /dev/null | sed -e "/^[^\*]/d" -e "s/^\*\ \(.*\)/[\1$(parse_git_dirty)]/"
+  }
+  setopt prompt_subst
+  PROMPT='%{%F{cyan}%}$(parse_git_branch)%{%F{none}%}%1~$ '
+
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  eval "$(rbenv init -)"
+fi
