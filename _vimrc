@@ -96,7 +96,9 @@ set statusline=%<%f\ " filename
 set statusline+=%-7h " help status
 set statusline+=%-4m " modified flag
 set statusline+=%-5r " readonly flag
-set statusline+=%{fugitive#statusline()}\ " Git status
+if exists('*fugitive#statusline')
+  set statusline+=%{fugitive#statusline()}\ " Git status
+endif
 set statusline+=%=%-14.(%l,%c%V%) " line/column
 set statusline+=%30(%=%<%P%) " rulerformat
 
