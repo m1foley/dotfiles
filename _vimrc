@@ -78,6 +78,7 @@ Plug 'powerman/vim-plugin-AnsiEsc'
 
 " language-specific plugins
 Plug 'dense-analysis/ale'
+Plug 'paulyeo21/vim-textobj-rspec'
 Plug 'sunaku/vim-ruby-minitest'
 Plug 'ck3g/vim-change-hash-syntax'
 Plug 'hashivim/vim-terraform'
