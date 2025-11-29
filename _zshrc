@@ -1,4 +1,4 @@
-export EDITOR=vim
+export EDITOR=nvim
 bindkey -e # emacs mode shell
 
 export BUNDLE_GEM__FURY__IO=hidden
