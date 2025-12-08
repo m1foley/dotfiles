@@ -229,8 +229,6 @@ require("lazy").setup({
               sfdc_eng_ai_model_gateway = function()
                 return require("codecompanion.adapters").extend("openai_compatible", {
                   env = {
-                    -- url = "cmd:op read 'op://Private/Salesforce Engineering AI Model Gateway/url'",
-                    -- api_key = "cmd:op read 'op://Private/Salesforce Engineering AI Model Gateway/password'",
                     url = "cmd:echo $SFDC_AI_API_HOST",
                     api_key = "cmd:echo $SFDC_AI_API_KEY",
                   },
