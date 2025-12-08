@@ -10,9 +10,11 @@
   grep = auto
   ui = true
 [diff]
-  tool = vimdiff
+  tool = nvimdiff
 [difftool]
   prompt = false
+[difftool "nvimdiff"]
+  cmd = nvim -d "$LOCAL" "$REMOTE"
 [pager]
   diff =
 [commit]
@@ -20,8 +22,10 @@
   gpgsign = true
 [merge]
   ff = false
-  tool = vimdiff
+  tool = nvimdiff
   prompt = true
+[mergetool "nvimdiff"]
+  cmd = nvim -d "$LOCAL" "$REMOTE" "$MERGED"
 [push]
   default = current
 [init]
@@ -48,4 +52,6 @@
 [credential]
   helper = osxkeychain
 [gpg]
-  program = gpg2
+	program = /opt/homebrew/bin/gpg
+[http]
+	postBuffer = 157286400
