@@ -233,8 +233,8 @@ require("lazy").setup({
                     api_key = "cmd:echo $SFDC_AI_API_KEY",
                   },
                   schema = {
-                    model = {default = "claude-opus-4-5-20251101"},
-                    -- model = {default = "claude-sonnet-4-20250514"},
+                    -- model = {default = "claude-opus-4-5-20251101"},
+                    model = {default = "claude-sonnet-4-20250514"},
                     temperature = {default = 0.2},
                     max_completion_tokens = {default = 4096},
                   },
