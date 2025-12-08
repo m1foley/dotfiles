@@ -1,6 +1,8 @@
 [user]
   name = Michael Foley
+  ; email = foley3@gmail.com
   email = michael.foley@salesforce.com
+  signingkey = hidden
 [color]
   branch = auto
   status = auto
@@ -52,6 +54,6 @@
 [credential]
   helper = osxkeychain
 [gpg]
-	program = /opt/homebrew/bin/gpg
+  program = gpg
 [http]
 	postBuffer = 157286400

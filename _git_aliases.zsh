@@ -8,12 +8,13 @@ alias gdd="git diff"
 alias gf="git fetch"
 alias gr="git rebase"
 alias gri="git rebase -i"
-alias gp="git pull --rebase"
+alias gp="git pull --rebase && gbm"
 alias gl="git log"
 alias glp="git log -p"
 alias ga="git add"
 alias gap="git add -p"
 alias gb="git branch"
+alias gbm="git branch --merged | grep -v '^[\* ] \(main\|develop\|master\)$' | sed -E 's/^[[:space:]\*]+//g' | xargs | sed 's/^/git branch -d /'"
 alias gc="git commit"
 alias gco="git checkout"
 alias gcob="git checkout -b"
@@ -27,6 +28,7 @@ alias grod="git fetch -q origin && git checkout develop && git rebase origin/dev
 alias grodi="git fetch -q origin && git checkout develop && git rebase origin/develop && git checkout - && git rebase -i develop"
 alias grom="git fetch -q origin && git checkout main && git rebase origin/main && git checkout - && git rebase main"
 alias gromi="git fetch -q origin && git checkout main && git rebase origin/main && git checkout - && git rebase -i main"
+alias gam="git commit --amend --no-edit"
 function gto {
   bare=$(echo $1 | sed 's/origin\///')
   git fetch -q origin && git branch --track $bare origin/$bare && git checkout $bare

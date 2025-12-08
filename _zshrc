@@ -2,20 +2,19 @@ export EDITOR=nvim
 bindkey -e # emacs mode shell
 
 # CodeCompanion
-export SFDC_AI_API_HOST=secret
-export SFDC_AI_API_KEY=secret
-export TAVILY_API_KEY=secret
+export SFDC_AI_API_HOST=hidden
+export SFDC_AI_API_KEY=hidden
+export TAVILY_API_KEY=hidden
 
-# source /Users/mike/.bootstrap_rc
-export BUNDLE_GEM__FURY__IO=secret
-export BUNDLE_ENTERPRISE__CONTRIBSYS__COM=secret
-export BUNDLE_NEXUS___PROXY__REPO__LOCAL__SFDC__NET=secret
-export GITHUB_PACKAGES_TOKEN=secret
+export BUNDLE_GEM__FURY__IO=hidden
+export BUNDLE_ENTERPRISE__CONTRIBSYS__COM=hidden
+export BUNDLE_NEXUS___PROXY__REPO__LOCAL__SFDC__NET=hidden
+export GITHUB_PACKAGES_TOKEN=hidden
 
 # th-components
 export NPM_CERT_DIR="$HOME/ssl"
-export NEXUS_USERNAME=secret
-export NEXUS_PASSWORD=secret
+export NEXUS_USERNAME=hidden
+export NEXUS_PASSWORD=hidden
 export NEXUS_PASSWORD_B64=$( echo -n "${NEXUS_PASSWORD}" | base64 |  xargs echo -n )
 
 # th-web
@@ -24,7 +23,7 @@ export NEXUS_PASSWORD_B64=$( echo -n "${NEXUS_PASSWORD}" | base64 |  xargs echo 
 # export PGHOST=localhost
 
 # PE
-# export NPM_TOKEN=secret
+# export NPM_TOKEN=hidden
 
 export GPG_TTY=$(tty)
 
