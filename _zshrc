@@ -1,5 +1,32 @@
-export EDITOR=vim
+export EDITOR=nvim
 bindkey -e # emacs mode shell
+
+# CodeCompanion
+export SFDC_AI_API_HOST=secret
+export SFDC_AI_API_KEY=secret
+export TAVILY_API_KEY=secret
+
+# source /Users/mike/.bootstrap_rc
+export BUNDLE_GEM__FURY__IO=secret
+export BUNDLE_ENTERPRISE__CONTRIBSYS__COM=secret
+export BUNDLE_NEXUS___PROXY__REPO__LOCAL__SFDC__NET=secret
+export GITHUB_PACKAGES_TOKEN=secret
+
+# th-components
+export NPM_CERT_DIR="$HOME/ssl"
+export NEXUS_USERNAME=secret
+export NEXUS_PASSWORD=secret
+export NEXUS_PASSWORD_B64=$( echo -n "${NEXUS_PASSWORD}" | base64 |  xargs echo -n )
+
+# th-web
+# export PGUSER=postgres
+# export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/15/bin
+# export PGHOST=localhost
+
+# PE
+# export NPM_TOKEN=secret
+
+export GPG_TTY=$(tty)
 
 # C-x C-e edits command line
 autoload -U edit-command-line
@@ -20,7 +47,7 @@ setopt auto_cd
 # preserve history when exiting shell
 HISTFILE=~/.zsh/.zsh_history
 SAVEHIST=5000
-HISTSIZE=2000
+HISTSIZE=5000
 # record history as they are typed, not at shell exit
 # setopt inc_append_history
 setopt share_history
@@ -35,23 +62,12 @@ setopt hist_reduce_blanks
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
 
-# Git info in prompt
-function parse_git_dirty {
-  [[ $(git status --long 2> /dev/null | tail -n1) != "nothing to commit, working tree clean" ]] && echo "*"
-}
-function parse_git_branch {
-  git branch --no-color 2> /dev/null | sed -e "/^[^\*]/d" -e "s/^\*\ \(.*\)/[\1$(parse_git_dirty)]/"
-}
-setopt prompt_subst
-PROMPT='%{%F{cyan}%}$(parse_git_branch)%{%F{none}%}%1~$ '
-
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
-# PostgreSQL path
-export PATH="/Applications/Postgres.app/Contents/Versions/11/bin:$PATH"
-# node path
-export PATH="/usr/local/opt/node/bin:$PATH"
+# export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
 # swagger-codegen path
-export PATH="/usr/local/opt/swagger-codegen@2/bin:$PATH"
+# export PATH="/opt/homebrew/opt/swagger-codegen@2/bin:$PATH"
+# pyenv
+export PATH="/Users/mike/.pyenv/shims:$PATH"
 
 if [ -f ~/.zsh_aliases ]; then
   . ~/.zsh_aliases
@@ -64,13 +80,50 @@ if [ -f ~/.git_aliases.zsh ]; then
   . ~/.git_aliases.zsh
 fi
 
+# export PYTHON=python
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_DEFAULT_OPTS='--no-mouse'
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl"
+# export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/opt/homebrew/opt/openssl@1.1"
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 export NVM_DIR="$HOME/.nvm"
-# Uncomment to `yarn install` th-web
-# . "/usr/local/opt/nvm/nvm.sh"
+# Uncomment to `yarn install` in th-web, Trailmaker, etc.
+# . "/opt/homebrew/opt/nvm/nvm.sh"
+# Uncomment to run th-web
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+# Uncomment for Trailmaker
+# export PYENV_ROOT="$HOME/.pyenv"
+# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
 
-eval "$(rbenv init -)"
+# ruby compilation
+export LDFLAGS="-L/opt/homebrew/opt/libffi/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/libffi/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/libffi/lib/pkgconfig"
+
+export LDFLAGS="$LDFLAGS -L/opt/homebrew/opt/libpq/lib"
+export CPPFLAGS="$CPPFLAGS -I/opt/homebrew/opt/libpq/include"
+export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/opt/homebrew/opt/libpq/lib/pkgconfig"
+
+# export LDFLAGS="$LDFLAGS -L/opt/homebrew/opt/openssl@1.1/lib"
+# export CPPFLAGS="$CPPFLAGS -I/opt/homebrew/opt/openssl@1.1/include"
+# export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/opt/homebrew/opt/openssl@1.1/lib/pkgconfig"
+# export LDFLAGS="$LDFLAGS -L/opt/homebrew/opt/postgresql@12/lib"
+# export CPPFLAGS="$CPPFLAGS -I/opt/homebrew/opt/postgresql@12/include"
+# export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/opt/homebrew/opt/postgresql@12/lib/pkgconfig"
+
+# only if interactive shell
+if [[ $- == *i* ]]; then
+  # Git info in prompt
+  function parse_git_dirty {
+    [[ $(git status --long 2> /dev/null | tail -n1) != "nothing to commit, working tree clean" ]] && echo "*"
+  }
+  function parse_git_branch {
+    git branch --no-color 2> /dev/null | sed -e "/^[^\*]/d" -e "s/^\*\ \(.*\)/[\1$(parse_git_dirty)]/"
+  }
+  setopt prompt_subst
+  PROMPT='%{%F{cyan}%}$(parse_git_branch)%{%F{none}%}%1~$ '
+
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  eval "$(rbenv init -)"
+fi
