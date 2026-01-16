@@ -1,6 +1,5 @@
 " TODO: migrate to init.lua
 " TODO: Move plugin configurations into separate Lua modules (e.g., `lua/plugins/`, `lua/config/`)
-" TODO: Add modern LSP configuration with `nvim-lspconfig`
 " TODO: Consider replacing `vim-test` with `neotest`/`neotest-rspec` for better integration
 
 let g:mapleader=','
@@ -168,7 +167,95 @@ require("lazy").setup({
     },
     "powerman/vim-plugin-AnsiEsc",
     -- language-specific plugins
-    "dense-analysis/ale",
+    {
+      "neovim/nvim-lspconfig",
+      dependencies = {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+      },
+      config = function()
+        require("mason").setup()
+        require("mason-lspconfig").setup({
+          ensure_installed = { "solargraph", "standardrb" },
+          automatic_installation = true,
+        })
+
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+        -- Ruby LSP setup with solargraph
+        vim.lsp.config.solargraph = {
+          cmd = { "solargraph", "stdio" },
+          filetypes = { "ruby" },
+          root_markers = { "Gemfile", ".git" },
+          capabilities = capabilities,
+          settings = {
+            solargraph = {
+              diagnostics = false, -- Disable to avoid conflicts with standardrb
+              completion = true,
+              hover = true,
+              formatting = false, -- We'll use standardrb for formatting
+            }
+          }
+        }
+
+        -- StandardRB for Ruby formatting and linting
+        vim.lsp.config.standardrb = {
+          cmd = { "standardrb", "--lsp" },
+          filetypes = { "ruby" },
+          root_markers = { "Gemfile", ".git", ".standard.yml" },
+          capabilities = capabilities,
+          settings = {
+            standardrb = {
+              -- Enable formatting and linting
+              format = true,
+              lint = true,
+            }
+          }
+        }
+
+        -- Enable LSP servers for Ruby files
+        vim.api.nvim_create_autocmd('FileType', {
+          pattern = 'ruby',
+          callback = function()
+            vim.lsp.enable('solargraph')
+            vim.lsp.enable('standardrb')
+          end,
+        })
+
+        -- LSP keymaps
+        vim.api.nvim_create_autocmd('LspAttach', {
+          group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+          callback = function(ev)
+            local opts = { buffer = ev.buf }
+            vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+            vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+            vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+            vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+            vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, opts)
+            vim.keymap.set({ 'n', 'v' }, '<Leader>ca', vim.lsp.buf.code_action, opts)
+            vim.keymap.set('n', '<Leader>F', function()
+              vim.lsp.buf.format { async = true }
+            end, opts)
+          end,
+        })
+
+        -- Configure diagnostics
+        vim.diagnostic.config({
+          virtual_text = true,
+          signs = true,
+          underline = true,
+          update_in_insert = false,
+          severity_sort = true,
+        })
+
+        -- Diagnostic signs
+        local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
+        for type, icon in pairs(signs) do
+          local hl = "DiagnosticSign" .. type
+          vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+        end
+      end
+    },
     {
       "paulyeo21/vim-textobj-rspec",
       dependencies = { "kana/vim-textobj-user" }
@@ -201,8 +288,6 @@ require("lazy").setup({
       },
       config = function()
         require("codecompanion").setup({
-          -- TODO: remove after next version update
-          ignore_warnings = true,
           strategies = {
             chat = {
               adapter = "sfdc_eng_ai_model_gateway",
@@ -233,8 +318,11 @@ require("lazy").setup({
                     api_key = "cmd:echo $SFDC_AI_API_KEY",
                   },
                   schema = {
-                    -- model = {default = "claude-opus-4-5-20251101"},
-                    model = {default = "claude-sonnet-4-20250514"},
+                    model = {
+                      -- https://docs.internal.salesforce.com/ai/express-llm-gateway/home/
+                      default = "claude-opus-4-5-20251101"
+                      -- default = "us.anthropic.claude-sonnet-4-5-20250929-v1:0"
+                    },
                     temperature = {default = 0.2},
                     max_completion_tokens = {default = 4096},
                   },
