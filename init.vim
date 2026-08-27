@@ -116,12 +116,23 @@ require("lazy").setup({
     },
     "https://git.sr.ht/~ackyshake/spacegray.vim",
     {
-      "honza/vim-snippets",
-      dependencies = {
-        "MarcWeber/vim-addon-mw-utils",
-        "tomtom/tlib_vim",
-        "SirVer/ultisnips"
-      }
+      "L3MON4D3/LuaSnip",
+      version = "v2.*",
+      build = "make install_jsregexp",
+      dependencies = { "rafamadriz/friendly-snippets" },
+      event = "InsertEnter",
+      config = function()
+        local ls = require("luasnip")
+        require("luasnip.loaders.from_vscode").lazy_load()
+
+        vim.keymap.set({ "i", "s" }, "<Tab>", function()
+          return ls.expand_or_jumpable() and "<Plug>luasnip-expand-or-jump" or "<Tab>"
+        end, { expr = true, silent = true })
+
+        vim.keymap.set({ "i", "s" }, "<S-Tab>", function()
+          if ls.jumpable(-1) then ls.jump(-1) end
+        end, { silent = true })
+      end,
     },
     {
       "simplenote-vim/simplenote.vim",
@@ -137,12 +148,6 @@ require("lazy").setup({
     "m1foley/vim-expresso",
     "travisjeffery/vim-auto-mkdir",
     "johngrib/vim-game-code-break",
-    {
-      "uptech/vim-ping-cursor",
-      config = function()
-        vim.g.ping_cursor_flash_milliseconds = 100
-      end
-    },
     {
       "tyru/open-browser.vim",
       config = function()
@@ -176,7 +181,7 @@ require("lazy").setup({
       config = function()
         require("mason").setup()
         require("mason-lspconfig").setup({
-          ensure_installed = { "solargraph", "standardrb" },
+          ensure_installed = { "solargraph" },
           automatic_installation = true,
         })
 
@@ -198,29 +203,38 @@ require("lazy").setup({
           }
         }
 
-        -- StandardRB for Ruby formatting and linting
+        -- StandardRB: starts for any Ruby project without .rubocop.yml (default linter)
         vim.lsp.config.standardrb = {
           cmd = { "standardrb", "--lsp" },
           filetypes = { "ruby" },
-          root_markers = { "Gemfile", ".git", ".standard.yml" },
+          root_dir = function(bufnr, cb)
+            local root = vim.fs.root(bufnr, { 'Gemfile', '.git' })
+            if root and not vim.uv.fs_stat(root .. '/.rubocop.yml') then
+              cb(root)
+            end
+          end,
           capabilities = capabilities,
-          settings = {
-            standardrb = {
-              -- Enable formatting and linting
-              format = true,
-              lint = true,
-            }
-          }
         }
 
-        -- Enable LSP servers for Ruby files
-        vim.api.nvim_create_autocmd('FileType', {
-          pattern = 'ruby',
-          callback = function()
-            vim.lsp.enable('solargraph')
-            vim.lsp.enable('standardrb')
+        -- RuboCop: only starts when .rubocop.yml is found; omitting cb prevents startup
+        vim.lsp.config.rubocop = {
+          cmd = { "bundle", "exec", "rubocop", "--lsp" },
+          filetypes = { "ruby" },
+          root_dir = function(bufnr, cb)
+            local found = vim.fs.find('.rubocop.yml', {
+              upward = true,
+              path = vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr)),
+              limit = 1,
+            })
+            if #found > 0 then cb(vim.fs.dirname(found[1])) end
           end,
-        })
+          capabilities = capabilities,
+        }
+
+        -- Enable all Ruby LSP servers once; root_dir function gates which linter starts
+        vim.lsp.enable('solargraph')
+        vim.lsp.enable('standardrb')
+        vim.lsp.enable('rubocop')
 
         -- LSP keymaps
         vim.api.nvim_create_autocmd('LspAttach', {
@@ -292,6 +306,26 @@ require("lazy").setup({
             chat = {
               adapter = "sfdc_eng_ai_model_gateway",
               roles = {llm = "🤖", user = "Me",},
+              tools = {
+                -- Timeout waiting for user input/confirmation (1 hour)
+                opts = { wait_timeout = 3600000 },
+                -- Disable approval for read-only tools
+                ["read_file"] = {
+                  opts = { require_approval_before = false },
+                },
+                ["file_search"] = {
+                  opts = { require_approval_before = false },
+                },
+                ["grep_search"] = {
+                  opts = { require_approval_before = false },
+                },
+                ["list_code_usages"] = {
+                  opts = { require_approval_before = false },
+                },
+                ["get_changed_files"] = {
+                  opts = { require_approval_before = false },
+                },
+              },
               -- C-s submits to LLM instead of Return
               keymaps = {
                 send = {
@@ -302,10 +336,6 @@ require("lazy").setup({
                   modes = { n = "<C-c>", i = "<C-c>" },
                   opts = {},
                 },
-              },
-              tools = {
-                -- Timeout waiting for user input/confirmation (1 hour)
-                opts = { wait_timeout = 3600000 },
               },
             },
           },
@@ -320,7 +350,8 @@ require("lazy").setup({
                   schema = {
                     model = {
                       -- https://docs.internal.salesforce.com/ai/express-llm-gateway/home/
-                      default = "claude-opus-4-5-20251101"
+                      default = "us.anthropic.claude-sonnet-4-6"
+                      -- default = "claude-opus-4-5-20251101"
                       -- default = "us.anthropic.claude-sonnet-4-5-20250929-v1:0"
                     },
                     temperature = {default = 0.2},
@@ -341,7 +372,7 @@ require("lazy").setup({
 
         -- CodeCompanion keymaps:
         -- <C-a> opens CodeCompanionActions
-        vim.keymap.set({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
+        -- vim.keymap.set({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
         -- <Leader>a toggles CodeCompanionChat
         vim.keymap.set({ "n", "v" }, "<Leader>a", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
         -- ga adds the visual selection to CodeCompanionChat
@@ -438,6 +469,20 @@ require("lazy").setup({
   -- checker = { enabled = true }, -- automatically check for plugin updates
   auto_install = true,
 })
+
+
+-- Flash cursor line briefly
+vim.opt.cursorline = true
+-- Highlight cursor line number only
+vim.opt.cursorlineopt = "number"
+-- vim.keymap.set("n", "<C-l>", function()
+--   local old_opt = vim.opt.cursorlineopt:get()
+--   vim.opt.cursorlineopt = "both"
+--   vim.cmd("redraw")
+--   vim.defer_fn(function()
+--     vim.opt.cursorlineopt = old_opt
+--   end, 150)
+-- end, { desc = "Flash cursor line" })
 EOF
 
 " set directory=.,./.tmp,/tmp//
@@ -526,15 +571,14 @@ nnoremap <silent> \ :call Grep()<CR>
 nnoremap <silent> K :call Grep(expand('<cword>'))<CR>
 vnoremap <silent> K "gy :call Grep(@g)<CR>:call setreg('g', [])<CR>
 
-" ale + standardrb
-let g:ale_linters = {'ruby': ['standardrb']}
-let g:ale_fixers = {'ruby': ['standardrb']}
-let g:ruby_indent_assignment_style = 'variable'
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 'never'
-let g:ale_lint_on_insert_leave = 'never'
-let g:ale_fix_on_save = 0
-let g:ale_lint_on_save = 1
+" LSP + standardrb (configured above in lua)
+" let g:ruby_indent_assignment_style = 'variable'
+
+" LSP diagnostic keymaps
+" nnoremap <silent> [d <cmd>lua vim.diagnostic.goto_prev()<CR>
+" nnoremap <silent> ]d <cmd>lua vim.diagnostic.goto_next()<CR>
+" nnoremap <silent> <Leader>e <cmd>lua vim.diagnostic.open_float()<CR>
+" nnoremap <silent> <Leader>q <cmd>lua vim.diagnostic.setloclist()<CR>
 
 " recognize heex extention for Elixir templates
 autocmd BufRead,BufNewFile *.html.heex set filetype=eelixir
@@ -595,8 +639,8 @@ noremap <C-y> 3<C-y>
 cnoremap %% <C-r>=expand('%:h').'/'<CR>
 " gp selects last paste
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
-" <C-l> modified from vim-sensible to ping cursor
-nnoremap <silent> <C-l> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>:PingCursor<CR><C-L>
+" <C-l> modified from vim-sensible to also ping cursor
+" nnoremap <silent> <C-l> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>:PingCursor<CR><C-L>
 
 " ,c replace until next underscore
 nnoremap <Leader>c ct_

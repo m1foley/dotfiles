@@ -129,3 +129,10 @@ if [[ $- == *i* ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
   eval "$(rbenv init -)"
 fi
+
+export PATH="$HOME/.local/bin:$PATH"
+
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# devbar-managed-start
+export NODE_EXTRA_CA_CERTS="$HOME/.devbar/certs/corporate-ca-bundle.pem"
+# devbar-managed-end
