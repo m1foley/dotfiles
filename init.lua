@@ -1,10 +1,7 @@
-" TODO: migrate to init.lua
-" TODO: Move plugin configurations into separate Lua modules (e.g., `lua/plugins/`, `lua/config/`)
-" TODO: Consider replacing `vim-test` with `neotest`/`neotest-rspec` for better integration
+-- TODO: Move plugin configurations into separate Lua modules (e.g., `lua/plugins/`, `lua/config/`)
 
-let g:mapleader=','
+vim.g.mapleader = ','
 
-lua << EOF
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -160,15 +157,63 @@ require("lazy").setup({
     },
     "markonm/traces.vim", -- preview substitutions
     {
-      "vim-test/vim-test",
+      "nvim-treesitter/nvim-treesitter",
+      branch = "master",
+      build = ":TSUpdate",
       config = function()
-        vim.g["test#strategy"] = "dispatch"
-        vim.g["test#ruby#rspec#options"] = {
-          nearest = "--backtrace --no-color",
-          file = "--format documentation --no-color",
-          suite = "--no-color --tag ~slow",
-        }
-      end
+        -- Parsers needed by the neotest adapters for test discovery.
+        -- Highlight is intentionally left disabled to preserve existing
+        -- regex-based syntax highlighting.
+        require("nvim-treesitter.configs").setup({
+          ensure_installed = { "ruby", "elixir" },
+          auto_install = true,
+        })
+      end,
+    },
+    {
+      "nvim-neotest/neotest",
+      dependencies = {
+        "nvim-neotest/nvim-nio",
+        "nvim-lua/plenary.nvim",
+        "nvim-treesitter/nvim-treesitter",
+        "olimorris/neotest-rspec",
+        "jfpedroza/neotest-elixir",
+      },
+      config = function()
+        require("neotest").setup({
+          adapters = {
+            -- Defaults to `bundle exec rspec` (not ./bin/rspec)
+            require("neotest-rspec"),
+            require("neotest-elixir"),
+          },
+          -- Populate the quickfix with real file:line entries (jumpable) in the
+          -- background; the run mappings open the output panel, and :copen /
+          -- :cnext navigate the failures when you want them.
+          quickfix = {
+            enabled = true,
+            open = false,
+          },
+          -- Custom consumer: auto-close the output panel when a run finishes green.
+          -- Registers its own `results` listener (keyed by consumer name), so it
+          -- coexists with the built-in quickfix/diagnostic listeners.
+          consumers = {
+            close_panel_on_success = function(client)
+              client.listeners.results = function(_, results, partial)
+                if partial then
+                  return
+                end
+                for _, result in pairs(results) do
+                  if result.status == "failed" then
+                    return -- keep the panel open so failures are visible
+                  end
+                end
+                require("neotest").output_panel.close()
+              end
+              return {}
+            end,
+          },
+        })
+      end,
     },
     "powerman/vim-plugin-AnsiEsc",
     -- language-specific plugins
@@ -420,7 +465,7 @@ require("lazy").setup({
         end
         function FidgetIntegration:create_progress_handle(request)
           return progress.handle.create({
-            title = "",
+            title = "",
             message = "⏳",
             lsp_client = {name = ""},
           })
@@ -429,7 +474,7 @@ require("lazy").setup({
           if request.data.status == "success" then
             handle.message = "✔"
           elseif request.data.status == "error" then
-            handle.message = " Error"
+            handle.message = " Error"
           else
             handle.message = "󰜺 Cancelled"
           end
@@ -483,60 +528,64 @@ vim.opt.cursorlineopt = "number"
 --     vim.opt.cursorlineopt = old_opt
 --   end, 150)
 -- end, { desc = "Flash cursor line" })
-EOF
 
-" set directory=.,./.tmp,/tmp//
-" set directory=/tmp// "swap files
-" set backupdir=/tmp,. "tilde files
+-- set directory=.,./.tmp,/tmp//
+-- set directory=/tmp// "swap files
+-- set backupdir=/tmp,. "tilde files
 
-set statusline=%<%f\ " filename
-set statusline+=%-7h " help status
-set statusline+=%-4m " modified flag
-set statusline+=%-5r " readonly flag
-if exists('*fugitive#statusline')
-  set statusline+=%{fugitive#statusline()}\ " Git status
-endif
-set statusline+=%=%-14.(%l,%c%V%) " line/column
-set statusline+=%30(%=%<%P%) " rulerformat
+-- statusline
+local statusline = "%<%f " -- filename
+  .. "%-7h" -- help status
+  .. "%-4m" -- modified flag
+  .. "%-5r" -- readonly flag
+if vim.fn.exists('*fugitive#statusline') == 1 then
+  statusline = statusline .. "%{fugitive#statusline()} " -- Git status
+end
+statusline = statusline
+  .. "%=%-14.(%l,%c%V%)" -- line/column
+  .. "%30(%=%<%P%)" -- rulerformat
+vim.opt.statusline = statusline
 
-set startofline
-set number
-set ignorecase
-set smartcase
-set sidescroll=10
-set sidescrolloff=2
-set lazyredraw
-set expandtab
-set softtabstop=2
-set tabstop=2
-set shiftwidth=2
-set shiftround
-set splitbelow splitright
-set winminheight=0
-set mouse= " disable mouse
-set mousehide
-set visualbell
-set list " display extra whitespace
-set synmaxcol=256
-set hlsearch
-set incsearch
-set nohidden " don't close an unsaved buffer
-set shortmess=aoOtT
-let g:netrw_liststyle=3 " netrw default to tree view
-" set printoptions+=header:0
-set tags^=./.git/tags; " ctags support
-let ruby_minlines = 100
-let g:markdown_fenced_languages = ['ruby', 'rb=ruby', 'sh', 'bash=sh', 'javascript', 'js=javascript']
-set nofoldenable
-" set guifont=Monaco:h16
-set background=dark
-colorscheme spacegray
-set termguicolors
+vim.opt.startofline = true
+vim.opt.number = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.sidescroll = 10
+vim.opt.sidescrolloff = 2
+vim.opt.lazyredraw = true
+vim.opt.expandtab = true
+vim.opt.softtabstop = 2
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.shiftround = true
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.winminheight = 0
+vim.opt.mouse = "" -- disable mouse
+vim.opt.mousehide = true
+vim.opt.visualbell = true
+vim.opt.list = true -- display extra whitespace
+vim.opt.synmaxcol = 256
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
+vim.opt.hidden = false -- don't close an unsaved buffer
+vim.opt.shortmess = "aoOtT"
+vim.g.netrw_liststyle = 3 -- netrw default to tree view
+-- vim.opt.printoptions:append("header:0")
+vim.opt.tags:prepend("./.git/tags;") -- ctags support
+vim.g.ruby_minlines = 100
+vim.g.markdown_fenced_languages = { 'ruby', 'rb=ruby', 'sh', 'bash=sh', 'javascript', 'js=javascript' }
+vim.opt.foldenable = false
+-- vim.opt.guifont = "Monaco:h16"
+vim.opt.background = "dark"
+vim.cmd.colorscheme("spacegray")
+vim.opt.termguicolors = true
 
-let g:python3_host_prog = expand('~/.config/nvim/venv/bin/python')
+vim.g.python3_host_prog = vim.fn.expand('~/.config/nvim/venv/bin/python')
 
-set grepprg=ag\ --smart-case\ --vimgrep\ --path-to-ignore\ ~/.ignore
-set grepformat=%f:%l:%c:%m
+vim.opt.grepprg = "ag --smart-case --vimgrep --path-to-ignore ~/.ignore"
+vim.opt.grepformat = "%f:%l:%c:%m"
+vim.cmd([[
 function! Grep(...)
   " normal/visual mode
   if a:0 > 0
@@ -567,136 +616,185 @@ function! Grep(...)
   endif
   redraw!
 endfunction
-nnoremap <silent> \ :call Grep()<CR>
-nnoremap <silent> K :call Grep(expand('<cword>'))<CR>
-vnoremap <silent> K "gy :call Grep(@g)<CR>:call setreg('g', [])<CR>
+]])
+vim.keymap.set('n', '\\', ':call Grep()<CR>', { silent = true })
+vim.keymap.set('n', 'K', ":call Grep(expand('<cword>'))<CR>", { silent = true })
+vim.keymap.set('v', 'K', '"gy :call Grep(@g)<CR>:call setreg(\'g\', [])<CR>', { silent = true })
 
-" LSP + standardrb (configured above in lua)
-" let g:ruby_indent_assignment_style = 'variable'
+-- LSP + standardrb (configured above in lua)
+-- vim.g.ruby_indent_assignment_style = 'variable'
 
-" LSP diagnostic keymaps
-" nnoremap <silent> [d <cmd>lua vim.diagnostic.goto_prev()<CR>
-" nnoremap <silent> ]d <cmd>lua vim.diagnostic.goto_next()<CR>
-" nnoremap <silent> <Leader>e <cmd>lua vim.diagnostic.open_float()<CR>
-" nnoremap <silent> <Leader>q <cmd>lua vim.diagnostic.setloclist()<CR>
+-- LSP diagnostic keymaps
+-- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { silent = true })
+-- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { silent = true })
+-- vim.keymap.set('n', '<Leader>e', vim.diagnostic.open_float, { silent = true })
+-- vim.keymap.set('n', '<Leader>q', vim.diagnostic.setloclist, { silent = true })
 
-" recognize heex extention for Elixir templates
-autocmd BufRead,BufNewFile *.html.heex set filetype=eelixir
-" automatically format when saving Elixir
-autocmd BufWritePre *.ex,*.exs Dispatch! mix format %
+-- recognize heex extention for Elixir templates
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.html.heex",
+  command = "set filetype=eelixir",
+})
+-- automatically format when saving Elixir
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = { "*.ex", "*.exs" },
+  command = "Dispatch! mix format %",
+})
 
-" quickfix: o opens file in split
-augroup quickfix
-  autocmd!
-  autocmd FileType qf nnoremap <buffer> o <C-W><CR>
-augroup end
+-- quickfix: o opens file in split
+local quickfix = vim.api.nvim_create_augroup("quickfix", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+  group = quickfix,
+  pattern = "qf",
+  command = "nnoremap <buffer> o <C-W><CR>",
+})
 
-" don't open binary files
-augroup nonvim
-  autocmd!
-  autocmd BufRead *.png,*.jpg,*.pdf,*.gif,*.xls*,*.ppt*,*.doc,*.docx,*.rtf bd! | let &ft=&ft | echoerr "Binary file not opened."
-augroup end
+-- don't open binary files
+local nonvim = vim.api.nvim_create_augroup("nonvim", { clear = true })
+vim.api.nvim_create_autocmd("BufRead", {
+  group = nonvim,
+  pattern = { "*.png", "*.jpg", "*.pdf", "*.gif", "*.xls*", "*.ppt*", "*.doc", "*.docx", "*.rtf" },
+  command = [[bd! | let &ft=&ft | echoerr "Binary file not opened."]],
+})
 
-" escape ANSI escape sequences in log files
-augroup logfile
-  autocmd!
-  autocmd BufReadPost *.log :AnsiEsc
-augroup end
+-- escape ANSI escape sequences in log files
+local logfile = vim.api.nvim_create_augroup("logfile", { clear = true })
+vim.api.nvim_create_autocmd("BufReadPost", {
+  group = logfile,
+  pattern = "*.log",
+  command = "AnsiEsc",
+})
 
-" make non-ascii chars stand out
-autocmd BufReadPost * syntax match nonascii "[^\u0000-\u007F]"
-highlight nonascii guibg=Red ctermbg=1 term=standout
+-- make non-ascii chars stand out
+vim.api.nvim_create_autocmd("BufReadPost", {
+  pattern = "*",
+  command = [[syntax match nonascii "[^\u0000-\u007F]"]],
+})
+vim.cmd([[highlight nonascii guibg=Red ctermbg=1 term=standout]])
 
-" spellcheck git commit messages
-autocmd BufRead,BufNewFile COMMIT_EDITMSG set spell
+-- spellcheck git commit messages
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "COMMIT_EDITMSG",
+  command = "set spell",
+})
 
-" -o = Don't continue comment when hitting o
-" +l = Don't break long lines in insert mode
-autocmd FileType * set formatoptions-=o formatoptions+=l
+-- -o = Don't continue comment when hitting o
+-- +l = Don't break long lines in insert mode
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "*",
+  command = "set formatoptions-=o formatoptions+=l",
+})
 
-" tcsh-style command line
-cnoremap <C-A> <Home>
-" cnoremap <C-F> <S-Right>
-" cnoremap <C-B> <S-Left>
-cnoremap <C-E> <End>
+-- tcsh-style command line
+vim.keymap.set('c', '<C-A>', '<Home>')
+-- vim.keymap.set('c', '<C-F>', '<S-Right>')
+-- vim.keymap.set('c', '<C-B>', '<S-Left>')
+vim.keymap.set('c', '<C-E>', '<End>')
 
-" Typos
-cabbrev q1 q!
-cabbrev qa1 qa!
-iabbrev contet context
+-- Typos
+vim.cmd([[cabbrev q1 q!]])
+vim.cmd([[cabbrev qa1 qa!]])
+vim.cmd([[iabbrev contet context]])
 
-noremap Q <silent>
-noremap ZA :qa!<CR>
-" Control key jumps between panes
-noremap <C-k> <C-w>k
-noremap <C-j> <C-w>j
-noremap <C-h> <C-w>h
-" C-e and C-y scroll 3 lines instead of 1
-noremap <C-e> 3<C-e>
-noremap <C-y> 3<C-y>
-" expand %% to current directory in command-line mode
-" http://vimcasts.org/episodes/the-edit-command/
-cnoremap %% <C-r>=expand('%:h').'/'<CR>
-" gp selects last paste
-nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
-" <C-l> modified from vim-sensible to also ping cursor
-" nnoremap <silent> <C-l> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>:PingCursor<CR><C-L>
+vim.keymap.set('', 'Q', '<silent>')
+vim.keymap.set('', 'ZA', ':qa!<CR>')
+-- Control key jumps between panes
+vim.keymap.set('', '<C-k>', '<C-w>k')
+vim.keymap.set('', '<C-j>', '<C-w>j')
+vim.keymap.set('', '<C-h>', '<C-w>h')
+-- C-e and C-y scroll 3 lines instead of 1
+vim.keymap.set('', '<C-e>', '3<C-e>')
+vim.keymap.set('', '<C-y>', '3<C-y>')
+-- expand %% to current directory in command-line mode
+-- http://vimcasts.org/episodes/the-edit-command/
+vim.keymap.set('c', '%%', "<C-r>=expand('%:h').'/'<CR>")
+-- gp selects last paste
+vim.keymap.set('n', 'gp', "'`[' . strpart(getregtype(), 0, 1) . '`]'", { expr = true })
+-- <C-l> modified from vim-sensible to also ping cursor
+-- vim.keymap.set('n', '<C-l>', ":nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR>:PingCursor<CR><C-L>", { silent = true })
 
-" ,c replace until next underscore
-nnoremap <Leader>c ct_
-" ,| go to 80th column
-nnoremap <Leader><Bar> 80<Bar>
-vnoremap <Leader><Bar> 80<Bar>
-" ,, open previously edited file
-nnoremap <Leader><Leader> <C-^>
-" ,<Space> strip all trailing whitespace from current file
-nnoremap <Leader><Space> :%s/\s\+$//e<CR>
-" ,d diff all
-nnoremap <Leader>d :diffthis<CR><C-w><C-w>:diffthis<CR>
-" ,D diff off
-nnoremap <Leader>D :diffoff<CR><C-w><C-w>:diffoff<CR>
-" ,n Simplenote list
-nnoremap <Leader>n :SimplenoteList<CR>
-" ,y use clipboard register: "+
-nnoremap <Leader>y "+
-vnoremap <Leader>y "+
-" ,<UP> restore arrow keys
-nnoremap <silent> <Leader><UP> :nunmap <LT>LEFT>\|nunmap <LT>RIGHT>\|nunmap <LT>DOWN>\|nunmap <LT>UP>\|echo 'Arrow keys restored.'<CR>
-" ,5 !open current file
-nnoremap <Leader>5 :!open %<CR>
-" ,L git log -p
-nnoremap <Leader>L :Git log -p %<CR>
-" ,g Fugitive git status
-nnoremap <Leader>g :Git<CR>
-" ,j format JSON
-nnoremap <Leader>j :%!jq .
-" nnoremap <Leader>j :%!python -c "import json, sys, collections; print json.dumps(json.load(sys.stdin, object_pairs_hook=collections.OrderedDict), indent=2)"<CR>:%s/\s\+$//e<CR>:set filetype=json<CR>
-" ,f set filetype to ruby
-nnoremap <Leader>f :set filetype=ruby<CR>
-" ctrl-r ,d in insert/command mode inserts today's date
-inoremap <silent> <C-r><Leader>d <C-r>=strftime("%Y-%m-%d")<CR>
-cnoremap <C-r><Leader>d <C-r>=strftime("%Y-%m-%d")<CR>
-" <C-p> FZF
-nnoremap <C-p> <cmd>lua require('fzf-lua').files()<CR>
-" ,h most recently used files
-nnoremap <silent> <Leader>h <cmd>lua require('fzf-lua').oldfiles()<CR>
-" ,w autopopulate GUS ticket in commit msg
-nnoremap <Leader>w /^# Please eO4j/ W-l2yt-{o@0OdipOk
+-- ,c replace until next underscore
+vim.keymap.set('n', '<Leader>c', 'ct_')
+-- ,| go to 80th column
+vim.keymap.set('n', '<Leader><Bar>', '80<Bar>')
+vim.keymap.set('v', '<Leader><Bar>', '80<Bar>')
+-- ,, open previously edited file
+vim.keymap.set('n', '<Leader><Leader>', '<C-^>')
+-- ,<Space> strip all trailing whitespace from current file
+vim.keymap.set('n', '<Leader><Space>', ':%s/\\s\\+$//e<CR>')
+-- ,d diff all
+vim.keymap.set('n', '<Leader>d', ':diffthis<CR><C-w><C-w>:diffthis<CR>')
+-- ,D diff off
+vim.keymap.set('n', '<Leader>D', ':diffoff<CR><C-w><C-w>:diffoff<CR>')
+-- ,n Simplenote list
+vim.keymap.set('n', '<Leader>n', ':SimplenoteList<CR>')
+-- ,y use clipboard register: "+
+vim.keymap.set('n', '<Leader>y', '"+')
+vim.keymap.set('v', '<Leader>y', '"+')
+-- ,<UP> restore arrow keys (kept as vimscript for the <LT>/\| escaping)
+vim.cmd([[nnoremap <silent> <Leader><UP> :nunmap <LT>LEFT>\|nunmap <LT>RIGHT>\|nunmap <LT>DOWN>\|nunmap <LT>UP>\|echo 'Arrow keys restored.'<CR>]])
+-- ,5 !open current file
+vim.keymap.set('n', '<Leader>5', ':!open %<CR>')
+-- ,L git log -p
+vim.keymap.set('n', '<Leader>L', ':Git log -p %<CR>')
+-- ,g Fugitive git status
+vim.keymap.set('n', '<Leader>g', ':Git<CR>')
+-- ,j format JSON
+vim.keymap.set('n', '<Leader>j', ':%!jq .')
+-- vim.keymap.set('n', '<Leader>j', ':%!python -c "import json, sys, collections; print json.dumps(json.load(sys.stdin, object_pairs_hook=collections.OrderedDict), indent=2)"<CR>:%s/\\s\\+$//e<CR>:set filetype=json<CR>')
+-- ,f set filetype to ruby
+vim.keymap.set('n', '<Leader>f', ':set filetype=ruby<CR>')
+-- ctrl-r ,d in insert/command mode inserts today's date
+vim.keymap.set('i', '<C-r><Leader>d', '<C-r>=strftime("%Y-%m-%d")<CR>', { silent = true })
+vim.keymap.set('c', '<C-r><Leader>d', '<C-r>=strftime("%Y-%m-%d")<CR>')
+-- <C-p> FZF
+vim.keymap.set('n', '<C-p>', function() require('fzf-lua').files() end)
+-- ,h most recently used files
+vim.keymap.set('n', '<Leader>h', function() require('fzf-lua').oldfiles() end, { silent = true })
+-- ,w autopopulate GUS ticket in commit msg
+vim.keymap.set('n', '<Leader>w', "/^# Please e<CR>O<Esc>4j/ W-<CR>l2yt-{o@<C-R>0<Esc>O<Esc>dipO<Esc>k")
 
-" vim-test mappings
-nmap <Leader>t :TestFile<CR>
-" TODO: change vim-test options per lanuage
-" nmap <Leader>ft :TestFile --max-failures 1<CR>
-nmap <Leader>ft :TestFile --fail-fast<CR>
-nmap <Leader>s :TestNearest<CR>
-nmap <Leader>is :Dispatch iex -S mix test %:<C-r>=line(".")<CR><CR>
+-- neotest mappings (Ruby via neotest-rspec, Elixir via neotest-elixir)
+-- Runs open the output panel immediately; the quickfix populates in the background (see above).
+vim.keymap.set('n', '<Leader>t', function()
+  require("neotest").output_panel.clear()
+  require('neotest').run.run(vim.fn.expand('%'))
+  require('neotest').output_panel.open()
+end, { silent = true })
+vim.keymap.set('n', '<Leader>ft', function()
+  require("neotest").output_panel.clear()
+  require('neotest').run.run({ vim.fn.expand('%'), extra_args = { '--fail-fast' } })
+  require('neotest').output_panel.open()
+end, { silent = true })
+vim.keymap.set('n', '<Leader>s', function()
+  require("neotest").output_panel.clear()
+  require('neotest').run.run()
+  require('neotest').output_panel.open()
+end, { silent = true })
+vim.keymap.set('n', '<Leader>fs', function()
+  require("neotest").output_panel.clear()
+  require('neotest').run.run({ extra_args = { '--fail-fast' } })
+  require('neotest').output_panel.open()
+end, { silent = true })
+vim.keymap.set('n', '<Leader>l', function()
+  require("neotest").output_panel.clear()
+  require('neotest').run.run_last()
+  require('neotest').output_panel.open()
+end, { silent = true })
+vim.keymap.set('n', '<Leader>fl', function()
+  require("neotest").output_panel.clear()
+  require('neotest').run.run_last({ extra_args = { '--fail-fast' } })
+  require('neotest').output_panel.open()
+end, { silent = true })
+-- attach to a running test's process (interactive debuggers: binding.pry, byebug, debug)
+vim.keymap.set('n', '<Leader>A', function() require('neotest').run.attach() end, { silent = true })
+-- output/summary consumers
+vim.keymap.set('n', '<Leader>o', function() require('neotest').output.open({ enter = true }) end, { silent = true })
+vim.keymap.set('n', '<Leader>O', function() require('neotest').output_panel.toggle() end, { silent = true })
+vim.keymap.set('n', '<Leader>S', function() require('neotest').summary.toggle() end, { silent = true })
 
-" nmap <Leader>fs :TestNearest --max-failures 1<CR>
-nmap <Leader>fs :TestNearest --fail-fast<CR>
-nmap <Leader>l :TestLast<CR>
-" nmap <Leader>fl :TestLast --max-failures 1<CR>
-nmap <Leader>fl :TestLast --fail-fast<CR>
-
+-- Ruby-specific mappings (kept as vimscript for the control-char memoize macro)
+vim.cmd([[
 autocmd Filetype ruby call LoadRubyMaps()
 function! LoadRubyMaps()
   set textwidth=80
@@ -706,5 +804,6 @@ function! LoadRubyMaps()
   " ,: update Ruby hash syntax
   vnoremap <silent> <Leader>: :ChangeHashSyntax<CR>
   " ,m memoize a Ruby method
-  nmap <Leader>m [mwy$oreturn @0 if defined?(@0)jI@0 = l
+  nmap <Leader>m [mwy$oreturn @0 if defined?(@0)jI@0 = l
 endfunction
+]])
