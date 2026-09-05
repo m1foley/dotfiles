@@ -158,16 +158,10 @@ require("lazy").setup({
     "markonm/traces.vim", -- preview substitutions
     {
       "nvim-treesitter/nvim-treesitter",
-      branch = "master",
+      lazy = false,
       build = ":TSUpdate",
       config = function()
-        -- Parsers needed by the neotest adapters for test discovery.
-        -- Highlight is intentionally left disabled to preserve existing
-        -- regex-based syntax highlighting.
-        require("nvim-treesitter.configs").setup({
-          ensure_installed = { "ruby", "elixir" },
-          auto_install = true,
-        })
+        require("nvim-treesitter").install { "ruby", "elixir", "markdown", "markdown_inline" }
       end,
     },
     {
